@@ -11,7 +11,8 @@
     "sequelize": "^6.21.3"
   },
   "scripts": {
-    "dev": "nodemon -r dotenv/config server.js"
+    "dev": "nodemon -r dotenv/config server.js",
+    "db:create": "sequelize-cli db:create"
   },
   "name": "officer_manager",
   "version": "1.0.0",
