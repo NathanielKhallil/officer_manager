@@ -8,21 +8,27 @@ body {
 }
 
 .wrapper {
-    height: 100%;
-    margin-bottom: -15rem;
+    min-height: calc(100vh - 35rem);
     background-color: FFFFFF;
 }
 
 
 .push {
-    height: 0px;
+    height: 2rem;
     
 }
 
 .footer {
-    height: 15rem;
+    height: 13rem;
     color: aliceblue;
     text-align: center;
-    padding-top: 6rem;
+    padding: 2rem 0rem 2rem 0rem;
     background-color: black;
+}
+
+.footer-header {
+    color: ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    
 }
