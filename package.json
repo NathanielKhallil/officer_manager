@@ -12,7 +12,10 @@
   },
   "scripts": {
     "dev": "nodemon -r dotenv/config server.js",
-    "db:create": "sequelize-cli db:create"
+    "db:create": "sequelize-cli db:create",
+    "db:migrate": "sequelize-cli db:migrate",
+   "db:g:migration": "sequelize-cli migration:generate --name",
+   "db:reset": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate"
   },
   "name": "officer_manager",
   "version": "1.0.0",
