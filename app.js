@@ -27,4 +27,16 @@ app.get("/login", (request, response) => {
   response.render("login", { title: "Office Manager - login" });
 });
 
+//Models
+var models = require("./app/models");
+//Sync Database
+models.sequelize
+  .sync()
+  .then(function () {
+    console.log("sync successful");
+  })
+  .catch(function (err) {
+    console.log(err, "Something went wrong!");
+  });
+
 app.listen(PORT || 3000, () => console.log(`Listening on port: ${PORT}`));
