@@ -19,12 +19,12 @@ app.set("view engine", "ejs");
 
 // Routing
 app.get("", (request, response) => {
-  response.render("index");
+  response.render("index", { title: "Office Manager - Home" });
 });
 
 // Login route
 app.get("/login", (request, response) => {
-  response.render("login");
+  response.render("login", { title: "Office Manager - login" });
 });
 
 app.listen(PORT || 3000, () => console.log(`Listening on port: ${PORT}`));

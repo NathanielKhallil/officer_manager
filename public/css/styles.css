@@ -10,7 +10,6 @@ body {
 form {
     min-width: 25rem;
     max-width: 25rem;
-
 }
 
 .form-outline {
@@ -19,6 +18,9 @@ form {
     margin: 5rem 
 }
 
+.form-margin {
+    margin: 7rem auto calc(100vh - 39.7rem) auto;
+}
 
 .wrapper {
     min-height: calc(100vh - 35rem);

@@ -17,7 +17,10 @@
     "db:create": "sequelize-cli db:create",
     "db:migrate": "sequelize-cli db:migrate",
     "db:g:migration": "sequelize-cli migration:generate --name",
-    "db:reset": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate"
+    "db:reset": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate",
+    "db:g:seed": "sequelize-cli seed:generate --name",
+    "db:seeds": "sequelize-cli db:seed:all",
+    "db:reseed": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all"
   },
   "name": "officer_manager",
   "version": "1.0.0",
