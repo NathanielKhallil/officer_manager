@@ -7,6 +7,19 @@ body {
     height: 100vh;
 }
 
+form {
+    min-width: 25rem;
+    max-width: 25rem;
+
+}
+
+.form-outline {
+    outline: 3px solid rgb(104, 193, 234);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    margin: 5rem 
+}
+
+
 .wrapper {
     min-height: calc(100vh - 35rem);
     background-color: FFFFFF;
