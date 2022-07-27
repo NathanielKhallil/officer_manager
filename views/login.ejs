@@ -10,10 +10,10 @@
           style="flex-direction: row"
         >
           <li class="nav-item ps-0">
-            <a class="nav-link active" id="info" name="info"> General Info </a>
+            <a class="nav-link active" href="/info"> General Info </a>
           </li>
           <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="login" name="login" href="/">
+            <a class="nav-link active"  href="/">
               Home
             </a>
           </li>
@@ -21,9 +21,14 @@
       </nav>
     </header>
     <main>
+      <% if (messages.error) { %>
+        <%- messages.error %>
+        <% } %>
       <form
         class="form-outline rounded p-5 form-margin"
-      >
+        action="/login"
+        method="POST"
+        >
         <h1 style="font-size: 130%">Sign in to continue</h1>
         <div class="form-floating">
           <input
@@ -31,8 +36,10 @@
             id="username"
             class="form-control mb-4"
             placeholder="username"
+            name="username" 
+            id="username"
           />
-          <label class="text-left"> Username </label>
+          <label for="username"  class="text-left"> Username </label>
         </div>
         <div class="form-floating">
           <input
@@ -40,16 +47,17 @@
             id="form2Example2"
             class="form-control"
             placeholder="password"
+            name="password" id="password"
           />
           <label class="form-label text-left" for="form2Example2"
             >Password</label
           >
         </div>
         <div class="mt-4 align-content-center">
-          <button class="btn me-4 ps-4 pe-4 rounded bg-dark text-light">
+          <button type="submit" class="btn me-4 ps-4 pe-4 rounded bg-dark text-light">
             Sign in
           </button>
-          <button class="btn bg-danger text-light rounded">New Account</button>
+          <button class="btn bg-danger text-light rounded"> <a class="nav-link" href="/register"> New Account </a></button>
         </div>
       </form>
     </main>
