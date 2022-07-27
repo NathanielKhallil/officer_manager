@@ -52,8 +52,8 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 
 // Home route
-app.get("", (request, response) => {
-  response.render("index", { title: "Office Manager - Home" });
+app.get("", (req, res) => {
+  res.render("index", { title: "Office Manager - Home" });
 });
 
 // Login route
@@ -64,7 +64,7 @@ app.get("/login", (request, response) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/user-portal",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -83,12 +83,18 @@ app.post("/register", async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
+      access_granted: false,
     });
     res.redirect("/login");
   } catch {
     res.redirect("/register");
   }
   console.log(users);
+});
+
+// user-portal route
+app.get("/user-portal", (req, res) => {
+  res.render("user-portal", { username: req.user.username });
 });
 
 // Info route
