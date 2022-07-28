@@ -9,6 +9,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
 const session = require("express-session");
+const Sequelize = require("sequelize");
 
 // Passport related
 const passport = require("passport");
@@ -64,7 +65,7 @@ app.get("/login", (request, response) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/user-portal",
+    successRedirect: "/userPortal",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -75,26 +76,34 @@ app.post(
 app.get("/register", (req, res) => {
   res.render("register");
 });
+
 app.post("/register", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    users.push({
-      id: Date.now().toString(), //not needed after DB connected
-      username: req.body.username,
-      email: req.body.email,
+    const username = await req.body.username;
+    const email = await req.body.email;
+    const access_granted = false;
+    console.log(username);
+
+    let newReg = {
+      username: username,
+      email: email,
       password: hashedPassword,
-      access_granted: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      access_granted: access_granted,
+    };
+    await models.User.create(newReg).then(function () {
+      res.redirect("/login");
     });
-    res.redirect("/login");
   } catch {
     res.redirect("/register");
   }
-  console.log(users);
 });
 
 // user-portal route
-app.get("/user-portal", (req, res) => {
-  res.render("user-portal", { username: req.user.username });
+app.get("/userPortal", (req, res) => {
+  res.render("userPortal", { username: req.user.username });
 });
 
 // Info route
@@ -107,6 +116,7 @@ app.get("/user-portal", (req, res) => {
 
 //Models
 var models = require("./app/models");
+
 //Sync Database
 models.sequelize
   .sync()
