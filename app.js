@@ -25,7 +25,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    // cookie: { secure: true },
+    cookie: {
+      maxAge: 30 * 60000,
+      // secure: false
+    },
   })
 );
 app.use(passport.initialize());
@@ -96,7 +99,7 @@ app.post("/register", async (req, res) => {
 
 // user-portal route
 app.get("/userPortal", (req, res) => {
-  res.render("userPortal", {req.user.username});
+  res.render("userPortal");
 });
 
 // Info route
