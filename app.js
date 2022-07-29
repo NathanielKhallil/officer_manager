@@ -9,33 +9,31 @@ const app = express();
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
 const session = require("express-session");
-const Sequelize = require("sequelize");
+const passport = require("passport");
+require("./passport-config")(passport);
+
+// Models
+const models = require("./app/models");
+
+// Templating Engine
+app.use(expressLayouts);
+app.set("view engine", "ejs");
 
 // Passport related
-const passport = require("passport");
-const initializePassport = require("./passport-config");
-initializePassport(
-  passport,
-  (username) => users.find((user) => user.username === username),
-  (id) => users.find((user) => user.id === user.id)
-);
-
-// Temp users storage to be replaced with actual database after code refactor
-const users = [];
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(flash());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    // cookie: { secure: true },
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(flash());
 
 // Port
 const PORT = process.env.PORT;
@@ -48,18 +46,14 @@ app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/js", express.static(__dirname + "public/js"));
 
-// Templating Engine
-app.use(expressLayouts);
-app.set("view engine", "ejs");
-
 // Home route
 app.get("", (req, res) => {
   res.render("index", { title: "Office Manager - Home" });
 });
 
 // Login route
-app.get("/login", (request, response) => {
-  response.render("login", { title: "Office Manager - login" });
+app.get("/login", (req, res) => {
+  res.render("login", { title: "Office Manager - login" });
 });
 
 app.post(
@@ -69,13 +63,12 @@ app.post(
     failureRedirect: "/login",
     failureFlash: true,
   })
-);
+),
+  // Register route
 
-// Register route
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
+  app.get("/register", (req, res) => {
+    res.render("register");
+  });
 
 app.post("/register", async (req, res) => {
   try {
@@ -103,7 +96,7 @@ app.post("/register", async (req, res) => {
 
 // user-portal route
 app.get("/userPortal", (req, res) => {
-  res.render("userPortal", { username: req.user.username });
+  res.render("userPortal", {req.user.username});
 });
 
 // Info route
@@ -113,9 +106,6 @@ app.get("/userPortal", (req, res) => {
 // Todos route
 
 // File access route
-
-//Models
-var models = require("./app/models");
 
 //Sync Database
 models.sequelize
