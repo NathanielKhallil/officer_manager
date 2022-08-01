@@ -26,7 +26,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 30 * 60000,
+      maxAge: 2 * 60 * 60 * 1000,
       // secure: false
     },
   })
@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 
 // Port
-const PORT = process.env.PORT;
+const PORT = process.env.PIZZAPORT;
 
 // Cors
 app.use(cors({ origin: `http://localhost:${PORT}` }));
@@ -56,6 +56,10 @@ app.get("", (req, res) => {
 
 // Login route
 app.get("/login", (req, res) => {
+  if (req.user) {
+    return res.render("userPortal");
+  }
+
   res.render("login", { title: "Office Manager - login" });
 });
 
@@ -78,7 +82,7 @@ app.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const username = await req.body.username;
     const email = await req.body.email;
-    const access_granted = false;
+
     console.log(username);
 
     let newReg = {
@@ -87,7 +91,6 @@ app.post("/register", async (req, res) => {
       password: hashedPassword,
       createdAt: new Date(),
       updatedAt: new Date(),
-      access_granted: access_granted,
     };
     await models.User.create(newReg).then(function () {
       res.redirect("/login");
@@ -97,9 +100,22 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// logout
+
+app.get("/logout", function (req, res) {
+  if (req.user) {
+    req.session.cookie.expires = new Date(Date.now());
+    console.log(req.session.cookie.maxAge);
+    res.clearCookie("connect.sid", { path: "/" });
+    res.redirect("/login");
+  }
+});
+
 // user-portal route
 app.get("/userPortal", (req, res) => {
-  res.render("userPortal");
+  if (req.user) {
+    res.render("userPortal");
+  }
 });
 
 // Info route
@@ -119,5 +135,5 @@ models.sequelize
   .catch(function (err) {
     console.log(err, "Something went wrong!");
   });
-
-app.listen(PORT || 3000, () => console.log(`Listening on port: ${PORT}`));
+console.log(PORT);
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

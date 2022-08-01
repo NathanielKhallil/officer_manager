@@ -29,6 +29,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      access_granted: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      is_admin: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
