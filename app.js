@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 
 // Port
-const PORT = process.env.PIZZAPORT;
+const PORT = process.env.SECRET_PORT;
 
 // Cors
 app.use(cors({ origin: `http://localhost:${PORT}` }));
