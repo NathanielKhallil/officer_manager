@@ -32,6 +32,9 @@ form {
     height: 2rem;
     
 }
+ul {
+    list-style-type: none;
+}
 
 .footer {
     height: 13rem;

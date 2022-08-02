@@ -1,4 +1,7 @@
-  <body>
+<body >
+    <script src="../public/js/getToDos.js">
+        window.onload = getToDos
+    </script>
     <header>
       <nav class="nav bg-dark navbar-expand-lg">
         <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
@@ -12,6 +15,9 @@
           <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
         </li>
         <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
+        </li>
+        <li class="nav-item ps-0">
             <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
           </li>
           <li class="nav-item ps-3 pe-2">
@@ -20,43 +26,54 @@
         </ul>
       </nav>
     </header>
-      <main>
-        <section class="container bg-secondary text-light rounded mt-5 p-2" style="font-size:x-large;">
-          <p>
-                Welcome to the Dashboard <%= name %> !
-           </p>
-        </section>
-        <section class="container bg-info text-light rounded mt-3 p-2" style="font-size:large;">
-        <p>
-            Your account has been created, but will not be able to access any of the application features until the account has been activated by the Administrator.
-            Please contact the Administrator for access to be approved.
-        </p> 
-        </section>
-        <section>
-          <div class="d-grid gap-2 col-10 mx-auto mt-3">
-            <!-- <ul class="ms-auto" style="flex-direction: row"> -->
-            
-                <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;" >
-                  <a href="/todos" class="nav-link active text-decoration-none">Task List</a>
-                </button>
-              <!-- </li> -->
-              <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;">
-                  Matters List
-                </button>
-              <!-- </li> -->
-              <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;">
-                  Digital File Management
-                </button>
-              <!-- </li> -->
-            <!-- </ul> -->
-          </div>
-          
+<main>
+   
+        
+            <form
+            class="form-outline rounded p-5 form-margin"
+            action="/todos"
+            method="POST"
+            >
+            <h1 style="font-size: 130%">Add a new task</h1>
+            <div class="form-floating">
+              <input
+                type="text"
+                id="title"
+                class="form-control mb-4"
+                placeholder="Title"
+                name="title" 
+                
+              />
+              <label for="title"  class="text-left"> Title</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Details"
+                name="content" 
+                id="content"
+                rows="3"
+              />
+              <label class="form-label text-left" for="content"
+                >Content</label
+              >
+            </div>
+        
+        <button class="btn bg-info text-light justify-content-center" style="display: flex; margin: 1rem auto 0rem auto;" type="submit">
+            Save Task
+        </button>       
+    </main>
 
-        </section>
-      </main>
+    <section>
+        <ul>
+            <% for(var i=0; i<tasks.length; i++) {%>
+            <li><%= tasks[i].title %></li>
+            <li><%= tasks[i].content %></li>
+            <% } %>
+        </ul>
+    </section>
+
       <div class="wrapper"></div>
     <footer class="footer">
       <div class="footer-header">

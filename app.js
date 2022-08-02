@@ -51,13 +51,16 @@ app.use("/js", express.static(__dirname + "public/js"));
 
 // Home route
 app.get("", (req, res) => {
+  if (req.user) {
+    return res.render("index", { loggedIn: true });
+  }
   res.render("index", { title: "Office Manager - Home" });
 });
 
 // Login route
 app.get("/login", (req, res) => {
   if (req.user) {
-    return res.render("userPortal");
+    return res.render("userPortal", { name: req.user.username });
   }
 
   res.render("login", { title: "Office Manager - login" });
@@ -107,22 +110,64 @@ app.get("/logout", function (req, res) {
     req.session.cookie.expires = new Date(Date.now());
     console.log(req.session.cookie.maxAge);
     res.clearCookie("connect.sid", { path: "/" });
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 
 // user-portal route
 app.get("/userPortal", (req, res) => {
   if (req.user) {
-    res.render("userPortal");
+    res.render("userPortal", { name: req.user.username });
   }
 });
 
 // Info route
 
-// Matters route
-
 // Todos route
+
+app.get("/todos", async (req, res, next) => {
+  if (req.user.access_granted === true) {
+    const tasks = await models.Todos.findAll({
+      where: {
+        userId: req.user.id,
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+    return res.render("todos", { tasks: tasks });
+  }
+  res.send(
+    "You do not have permission to view this page. Please contact the Administrator."
+  );
+});
+
+app.post("/todos", async (req, res) => {
+  try {
+    const title = await req.body.title;
+    const content = await req.body.content;
+    const userId = await req.user.id;
+
+    console.log(title);
+    console.log(content);
+    console.log(userId);
+
+    let newToDo = {
+      title: title,
+      content: content,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      userId: userId,
+    };
+    await models.Todos.create(newToDo).then(function () {
+      res.redirect("/todos");
+    });
+  } catch {
+    res.redirect("/todos");
+  }
+});
+
+// Matters route
 
 // File access route
 

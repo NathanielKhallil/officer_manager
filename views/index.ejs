@@ -1,3 +1,4 @@
+<% var loggedIn; %>
   <body>
     <header>
       <nav class="nav bg-dark navbar-expand-lg">
@@ -11,9 +12,18 @@
           <li class="nav-item ps-0">
             <a class="nav-link active" id="info" name="info"> General Info </a>
           </li>
+          <% if (loggedIn) { %>
           <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="login" name="login" href="/login"> Dashboard </a>
+            <a class="nav-link active" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
           </li>
+          <li class="nav-item ps-3 pe-2">
+              <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
+            </li>
+            <%} else { %>
+              <li class="nav-item ps-3 pe-2">
+              <a class="nav-link active" id="login" name="login" href="/login"> Login </a>
+              </li>
+              <% } %>
         </ul>
       </nav>
     </header>
