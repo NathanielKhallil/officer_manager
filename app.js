@@ -142,6 +142,7 @@ app.get("/todos", async (req, res, next) => {
   );
 });
 
+//create new todos
 app.post("/todos", async (req, res) => {
   try {
     const title = await req.body.title;
@@ -166,6 +167,10 @@ app.post("/todos", async (req, res) => {
     res.redirect("/todos");
   }
 });
+// update todos
+app.put("/todos", (req, res) => {});
+// delete todos
+app.delete("/todos", (req, res) => {});
 
 // Matters route
 

@@ -68,6 +68,7 @@
     <section>
         <ul>
             <% for(var i=0; i<tasks.length; i++) {%>
+            <li><%= tasks[i].id %></li>
             <li><%= tasks[i].title %></li>
             <li><%= tasks[i].content %></li>
             <% } %>
