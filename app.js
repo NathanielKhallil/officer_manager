@@ -14,6 +14,7 @@ require("./passport-config")(passport);
 
 // Models
 const models = require("./app/models");
+const e = require("express");
 
 // Templating Engine
 app.use(expressLayouts);
@@ -48,6 +49,8 @@ app.use(cors({ origin: `http://localhost:${PORT}` }));
 app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/js", express.static(__dirname + "public/js"));
+
+// functon consts
 
 // Home route
 app.get("", (req, res) => {
@@ -137,6 +140,7 @@ app.get("/todos", async (req, res, next) => {
     });
     return res.render("todos", { tasks: tasks });
   }
+
   res.send(
     "You do not have permission to view this page. Please contact the Administrator."
   );
@@ -168,10 +172,21 @@ app.post("/todos", async (req, res) => {
   }
 });
 // update todos
-app.put("/todos", (req, res) => {});
-// delete todos
-app.delete("/todos", (req, res) => {});
+// app.put("/todos", (req, res) => {});
 
+// delete todos
+
+app.post("/todos/:id", async (req, res) => {
+  try {
+    await models.Todos.destroy({ where: { id: req.params.id } }).then(
+      function () {
+        res.redirect("/todos");
+      }
+    );
+  } catch {
+    res.send("Failed to delete task.");
+  }
+});
 // Matters route
 
 // File access route

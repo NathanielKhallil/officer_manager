@@ -1,7 +1,4 @@
 <body >
-    <script src="../public/js/getToDos.js">
-        window.onload = getToDos
-    </script>
     <header>
       <nav class="nav bg-dark navbar-expand-lg">
         <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
@@ -26,11 +23,10 @@
         </ul>
       </nav>
     </header>
-<main>
-   
-        
+        <section>
             <form
-            class="form-outline rounded p-5 form-margin"
+            class="form-outline rounded p-5"
+            style="margin: 2rem auto 2rem auto;"
             action="/todos"
             method="POST"
             >
@@ -62,20 +58,31 @@
         
         <button class="btn bg-info text-light justify-content-center" style="display: flex; margin: 1rem auto 0rem auto;" type="submit">
             Save Task
-        </button>       
-    </main>
-
-    <section>
-        <ul>
-            <% for(var i=0; i<tasks.length; i++) {%>
-            <li><%= tasks[i].id %></li>
-            <li><%= tasks[i].title %></li>
-            <li><%= tasks[i].content %></li>
-            <% } %>
-        </ul>
+        </button>  
+        </form>     
     </section>
 
-      <div class="wrapper"></div>
+    <section>
+        <% for(var i=0; i<tasks.length; i++) {%>
+        <div class="container todo-container text-light rounded mt-4">   
+                <ul>
+                    <li> Task:      <%= tasks[i].title %></li>
+                    <li> Details:   <%= tasks[i].content %></li>
+                </ul>
+                <form method="POST" action="/todos/<%= tasks[i].id %>" class="d-flex justify-content-end" style="margin: 2rem 0 2rem auto;">
+               
+                    <input type="hidden" name="_method" value="PUT"/>
+                    <button class="btn btn-sm bg-info text-light me-md-2 mb-4" type="submit" style="display: inline;"> Remove </button>
+                
+            </form>
+            </div>
+            <% } %>
+        
+    </section>
+    <div class="wrapper">
+
+    </div>
+     
     <footer class="footer">
       <div class="footer-header">
         Quicklinks for Filing Documents
@@ -105,7 +112,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
-      
     ></script>
 
   </body>
