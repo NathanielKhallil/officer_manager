@@ -134,10 +134,14 @@ app.get("/todos", async (req, res, next) => {
       where: {
         userId: req.user.id,
       },
+      order: [["id"]],
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
     });
+
+    console.log(tasks);
+
     return res.render("todos", { tasks: tasks });
   }
 
@@ -172,8 +176,25 @@ app.post("/todos", async (req, res) => {
   }
 });
 // update todos
-// app.put("/todos", (req, res) => {});
-
+app.post("/todos/update/:id", async (req, res) => {
+  try {
+    let newContent = req.body.content;
+    await models.Todos.update(
+      {
+        id: req.params.id,
+        content: newContent,
+        updatedAt: new Date(),
+      },
+      {
+        where: { id: req.params.id },
+      }
+    ).then(function () {
+      res.redirect("/todos");
+    });
+  } catch {
+    res.send("Failed to delete task.");
+  }
+});
 // delete todos
 
 app.post("/todos/:id", async (req, res) => {
