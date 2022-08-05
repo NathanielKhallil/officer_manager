@@ -120,7 +120,9 @@ app.get("/logout", function (req, res) {
 // user-portal route
 app.get("/userPortal", (req, res) => {
   if (req.user) {
-    res.render("userPortal", { name: req.user.username });
+    return res.render("userPortal", { name: req.user.username });
+  } else {
+    return res.redirect("/");
   }
 });
 
@@ -139,9 +141,6 @@ app.get("/todos", async (req, res, next) => {
         exclude: ["createdAt", "updatedAt"],
       },
     });
-
-    console.log(tasks);
-
     return res.render("todos", { tasks: tasks });
   }
 
