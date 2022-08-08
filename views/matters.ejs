@@ -1,4 +1,4 @@
-  <body>
+<body >
     <header>
       <nav class="nav bg-dark navbar-expand-lg">
         <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
@@ -12,6 +12,9 @@
           <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
         </li>
         <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
+        </li>
+        <li class="nav-item ps-0">
             <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
           </li>
           <li class="nav-item ps-3 pe-2">
@@ -20,44 +23,52 @@
         </ul>
       </nav>
     </header>
-      <main>
-        <section class="container bg-secondary text-light rounded mt-5 p-2" style="font-size:x-large;">
-          <p>
-                Welcome to the Dashboard <%= name %> !
-           </p>
-        </section>
-        <section class="container bg-info text-light rounded mt-3 p-2" style="font-size:large;">
-        <p>
-            Your account has been created, but will not be able to access any of the application features until the account has been activated by the Administrator.
-            Please contact the Administrator for access to be approved.
-        </p> 
-        </section>
         <section>
-          <div class="d-grid gap-2 col-10 mx-auto mt-3">
-            <!-- <ul class="ms-auto" style="flex-direction: row"> -->
-            
-                <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;" >
-                  <a href="/todos" class="nav-link active text-decoration-none">Task List</a>
-                </button>
-              <!-- </li> -->
-              <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;">
-                  <a href="/matters" class="nav-link active text-decoration-none"> Matters List </a>
-                </button>
-              <!-- </li> -->
-              <!-- <li class="d-flex justify-content-center"> -->
-                <button class="btn bg-dark text-light p-4" style="font-size:xx-large;">
-                  Digital File Management
-                </button>
-              <!-- </li> -->
-            <!-- </ul> -->
-          </div>
-          
+            <form
+            class="form-outline rounded p-5"
+            style="margin: 2rem auto 2rem auto;"
+            action="/matters"
+            method="POST"
+            >
+            <h1 style="font-size: 130%">Add a new matter</h1>
+            <div class="form-floating">
+              <input
+                type="number"
+                id="matterNum"
+                class="form-control mb-4"
+                placeholder="####"
+                name="matterNum" 
+                
+              />
+              <label for="matterNum"  class="text-left"> Matter No.:</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add a memo (optional)"
+                name="notes" 
+                id="notes"
+                rows="3"
+              />
+              <label class="form-label text-left" for="notes"
+                >Notes:</label
+              >
+            </div>
+        
+        <button class="btn bg-info text-light justify-content-center" style="display: flex; margin: 1rem auto 0rem auto;" type="submit">
+            Save Matter
+        </button>  
+        </form>     
+    </section>
 
-        </section>
-      </main>
-      <div class="wrapper"></div>
+ 
+        
+    </section>
+    <div class="wrapper">
+
+    </div>
+     
     <footer class="footer">
       <div class="footer-header">
         Quicklinks for Filing Documents
@@ -87,7 +98,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
-      
     ></script>
 
   </body>

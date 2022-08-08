@@ -209,6 +209,43 @@ app.post("/todos/:id", async (req, res) => {
 });
 // Matters route
 
+app.get("/matters", async (req, res, next) => {
+  if (req.user.access_granted === true) {
+    const matters = await models.Matters.findAll({
+      order: [["matter_number"]],
+    });
+    return res.render("matters", { matters: matters });
+  }
+
+  res.send(
+    "You do not have permission to view this page. Please contact the Administrator."
+  );
+});
+
+//create new matter
+app.post("/matters", async (req, res) => {
+  try {
+    const matterNum = await req.body.matterNum;
+    const notes = await req.body.notes;
+
+    console.log(matterNum);
+    console.log(notes);
+
+    let newMatter = {
+      matter_number: matterNum,
+      notes: notes,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await models.Matters.create(newMatter).then(function () {
+      res.redirect("/matters");
+    });
+  } catch {
+    res.redirect("/matters");
+  }
+});
+
 // File access route
 
 //Sync Database
