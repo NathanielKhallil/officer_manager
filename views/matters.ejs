@@ -61,10 +61,41 @@
         </button>  
         </form>     
     </section>
-
- 
-        
-    </section>
+         <% for(var i=0; i<matters.length; i++) { %>
+            <table class="table table-dark" style="width: 70%; margin: 0 auto;" > 
+            <thead> 
+                <tr class="table-active">   
+                    <th scope="col">Matter No.</th>
+                    <th scope="col"> CFA Signed: </th>
+                    <th scope="col"> Statement of Claim Filed: </th>
+                    <th scope="col"> Statement of Claim Served: </th>
+                    <th scope="col"> Statement of Defence Served: </th>
+                    <th scope="col"> Aff of Records Served: </th>
+                    <th scope="col"> Producibles Sent:</th>
+                    <th scope="col"> Questioning of Client Completed: </th>
+                    <th scope="col"> Undertakings Remaining:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>  
+                <th scope="row"><%= matters[i].matter_number %> </th>
+                    <td><%= matters[i].cfa_signed %></td>
+                    <td><%= matters[i].statement_of_claim_filed %></td>
+                    <td><%= matters[i].s_of_c_served %></td>
+                    <td><%= matters[i].s_of_d_served %></td>
+                    <td><%= matters[i].aff_of_recs_served %></td>
+                    <td><%= matters[i].producibles_sent %></td>
+                    <td><%= matters[i].questioning_done %></td>
+                    <td><%= matters[i].undertakings_remaining %></td>
+                </tr>
+                <tr> 
+                <th scope="row"> Memo:  </th>
+                    <td colspan="8"><textarea id="<%= matters[i].matter_number %>" name="<%= matters[i].matter_number %>" style="width: 100%;"> <%= matters[i].notes %> </textarea> </td>
+                </tr>
+            </tbody>
+            <% } %>
+        </table>
+        </section>
     <div class="wrapper">
 
     </div>

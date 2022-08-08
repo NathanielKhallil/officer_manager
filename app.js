@@ -210,16 +210,14 @@ app.post("/todos/:id", async (req, res) => {
 // Matters route
 
 app.get("/matters", async (req, res, next) => {
-  if (req.user.access_granted === true) {
+  if (req.user && req.user.access_granted === true) {
     const matters = await models.Matters.findAll({
       order: [["matter_number"]],
     });
     return res.render("matters", { matters: matters });
+  } else {
+    return res.redirect("/");
   }
-
-  res.send(
-    "You do not have permission to view this page. Please contact the Administrator."
-  );
 });
 
 //create new matter
@@ -239,7 +237,7 @@ app.post("/matters", async (req, res) => {
     };
 
     await models.Matters.create(newMatter).then(function () {
-      res.redirect("/matters");
+      return res.redirect("/matters");
     });
   } catch {
     res.redirect("/matters");

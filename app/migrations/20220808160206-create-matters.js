@@ -15,6 +15,7 @@ module.exports = {
       },
       cfa_signed: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       statement_of_claim_filed: {
         type: Sequelize.BOOLEAN,
