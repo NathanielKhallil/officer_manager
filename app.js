@@ -191,7 +191,7 @@ app.post("/todos/update/:id", async (req, res) => {
       res.redirect("/todos");
     });
   } catch {
-    res.send("Failed to delete task.");
+    res.send("Failed to update task.");
   }
 });
 // delete todos
@@ -222,25 +222,95 @@ app.get("/matters", async (req, res, next) => {
 
 //create new matter
 app.post("/matters", async (req, res) => {
+  const matterNum = await req.body.matterNum;
+  const notes = await req.body.notes;
+  const matterExists = await models.Matters.findOne({
+    where: { matter_number: matterNum },
+  });
+  if (matterExists) {
+    console.log(matterExists);
+    return res.send("Matter number already exists.");
+  } else {
+    try {
+      console.log(matterNum);
+      console.log(notes);
+
+      let newMatter = {
+        matter_number: matterNum,
+        notes: notes,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      await models.Matters.create(newMatter).then(function () {
+        return res.redirect("/matters");
+      });
+    } catch {
+      res.redirect("/matters");
+    }
+  }
+});
+
+// update matters
+
+app.post("/matters/update/:id", async (req, res) => {
   try {
-    const matterNum = await req.body.matterNum;
-    const notes = await req.body.notes;
+    let updatedCFA = req.body.cfa_signed;
+    let updatedStatementOfClaimFiled = req.body.statement_of_claim_filed;
+    let updatedStatementOfClaimServed = req.body.s_of_c_served;
+    let updatedStatementOfDefenceServed = req.body.s_of_d_served;
+    let updatedAffOfRecords = req.body.aff_of_recs_served;
+    let updatedProduciblesSent = req.body.producibles_sent;
+    let updatedQuestioningDone = req.body.questioning_done;
+    let updatedUndertakingsRemaining = req.body.undertakings_remaining;
+    console.log(updatedCFA);
+    console.log(updatedStatementOfClaimFiled);
+    console.log(updatedStatementOfClaimServed);
+    console.log(updatedStatementOfDefenceServed);
+    console.log(updatedAffOfRecords);
+    console.log(updatedProduciblesSent);
+    console.log(updatedQuestioningDone);
+    console.log(updatedUndertakingsRemaining);
 
-    console.log(matterNum);
-    console.log(notes);
-
-    let newMatter = {
-      matter_number: matterNum,
-      notes: notes,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    await models.Matters.create(newMatter).then(function () {
-      return res.redirect("/matters");
+    await models.Matters.update(
+      {
+        id: req.params.id,
+        cfa_signed: updatedCFA,
+        statement_of_claim_filed: updatedStatementOfClaimFiled,
+        s_of_c_served: updatedStatementOfClaimServed,
+        s_of_d_served: updatedStatementOfDefenceServed,
+        aff_of_recs_served: updatedAffOfRecords,
+        producibles_sent: updatedProduciblesSent,
+        questioning_done: updatedQuestioningDone,
+        undertakings_remaining: updatedUndertakingsRemaining,
+        updatedAt: new Date(),
+      },
+      {
+        where: { id: req.params.id },
+      }
+    ).then(function () {
+      res.redirect("/matters");
     });
   } catch {
-    res.redirect("/matters");
+    res.send("Failed to update matter.");
+  }
+});
+
+// delete matters
+
+app.post("/matters/delete/:id", async (req, res) => {
+  if (req.user && req.user.is_admin === true) {
+    try {
+      await models.Matters.destroy({ where: { id: req.params.id } }).then(
+        function () {
+          res.redirect("/matters");
+        }
+      );
+    } catch {
+      res.send("Failed to delete matter.");
+    }
+  } else {
+    res.send("You must be an Administrator to delete matters.");
   }
 });
 
