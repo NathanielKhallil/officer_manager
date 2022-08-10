@@ -73,3 +73,100 @@ ul {
     max-width: 5rem;  
     margin-left: 2rem;
 }
+
+
+/* Matters */
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9" 
+    "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9" 
+    "memo text text text text text text text text"; 
+    grid-template-columns: .8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr ;
+    grid-template-rows: 3rem 2rem 4rem;
+   
+}
+
+.hd-1 {
+    grid-area: hd-1;
+}
+.hd-2 {
+    grid-area: hd-2;
+}
+.hd-3 {
+    grid-area: hd-3;
+}
+.hd-4 {
+    grid-area: hd-4;
+}
+.hd-5 {
+    grid-area: hd-5;
+}
+.hd-6 {
+    grid-area: hd-6;
+}
+.hd-7 {
+    grid-area: hd-7;
+}
+.hd-8 {
+    grid-area: hd-8;
+}
+.hd-9 {
+    grid-area: hd-9;
+}
+
+
+.val-1 {
+    grid-area: val-1;
+}
+.val-2 {
+    grid-area: val-2;
+    
+}
+.val-3 {
+    grid-area: val-3;
+}
+.val-4 {
+    grid-area: val-4;
+}
+.val-5 {
+    grid-area: val-5;
+}
+.val-6 {
+    grid-area: val-6;
+}
+.val-7 {
+    grid-area: val-7;
+}
+.val-8 {
+    grid-area: val-8;
+}
+.val-9 {
+    grid-area: val-9;
+}
+
+.memo {
+    grid-area: memo;
+}
+.text {
+    grid-area: text;
+}
+
+/* 
+@media only screen and (max-width: 700px) {
+
+    .narrow-table {
+        display: flex;
+        flex-direction: column;
+
+    }
+} */
+
+.center-grid-cell {
+    display:flex; 
+    margin-bottom: 0; 
+    height: 100%; 
+    justify-content:center; 
+    align-items: center;
+}

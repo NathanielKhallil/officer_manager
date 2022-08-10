@@ -61,89 +61,90 @@
         </button>  
         </form>     
     </section>
-    <section style="margin: 0 auto;">
+    <section style="margin: 0 auto; min-width: 40%;max-width:80%;">
          <% for(var i=0; i<matters.length; i++) { %>
-            <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto;">
-                <table class="table table-dark mb-2 justify-content-center" style="width: 70%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
-                <thead>
-                    <tr class="table-active">
-                        <th scope="col" class="h6">Matter No.</th>
-                        <th scope="col" class="h6"> CFA Signed: </th>
-                        <th scope="col" class="h6"> S of C Filed: </th>
-                        <th scope="col" class="h6"> S of C Served: </th>
-                        <th scope="col" class="h6"> S of D Served: </th>
-                        <th scope="col" class="h6" style="min-width: 6rem;"> Aff of Recs Served: </th>
-                        <th scope="col" class="h6"> Producibles Sent:</th>
-                        <th scope="col" class="h6"> Questioning Done: </th>
-                        <th scope="col" class="h6"> Undertakings To Do:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><%= matters[i].matter_number %> </th>
-                        <td>
-                            <select class="bg-dark text-light" id="cfa_signed" name="cfa_signed" onchange="getValue(this)">
+            <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto; max-width: 100%; font-size:small">
+                <div class="grid-container mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+                   
+                        <div class="hd-1 bg-dark text-light" > <p style="margin-left:3px">Matter No. </p></div>
+                        <div class="hd-2 bg-dark text-light" > <p style="margin-left:3px">CFA Signed: </p></div>
+                        <div class="hd-3 bg-dark text-light" > <p style="margin-left:3px">S of C Filed: </p></div>
+                        <div class="hd-4 bg-dark text-light" > <p style="margin-left:3px">S of C Served: </p></div>
+                        <div class="hd-5 bg-dark text-light" > <p style="margin-left:3px">S of D Served: </p></div>
+                        <div class="hd-6 bg-dark text-light" > <p style="margin-left:3px">Aff of Recs Served: </p></div>
+                        <div class="hd-7 bg-dark text-light" > <p style="margin-left:3px">Producibles Sent:</p></div>
+                        <div class="hd-8 bg-dark text-light" > <p style="margin-left:3px">Questioning Done: </p></div>
+                        <div class="hd-9 bg-dark text-light" > <p style="margin-left:3px">Undertakings: </p></div>
+                    
+              
+
+                      
+                        <div class="val-1 bg-dark text-light" style="outline: solid 1px; text-align: center; justify-items: center;">
+                          <p class="center-grid-cell" style="margin-left: 0";> <%=matters[i].matter_number %>  </p>
+                        </div>
+                        <div class="val-2">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="cfa_signed" name="cfa_signed" onchange="getValue(this)">
                                 <option value="<%= matters[i].cfa_signed %>"><%= matters[i].cfa_signed %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="statement_of_claim_filed" name="statement_of_claim_filed" onchange="getValue(this)">
+                        </div>
+                        <div class="val-3">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="statement_of_claim_filed" name="statement_of_claim_filed" onchange="getValue(this)">
                                 <option value="<%= matters[i].statement_of_claim_filed %>"><%= matters[i].statement_of_claim_filed %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="s_of_c_served" name="s_of_c_served" onchange="getValue(this)">
+                        </div>
+                        <div class="val-4">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_c_served" name="s_of_c_served" onchange="getValue(this)">
                                 <option value="<%= matters[i].s_of_c_served %>"><%= matters[i].s_of_c_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="s_of_d_served" name="s_of_d_served" onchange="getValue(this)">
+                        </div>
+                        <div class="val-5">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_d_served" name="s_of_d_served" onchange="getValue(this)">
                                 <option value="<%= matters[i].s_of_d_served %>"><%= matters[i].s_of_d_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="aff_of_recs_served" name="aff_of_recs_served" onchange="getValue(this)">
+                        </div>
+                        <div class="val-6">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="aff_of_recs_served" name="aff_of_recs_served" onchange="getValue(this)">
                                 <option value="<%= matters[i].aff_of_recs_served %>"><%= matters[i].aff_of_recs_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="producibles_sent" name="producibles_sent" onchange="getValue(this)">
+                        </div>
+                        <div class="val-7">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="producibles_sent" name="producibles_sent" onchange="getValue(this)">
                                 <option value="<%= matters[i].producibles_sent %>"><%= matters[i].producibles_sent %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
-                        <td>
-                            <select class="bg-dark text-light" id="questioning_done" name="questioning_done" onchange="getValue(this)">
+                        </div>
+                        <div class="val-8">
+                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="questioning_done" name="questioning_done" onchange="getValue(this)">
                                 <option value="<%= matters[i].questioning_done %>"><%= matters[i].questioning_done %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
-                        </td>
+                        </div>
              
-                        <td> <input type="number" value="<%= matters[i].undertakings_remaining %>" placeholder="<%= matters[i].undertakings_remaining %>" id="undertakings_remaining" name="undertakings_remaining" style="
-                            width: 3rem" /></td>
-                    </tr>
-                    
-                    <tr>
-                    <th scope="row"> Memo:  </th>
-                        <td colspan="8"><textarea class="bg-dark text-light" id="matter_number" name="matter_number" style="width: 100%; font-family: Helvetica"> <%= matters[i].notes %> </textarea> </td>
-                    </tr>
-                    </tbody>
-                </table>
-                     <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"><input type="hidden" name="_method" value="PUT"/>
-                     <button formaction="/matters/update/<%= matters[i].id %>" style="height:50%;"> Update </button>
-                     <button formaction="/matters/delete/<%= matters[i].id %>" style="height:50%;"> Delete </button>
+                        <div class="val-9 bg-dark text-light" style="min-height: 100%;"> 
+                        <input class="bg-dark text-light" style="outline: solid 1px; text-align: center; min-height: 100%; width: 100%" type="number" value="<%= matters[i].undertakings_remaining %>" placeholder="<%= matters[i].undertakings_remaining %>" id="undertakings_remaining" name="undertakings_remaining"/>
+                      </div>
+                          
+
+                        <div class="bg-dark text-light memo" style="outline: solid 1px;"><p class="center-grid-cell"> Memo: </p> </div> 
+                      
+                        <textarea class="bg-dark text-light text" id="matter_number" name="matter_number" style="outline: solid 1px; width: 100%; font-family: Helvetica; resize: none;"> <%= matters[i].notes %> </textarea> 
+                              
+                </div>
+                    <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"><input type="hidden" name="_method" value="PUT"/>
+                      <button formaction="/matters/update/<%= matters[i].id %>" style="height:50%;"> Update </button>
+                      <button formaction="/matters/delete/<%= matters[i].id %>" style="height:50%;"> Delete </button>
                     </div>
                 </form>
                 <% } %>
