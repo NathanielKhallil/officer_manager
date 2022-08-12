@@ -316,6 +316,14 @@ app.post("/matters/delete/:id", async (req, res) => {
 
 // File access route
 
+app.get("/files", async (req, res, next) => {
+  if (req.user && req.user.access_granted === true) {
+    return res.render("files");
+  } else {
+    return res.redirect("/");
+  }
+});
+
 //Sync Database
 models.sequelize
   .sync()
