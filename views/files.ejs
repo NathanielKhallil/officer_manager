@@ -49,7 +49,17 @@
     </form>
   </section>
 
-  <section></section>
+  <section>
+    <% for(var i=0; i<listContents.length; i++) {%>
+      <div class="todo-container text-light rounded mt-4" style="width: 100%;">   
+        <ul class="pt-2">
+            <li>   <%= listContents[i] %></li>
+        </ul>
+            
+        <div class="d-flex" style="flex-direction: column; width: 100%;"> 
+          <% } %>
+        </section>
+
   <div class="wrapper"></div>
 
   <footer class="footer">

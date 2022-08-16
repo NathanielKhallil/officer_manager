@@ -27,7 +27,7 @@ const s3 = new aws.S3();
 
 const upload = multer({
   storage: multerS3({
-    bucket: BUCKET + "/file-storage",
+    bucket: BUCKET,
     s3: s3,
     acl: "public-read",
     key: (req, file, cb) => {
@@ -333,7 +333,10 @@ app.post("/matters/delete/:id", async (req, res) => {
 
 app.get("/files", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
-    return res.render("files");
+    let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
+    let listContents = read.Contents.map((item) => item.Key);
+    console.log(listContents);
+    return res.render("files", { listContents });
   } else {
     return res.redirect("/");
   }
@@ -343,13 +346,7 @@ app.get("/files", async (req, res, next) => {
 
 app.post("/upload", upload.single("file"), (req, res) => {
   console.log(req.file);
-  res.render("files");
-});
-
-app.get("/list", async (req, res) => {
-  let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
-  let listContents = read.Contents.map((item) => item.Key);
-  res.send(listContents);
+  res.redirect("/files");
 });
 
 app.get("/download/:filename", async (req, res) => {
