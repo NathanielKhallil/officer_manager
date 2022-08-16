@@ -11,10 +11,33 @@ const flash = require("express-flash");
 const session = require("express-session");
 const passport = require("passport");
 require("./passport-config")(passport);
+const aws = require("aws-sdk");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+
+// AWS
+aws.config.update({
+  secretAccessKey: process.env.ACCESS_SECRET,
+  accessKeyId: process.env.ACCESS_KEY,
+  region: process.env.REGION,
+});
+
+const BUCKET = process.env.BUCKET;
+const s3 = new aws.S3();
+
+const upload = multer({
+  storage: multerS3({
+    bucket: BUCKET + "/file-storage",
+    s3: s3,
+    acl: "public-read",
+    key: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  }),
+});
 
 // Models
 const models = require("./app/models");
-const e = require("express");
 
 // Templating Engine
 app.use(expressLayouts);
@@ -263,14 +286,6 @@ app.post("/matters/update/:id", async (req, res) => {
     let updatedProduciblesSent = req.body.producibles_sent;
     let updatedQuestioningDone = req.body.questioning_done;
     let updatedUndertakingsRemaining = req.body.undertakings_remaining;
-    console.log(updatedCFA);
-    console.log(updatedStatementOfClaimFiled);
-    console.log(updatedStatementOfClaimServed);
-    console.log(updatedStatementOfDefenceServed);
-    console.log(updatedAffOfRecords);
-    console.log(updatedProduciblesSent);
-    console.log(updatedQuestioningDone);
-    console.log(updatedUndertakingsRemaining);
 
     await models.Matters.update(
       {
@@ -322,6 +337,33 @@ app.get("/files", async (req, res, next) => {
   } else {
     return res.redirect("/");
   }
+});
+
+// File - UPLOADING
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  console.log(req.file);
+  res.render("files");
+});
+
+app.get("/list", async (req, res) => {
+  let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
+  let listContents = read.Contents.map((item) => item.Key);
+  res.send(listContents);
+});
+
+app.get("/download/:filename", async (req, res) => {
+  const filename = req.params.filename;
+  let fileObject = await s3
+    .getObject({ Bucket: BUCKET, Key: filename })
+    .promise();
+  res.send(fileObject.Body);
+});
+
+app.delete("/delete/:filename", async (req, res) => {
+  const filename = req.params.filename;
+  await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
+  res.send("File Deleted Successfully");
 });
 
 //Sync Database

@@ -36,7 +36,18 @@
       </ul>
     </nav>
   </header>
-  <section></section>
+  <section>
+    <form
+      ref="fileUpload"
+      id="uploadForm"
+      action="/upload"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="file" id="myFile" name="file" />
+      <input type="submit" value="Upload" />
+    </form>
+  </section>
 
   <section></section>
   <div class="wrapper"></div>
