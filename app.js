@@ -335,7 +335,7 @@ app.get("/files", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
     let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
     let listContents = read.Contents.map((item) => item.Key);
-    console.log(listContents);
+
     return res.render("files", { listContents });
   } else {
     return res.redirect("/");
@@ -357,7 +357,7 @@ app.get("/download/:filename", async (req, res) => {
   res.send(fileObject.Body);
 });
 
-app.delete("/delete/:filename", async (req, res) => {
+app.get("/delete/:filename", async (req, res) => {
   const filename = req.params.filename;
   await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
   res.send("File Deleted Successfully");

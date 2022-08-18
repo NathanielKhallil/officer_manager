@@ -64,7 +64,7 @@
     <section style="margin: 0 auto; min-width: 40%;max-width:80%;">
          <% for(var i=0; i<matters.length; i++) { %>
             <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto; max-width: 100%; font-size:small">
-                <div class="grid-container mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+                <div class="grid-container-matters mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                    
                         <div class="hd-1 bg-dark text-light" > <p style="margin: 5px 0 0 5px">Matter No. </p></div>
                         <div class="hd-2 bg-dark text-light" > <p style="margin: 5px 0 0 5px">CFA Signed: </p></div>
@@ -139,7 +139,8 @@
                         <textarea class="bg-dark text-light text" id="matter_number" name="matter_number" style="outline: solid 1px; width: 100%; font-family: Helvetica; resize: none;"> <%= matters[i].notes %> </textarea> 
                               
                 </div>
-                    <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"><input type="hidden" name="_method" value="PUT"/>
+                    <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                      <input type="hidden" name="_method" value="PUT"/>
                       <button formaction="/matters/update/<%= matters[i].id %>" style="height:50%;"> Update </button>
                       <button formaction="/matters/delete/<%= matters[i].id %>" style="height:50%;"> Delete </button>
                     </div>

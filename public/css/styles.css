@@ -77,7 +77,7 @@ ul {
 
 /* Matters */
 
-.grid-container {
+.grid-container-matters {
     display: grid;
     grid-template-areas:
     "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9" 
@@ -151,6 +151,32 @@ ul {
 }
 .text {
     grid-area: text;
+}
+
+/* FILE MANAGEMENT*/
+
+.grid-container-files {
+    display: grid;
+    grid-template-areas:
+    "file-data file-req-form"; 
+    grid-template-columns: 2fr 1fr ;
+    grid-template-rows: 5rem;
+}
+
+.file-data {
+    grid-area: file-data;
+}
+
+.file-req-form {
+    grid-area: file-req-form;
+}
+
+.download-btn {
+    grid-area: download-btn;
+}
+
+.del-btn {
+    grid-area: del-btn;
 }
 
 /* 
