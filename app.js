@@ -332,10 +332,20 @@ app.post("/matters/delete/:id", async (req, res) => {
 // File access route
 
 app.get("/files", async (req, res, next) => {
+  function compareKeys(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
   if (req.user && req.user.access_granted === true) {
     let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
-    let listContents = read.Contents.map((item) => item.Key);
+    let listContents = read.Contents.map((item) => item);
 
+    console.log(listContents);
     return res.render("files", { listContents });
   } else {
     return res.redirect("/");
@@ -345,22 +355,30 @@ app.get("/files", async (req, res, next) => {
 // File - UPLOADING
 
 app.post("/upload", upload.single("file"), (req, res) => {
-  console.log(req.file);
   res.redirect("/files");
 });
 
+// File - DOWNLOADING
+
 app.get("/download/:filename", async (req, res) => {
   const filename = req.params.filename;
-  let fileObject = await s3
-    .getObject({ Bucket: BUCKET, Key: filename })
-    .promise();
-  res.send(fileObject.Body);
+  if (req.user && req.user.is_admin === true) {
+    let fileObject = await s3
+      .getObject({ Bucket: BUCKET, Key: filename })
+      .promise();
+    res.send(fileObject.Body);
+  } else {
+    res.send("You are not authorized to perform this action.");
+  }
 });
+
+// File - DELETION
 
 app.get("/delete/:filename", async (req, res) => {
   const filename = req.params.filename;
   await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
-  res.send("File Deleted Successfully");
+
+  res.redirect("/files");
 });
 
 //Sync Database
