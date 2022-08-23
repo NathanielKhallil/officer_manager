@@ -332,20 +332,9 @@ app.post("/matters/delete/:id", async (req, res) => {
 // File access route
 
 app.get("/files", async (req, res, next) => {
-  function compareKeys(a, b) {
-    if (a < b) {
-      return -1;
-    }
-    if (a > b) {
-      return 1;
-    }
-    return 0;
-  }
   if (req.user && req.user.access_granted === true) {
     let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
     let listContents = read.Contents.map((item) => item);
-
-    console.log(listContents);
     return res.render("files", { listContents });
   } else {
     return res.redirect("/");
@@ -379,6 +368,50 @@ app.get("/delete/:filename", async (req, res) => {
   await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
 
   res.redirect("/files");
+});
+
+// APPOINTMENTS
+
+app.get("/appointments", async (req, res, next) => {
+  if (req.user && req.user.access_granted === true) {
+    const appointments = await models.Appointments.findAll({
+      order: [["date"]],
+    });
+    return res.render("appointments", { appointments: appointments });
+  } else {
+    return res.redirect("/");
+  }
+});
+
+// APPOINTMENTS - Create
+
+app.post("/appointments", async (req, res) => {
+  const title = await req.body.title;
+  const phone = await req.body.phone;
+  const date = await req.body.date;
+  const time = await req.body.time;
+  const notes = await req.body.notes;
+  const newClient = await req.body.new_client;
+  try {
+    console.log(time);
+
+    let newAppointment = {
+      title: title,
+      phone_num: phone,
+      date: date,
+      time: time,
+      notes: notes,
+      new_client: newClient,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await models.Appointments.create(newAppointment).then(function () {
+      return res.redirect("/appointments");
+    });
+  } catch {
+    res.redirect("/appointments");
+  }
 });
 
 //Sync Database

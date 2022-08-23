@@ -1,0 +1,155 @@
+<body >
+    <header>
+      <nav class="nav bg-dark navbar-expand-lg">
+        <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
+          Office Resources and Management Assistant
+        </a>
+        <ul
+          class="navbar-nav text-light bg-dark ms-auto"
+          style="flex-direction: row"
+        >
+        <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
+        </li>
+        <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
+        </li>
+        <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
+          </li>
+          <li class="nav-item ps-3 pe-2">
+            <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
+          </li>
+        </ul>
+    </nav>
+</header>
+        <section>
+            <form
+            class="form-outline rounded p-5"
+            style="margin: 2rem auto 2rem auto;"
+            action="/appointments"
+            method="POST"
+            >
+                <h1 style="font-size: 130%">Add an appointment or deadline</h1>
+                <div class="form-floating">
+                <input
+                    type="text"
+                    id="title"
+                    class="form-control mb-4"
+                    placeholder="Title"
+                    name="title" 
+                    
+                    />
+                    <label for="title"  class="text-left"> Title</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="xxx-xxx-xxxx"
+                    name="phone" 
+                    id="phone"
+                    />
+                    <label class="form-label text-left" for="phone"
+                    >Phone:</label
+                    >
+                </div>
+                <div class="form-floating">
+                <input
+                type="date"
+                    class="form-control"
+                    placeholder="Date"
+                    name="date" 
+                    id="date"
+                    required
+                />
+                <label class="form-label text-left" for="date"
+                    >Date:</label
+                >
+                </div>
+                <div class="form-floating">
+                <input
+                type="time"
+                class="form-control"
+                placeholder="00:00"
+                name="time" 
+                id="time"
+                />
+                <label class="form-label text-left" for="time"
+                >Time:</label
+                >
+                </div>
+
+                <div class="form-floating">
+                <input
+                type="text"
+                class="form-control"
+                placeholder="Details"
+                rows="3"
+                name="notes" 
+                id="notes"  
+                />
+                <label class="form-label text-left" for="notes"
+                    >Notes:</label
+                >
+                </div>
+                
+                <div>
+                    <label class="form-label text-left" for="new_client"
+                    >Is this a new client?</label>
+                </div>
+                
+                <div class="form-floating">
+                <select class="bg-dark text-light" style="min-width: 100%; min-height: 2rem; outline: solid 1px;" id="new_client" name="new_client" onchange="getValue(this)">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select>
+            
+                </div>
+
+            
+            <button class="btn bg-info text-light justify-content-center" style="display: flex; margin: 1rem auto 0rem auto;" type="submit">
+                Save Appointment / Deadline
+            </button>  
+        </form>     
+    </section>
+
+    <section>
+       
+
+    <div class="wrapper">
+
+    </div>
+     
+    <footer class="footer">
+      <div class="footer-header">
+        Quicklinks for Filing Documents
+      </div>
+      <div class="push"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <a class="nav-link active" href="https://qb-filing.alberta.ca/">
+              Alberta Court of Queen's Bench Digital Filing
+            </a>
+          </div>
+          <div class="col">
+            <a class="nav-link active" href="https://cams.albertacourts.ca/public-portal/?q=node/403">
+            Alberta Court of Appeal Cams Digital Filing
+          </a>
+          </div>
+          <div class="col">
+            <a class="nav-link active" href="https://surrogate.alberta.ca/">
+            Alberta Queen's Bench (Surrogate) Digital Filing 
+          </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+
+  </body>
