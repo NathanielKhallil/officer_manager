@@ -35,17 +35,17 @@
                 <input
                     type="text"
                     id="title"
-                    class="form-control mb-4"
+                    class="form-control mb-2"
                     placeholder="Title"
                     name="title" 
-                    
                     />
                     <label for="title"  class="text-left"> Title</label>
                 </div>
+
                 <div class="form-floating">
                     <input
                     type="text"
-                    class="form-control"
+                    class="form-control mb-2"
                     placeholder="xxx-xxx-xxxx"
                     name="phone" 
                     id="phone"
@@ -57,7 +57,7 @@
                 <div class="form-floating">
                 <input
                 type="date"
-                    class="form-control"
+                    class="form-control mb-2"
                     placeholder="Date"
                     name="date" 
                     id="date"
@@ -70,7 +70,7 @@
                 <div class="form-floating">
                 <input
                 type="time"
-                class="form-control"
+                class="form-control mb-2"
                 placeholder="00:00"
                 name="time" 
                 id="time"
@@ -83,13 +83,13 @@
                 <div class="form-floating">
                 <input
                 type="text"
-                class="form-control"
+                class="form-control mb-2"
                 placeholder="Details"
                 rows="3"
                 name="notes" 
                 id="notes"  
                 />
-                <label class="form-label text-left" for="notes"
+                <label class="form-label text-left " for="notes"
                     >Notes:</label
                 >
                 </div>
@@ -99,10 +99,10 @@
                     >Is this a new client?</label>
                 </div>
                 
-                <div class="form-floating">
-                <select class="bg-dark text-light" style="min-width: 100%; min-height: 2rem; outline: solid 1px;" id="new_client" name="new_client" onchange="getValue(this)">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
+                <div class="form-floating mb-2">
+                <select class="bg-dark text-light" style="min-width: 100%; min-height: 2rem; outline: solid 1px;" id="new_client" name="new_client">
+                    <option value="true"> true </option>
+                    <option value="false"> false </option>
                 </select>
             
                 </div>
@@ -113,8 +113,56 @@
             </button>  
         </form>     
     </section>
+    <section style="margin: 0 auto; min-width: 40%;max-width:80%;">
+    <% for(var i=0; i<appointments.length; i++) { %>
+      <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto; max-width: 100%; font-size:small">
+          <div class="grid-container-appointments mb-2" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+                                                     
+                  <div class="top-1  d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
+                    <span>Re: <%=appointments[i].title %> </span>
+                  </div>
 
-    <section>
+                  <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center">
+                      <input class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-phone" name="appt-phone" value="<%= appointments[i].phone_num %>" placeholder="<%= appointments[i].phone_num %>"  />
+                  </div>
+
+                  <div class="top-3 d-flex flex-row bg-dark text-light align-items-center">
+                    <select class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-new-client" name="appt-new-client">
+                        <option><%= appointments[i].new_client %> </option>
+                        <option>true</option>
+                        <option>false</option>
+                    </select>
+                </div>
+
+                  <div class="mid-1 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
+                      <span class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%;" id="appt-date" name="appt-date">
+                          Date: <%= appointments[i].date.toLocaleDateString() %>
+                      </span>
+                  </div>
+
+                  <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
+                      <span class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%;" id="appt-time" name="appt-time">
+                          Time: <%= appointments[i].time %>
+                      </span>
+                  </div>
+
+                
+                  <div class="bot-1 d-flex flex-row bg-dark text-light align-items-center" style="outline: solid 1px; width: 100%;">
+                    <span> Notes: </span> 
+                  </div>
+              
+                    <textarea class="bot-2 d-flex flex-row bg-dark text-light align-items-center" id="notes-text" name="notes-text" style="width: 100%; outline: solid 1px; font-family: Helvetica; resize: none;"> <%= appointments[i].notes %> </textarea> 
+                                   
+                        
+          </div>
+              <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                <input type="hidden" name="_method" value="PUT"/>
+                <button formaction="/appointments/update/<%= appointments[i].id %>" style="height:50%;"> Update </button>
+                <button formaction="/appointments/delete/<%= appointments[i].id %>" style="height:50%;"> Delete </button>
+              </div>
+        </form>
+          <% } %>
+      </section>
        
 
     <div class="wrapper">

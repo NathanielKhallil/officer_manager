@@ -377,6 +377,7 @@ app.get("/appointments", async (req, res, next) => {
     const appointments = await models.Appointments.findAll({
       order: [["date"]],
     });
+    console.log(appointments);
     return res.render("appointments", { appointments: appointments });
   } else {
     return res.redirect("/");

@@ -179,6 +179,47 @@ ul {
     grid-area: del-btn;
 }
 
+/* APPOINTMENTS and DEADLINES */
+
+.grid-container-appointments {
+    display: grid;
+    grid-template-areas:
+    "top-1 top-2 top-3"
+    "mid-1 mid-2 mid-2"
+    "bot-1 bot-2 bot-2"; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3rem 3rem 3rem;
+}
+
+.top-1 {
+    grid-area: top-1;
+}
+
+.top-2 {
+    grid-area: top-2;
+}
+
+.top-3 {
+    grid-area: top-3;
+}
+
+.mid-1 {
+    grid-area: mid-1;
+}
+
+.mid-2 {
+    grid-area: mid-2;
+}
+
+.bot-1 {
+    grid-area: bot-1;
+}
+
+.bot-2 {
+    grid-area: bot-2;
+}
+
+
 /* 
 @media only screen and (max-width: 700px) {
 
