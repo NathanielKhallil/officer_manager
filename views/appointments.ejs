@@ -44,15 +44,16 @@
 
                 <div class="form-floating">
                     <input
-                    type="text"
+                    type="tel"
                     class="form-control mb-2"
-                    placeholder="xxx-xxx-xxxx"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     name="phone" 
                     id="phone"
                     />
                     <label class="form-label text-left" for="phone"
                     >Phone:</label
                     >
+                    <p> Format: xxx-xxx-xxxx</p>
                 </div>
                 <div class="form-floating">
                 <input
@@ -123,7 +124,7 @@
                   </div>
 
                   <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center">
-                      <input class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-phone" name="appt-phone" value="<%= appointments[i].phone_num %>" placeholder="<%= appointments[i].phone_num %>"  />
+                      <input type="tel" class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-phone" name="appt-phone" value="<%= appointments[i].phone_num %>" placeholder="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                   </div>
 
                   <div class="top-3 d-flex flex-row bg-dark text-light align-items-center">
@@ -147,11 +148,11 @@
                   </div>
 
                 
-                  <div class="bot-1 d-flex flex-row bg-dark text-light align-items-center" style="outline: solid 1px; width: 100%;">
+                  <div class="bot-1 d-flex flex-row bg-warning text-light align-items-center" style="outline: solid 1px; width: 100%;">
                     <span> Notes: </span> 
                   </div>
               
-                    <textarea class="bot-2 d-flex flex-row bg-dark text-light align-items-center" id="notes-text" name="notes-text" style="width: 100%; outline: solid 1px; font-family: Helvetica; resize: none;"> <%= appointments[i].notes %> </textarea> 
+                    <textarea class="bot-2 d-flex flex-row bg-info text-light align-items-center" id="notes-text" name="notes-text" style="width: 100%; outline: solid 1px; font-family: Helvetica; resize: none;"> <%= appointments[i].notes %> </textarea> 
                                    
                         
           </div>

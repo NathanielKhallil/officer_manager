@@ -187,7 +187,7 @@ ul {
     "top-1 top-2 top-3"
     "mid-1 mid-2 mid-2"
     "bot-1 bot-2 bot-2"; 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .5fr 1.5fr 1.5fr;
     grid-template-rows: 3rem 3rem 3rem;
 }
 
