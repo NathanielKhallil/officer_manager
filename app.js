@@ -394,8 +394,6 @@ app.post("/appointments", async (req, res) => {
   const notes = await req.body.notes;
   const newClient = await req.body.new_client;
   try {
-    console.log(time);
-
     let newAppointment = {
       title: title,
       phone_num: phone,
@@ -412,6 +410,37 @@ app.post("/appointments", async (req, res) => {
     });
   } catch {
     res.redirect("/appointments");
+  }
+});
+
+// APPOINTMENTS - Update
+
+app.post("/appointments/update/:id", async (req, res) => {
+  try {
+    let updatedPhone = await req.body.updatedPhone;
+    let updatedNewClient = await req.body.updatedNewClient;
+    let updatedDate = await req.body.updatedDate;
+    let updatedTime = await req.body.updatedTime;
+    let updatedNotes = await req.body.updatedNotes;
+
+    await models.Appointments.update(
+      {
+        id: req.params.id,
+        phone_num: updatedPhone,
+        date: updatedDate,
+        time: updatedTime,
+        new_client: updatedNewClient,
+        notes: updatedNotes,
+        updatedAt: new Date(),
+      },
+      {
+        where: { id: req.params.id },
+      }
+    ).then(function () {
+      res.redirect("/appointments");
+    });
+  } catch {
+    res.send("Failed to update Appointment.");
   }
 });
 

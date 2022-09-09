@@ -24,6 +24,12 @@ form {
     margin: 7rem auto calc(100vh - 39.7rem) auto;
 }
 
+.form-typography {
+    font-size: .9rem;
+    font-weight: bold;
+    height:1.3rem;
+}
+
 .wrapper {
     min-height: calc(100vh - 35rem);
     background-color: FFFFFF;

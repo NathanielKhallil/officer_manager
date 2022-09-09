@@ -114,45 +114,66 @@
             </button>  
         </form>     
     </section>
-    <section style="margin: 0 auto; min-width: 40%;max-width:80%;">
+    <section style="margin: 0 auto; min-width: 40%;max-width:80%; font-weight: bold;">
     <% for(var i=0; i<appointments.length; i++) { %>
       <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto; max-width: 100%; font-size:small">
           <div class="grid-container-appointments mb-2" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                                                      
                   <div class="top-1  d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
-                    <span>Re: <%=appointments[i].title %> </span>
+                    <span class="form-typography">&nbsp RE: <%=appointments[i].title %> </span>
                   </div>
 
-                  <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center">
-                      <input type="tel" class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-phone" name="appt-phone" value="<%= appointments[i].phone_num %>" placeholder="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
+                  <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" style="outline: solid 1px;">
+                      <label class="form-typography" style="width: 4rem; "> &nbsp Phone: &nbsp</label>
+                      <input class="form-typography rounded" style="outline: solid 1px; width: 9rem;" type="tel" class="d-flex flex-row bg-light align-items-center" id="updatedPhone" name="updatedPhone" value="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                   </div>
 
-                  <div class="top-3 d-flex flex-row bg-dark text-light align-items-center">
-                    <select class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="appt-new-client" name="appt-new-client">
+                  <div class="top-3 d-flex flex-row bg-dark text-light align-items-center" style="outline: solid 1px;">
+                    <label class="form-typography" style="margin-left: .5rem; min-width: 15%">New Client:</label>
+                    <select class="d-flex flex-row bg-light align-items-center form-typography rounded" style="width: 5rem;" id="updatedNewClient" name="updatedNewClient">
                         <option><%= appointments[i].new_client %> </option>
                         <option>true</option>
                         <option>false</option>
                     </select>
                 </div>
 
-                  <div class="mid-1 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
-                      <span class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%;" id="appt-date" name="appt-date">
-                          Date: <%= appointments[i].date.toLocaleDateString() %>
-                      </span>
+                  <div class="mid-1 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; ">
+                    <label class="form-label text-left form-typography" style="min-width: 15%" for="updatedDate"
+                    > &nbsp Date: &nbsp </label
+                    >
+                    <input
+                      style="width: 8rem;"
+                      type="date"
+                      class="form-control mb-2 form-typography"
+                      value="<%= appointments[i].date.toLocaleDateString() %>"
+                      name="updatedDate" 
+                      id="updatedDate"
+                      required
+                />
                   </div>
 
                   <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
-                      <span class="d-flex flex-row bg-dark text-light align-items-center" style="min-width: 100%; min-height: 100%;" id="appt-time" name="appt-time">
-                          Time: <%= appointments[i].time %>
-                      </span>
+                                    
+                      <label class="form-label text-left" for="updatedTime"
+                      > &nbsp Time: &nbsp </label
+                      >
+                      <input
+                      style="width: 10rem;"
+                      type="time"
+                      class="form-control mb-2 form-typography"
+                      value="<%= appointments[i].time %>"
+                      name="updatedTime" 
+                      id="updatedTime"
+                      />
+                  
                   </div>
 
                 
-                  <div class="bot-1 d-flex flex-row bg-warning text-light align-items-center" style="outline: solid 1px; width: 100%;">
-                    <span> Notes: </span> 
+                  <div class="bot-1 d-flex flex-row bg-dark text-light align-items-center " style="outline: solid 1px; width: 100%; font-weight: bold;">
+                    <span class="form-typography">&nbsp Notes: </span> 
                   </div>
               
-                    <textarea class="bot-2 d-flex flex-row bg-info text-light align-items-center" id="notes-text" name="notes-text" style="width: 100%; outline: solid 1px; font-family: Helvetica; resize: none;"> <%= appointments[i].notes %> </textarea> 
+                    <textarea class="bot-2 d-flex flex-row bg-info text-light align-items-center" id="notes-text" name="notes-text" style="width: 100%; height: 99%; outline: solid 1px; font-family: Helvetica; resize: none; font-weight: bold;"> <%= appointments[i].notes %> </textarea> 
                                    
                         
           </div>
