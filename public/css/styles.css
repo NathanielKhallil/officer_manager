@@ -225,6 +225,16 @@ ul {
     grid-area: bot-2;
 }
 
+.btn-appt {
+    font-weight: bold;
+    background-color: white;
+}
+
+.btn-appt:hover {
+    background: black;
+    color: white;
+    transition: .3s ease-in-out;
+}
 
 /* 
 @media only screen and (max-width: 700px) {
