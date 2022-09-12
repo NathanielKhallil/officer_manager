@@ -377,6 +377,7 @@ app.get("/appointments", async (req, res, next) => {
     const appointments = await models.Appointments.findAll({
       order: [["date"]],
     });
+
     console.log(appointments);
     return res.render("appointments", { appointments: appointments });
   } else {
@@ -393,6 +394,7 @@ app.post("/appointments", async (req, res) => {
   const time = await req.body.time;
   const notes = await req.body.notes;
   const newClient = await req.body.new_client;
+  console.log(date);
   try {
     let newAppointment = {
       title: title,
@@ -409,6 +411,7 @@ app.post("/appointments", async (req, res) => {
       return res.redirect("/appointments");
     });
   } catch {
+    console.log(date);
     res.redirect("/appointments");
   }
 });
@@ -441,6 +444,24 @@ app.post("/appointments/update/:id", async (req, res) => {
     });
   } catch {
     res.send("Failed to update Appointment.");
+  }
+});
+
+// APPOINTMENTS - Delete
+
+app.post("/appointments/delete/:id", async (req, res) => {
+  if (req.user && req.user.is_admin === true) {
+    try {
+      await models.Appointments.destroy({ where: { id: req.params.id } }).then(
+        function () {
+          res.redirect("/appointments");
+        }
+      );
+    } catch {
+      res.send("Failed to delete matter.");
+    }
+  } else {
+    res.send("You must be an Administrator to delete matters.");
   }
 });
 
