@@ -43,6 +43,7 @@ module.exports = {
       },
       undertakings_remaining: {
         type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       notes: {
         type: Sequelize.STRING,

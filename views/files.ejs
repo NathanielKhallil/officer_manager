@@ -42,7 +42,7 @@
       
         ref="fileUpload"
         id="uploadForm"
-        action="/upload"
+        action="/files/upload"
         enctype="multipart/form-data"
         method="post"
       >
@@ -71,9 +71,9 @@
           <div class="d-flex flex-column justify-content-center" style="width:10rem;">
             <form method="GET"  class="d-flex flex-column justify-content-start file-req-form" style="margin: 0 auto; max-width: 100%; min-height: 100%; font-size:small">
               <input type="hidden" name="_method" value="GET"/>
-              <button class="btn bg-dark text-light download-btn" style="width: 10rem; border-radius: 0; height: 5rem;" formaction="/download/<%= listContents[i].Key %>"> Download </button>
+              <button class="btn bg-dark text-light download-btn" style="width: 10rem; border-radius: 0; height: 5rem;" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
               <input type="hidden" name="_method" value="GET"/>
-              <button class="btn bg-dark text-light del-btn"  style="width: 10rem; border-radius: 0; height: 5rem;" formaction="/delete/<%= listContents[i].Key %>"> Delete </button>
+              <button class="btn bg-dark text-light del-btn"  style="width: 10rem; border-radius: 0; height: 5rem;" formaction="/files/delete/<%= listContents[i].Key %>"> Delete </button>
             </form>
           </div>
 
