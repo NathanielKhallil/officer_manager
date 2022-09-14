@@ -6,7 +6,6 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const cors = require("cors");
 const app = express();
-const bodyParser = require("body-parser");
 const flash = require("express-flash");
 const session = require("express-session");
 

@@ -171,13 +171,13 @@
                     <span class="form-typography">&nbsp Notes: </span> 
                   </div>
               
-                    <textarea class="bot-2 d-flex flex-row bg-info text-light align-items-center" id="updatedNotes" name="updatedNotes" style="width: 100%; height: 99%; outline: solid 1px; font-family: Helvetica; resize: none; font-weight: bold;"> <%= appointments[i].notes %> </textarea> 
+                    <textarea class="bot-2 d-flex flex-row align-items-center notes" id="updatedNotes" name="updatedNotes" style="width: 100%; height: 99%; outline: solid 1px; font-family: Helvetica; resize: none; font-weight: bold;"> <%= appointments[i].notes %> </textarea> 
                                                   
           </div>
               <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                 <input type="hidden" name="_method" value="PUT"/>
-                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-appt" style="height:50%;"> Update </button>
-                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-appt" style="height:50%;"> Delete </button>
+                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-details" style="height:50%;"> Update </button>
+                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-details" style="height:50%;"> Delete </button>
               </div>
         </form>
           <% } %>
