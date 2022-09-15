@@ -130,6 +130,7 @@ ul {
     grid-template-rows: 3rem 2rem 4rem;
 }
 
+
 .hd-1 {
     grid-area: hd-1;
 }
@@ -195,6 +196,27 @@ ul {
     grid-area: text;
 }
 
+@media only screen and (max-width: 770px) {
+    .grid-container-matters {
+        display: grid;
+        grid-template-areas:
+        "hd-1 val-1" 
+        "hd-2 val-2"
+        "hd-3 val-3"
+        "hd-4 val-4"
+        "hd-5 val-5"
+        "hd-6 val-6"
+        "hd-7 val-7"
+        "hd-8 val-8"
+        "hd-9 val-9"
+        "memo memo"
+        "text text" ; 
+        grid-template-columns: .5fr 1.5fr;
+        grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem;
+    }
+}
+
+
 /* FILE MANAGEMENT*/
 
 .responsive-pos {
@@ -227,8 +249,12 @@ ul {
 .file-data-dir {
     display: inline;
     align-items: center;
+
 }
 
+.fixed-width {
+    min-width: 25rem;
+}
 
 .file-form-dir {
     display: flex;
@@ -242,6 +268,8 @@ ul {
 
 .file-data {
     grid-area: file-data;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 100%;
 }
 
 .file-req-form {
@@ -257,8 +285,13 @@ ul {
     border-radius: 0px;
 }
 
+.form-1 {
+    margin: 2rem 0 2rem 4rem;
+}
+
 .form-btn {
     min-height: 100%;
+    min-width: 100%;
 }
 
 
@@ -273,6 +306,7 @@ ul {
         grid-template-columns: 1fr;
         grid-template-rows: 4rem;
     }
+
 
     .form-btn {
         display: flex;
@@ -293,14 +327,31 @@ ul {
     
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 690px) {
 
     .responsive-pos {
-        margin-left: 2rem;
-        margin-right: auto;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .form-1 {
+        margin: 2rem auto 2rem auto;
+        justify-content: center;
     }
     
 }
+
+@media only screen and (max-width: 420px) {
+    
+    .fixed-width {
+        min-width: 20rem;
+    }
+
+    .file-data { 
+        font-size: 80%;
+    }
+}
+
 
 /* APPOINTMENTS and DEADLINES */
 

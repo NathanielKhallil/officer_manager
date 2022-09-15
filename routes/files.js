@@ -46,7 +46,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
 
 router.get("/download/:filename", async (req, res) => {
   const filename = req.params.filename;
-  if (req.user && req.user.is_admin === true) {
+  if (req.user && req.user.access_granted === true) {
     let fileObject = await s3
       .getObject({ Bucket: BUCKET, Key: filename })
       .promise();

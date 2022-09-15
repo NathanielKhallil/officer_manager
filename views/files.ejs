@@ -37,9 +37,9 @@
     </nav>
   </header>
   <section class="d-flex justify-content-start">
-    <div class="container d-flex justify-content-center rounded p-0" style="width: 26rem; margin: 2rem 0 2rem 0;">
-      <form
-      
+    <div class="container d-flex rounded p-0 form-1">
+      <form 
+        class="fixed-width"
         ref="fileUpload"
         id="uploadForm"
         action="/files/upload"
@@ -53,7 +53,7 @@
   </section>
   <section class="d-flex flex-column">
     <div class="grid-container-header text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem;">
-      <div class="header-direction file-header bg-dark text-light " style="min-width: 25rem; font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
+      <div class="header-direction fixed-width file-header bg-dark text-light " style="font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
           <span class="align-items-center ms-3" style="min-width: 50%; font-weight: bold;"  id="fileHeader" name="fileHeader"> 
             File Server 
           </span>
@@ -63,7 +63,7 @@
  
     <% for(var i=0; i<listContents.length; i++) {%>
       <div class="grid-container-files text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem;">       
-        <div class="file-data file-data-dir bg-info text-light d-flex align-items-center" style="min-width: 25rem; font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >  
+        <div class="file-data file-data-dir fixed-width bg-info text-light d-flex align-items-center">  
           <span class="d-flex align-items-center ms-3" id="<%= listContents[i].Key %>" name="<%= listContents[i].Key %>"> 
             <i class="fa-regular fa-file-lines"></i>
                   : &nbsp  <%= listContents[i].Key %> &nbsp 
@@ -75,7 +75,7 @@
         </div>
 
         <div class="file-req-form file-form-dir">    
-          <form method="GET"  class="file-req-form form-btn" style="min-width: 100%; font-size:small;">
+          <form method="GET"  class="file-req-form form-btn" style="font-size:small;">
             <input type="hidden" name="_method" value="GET"/>
             <button class="btn-typography btn-details-secondary" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
             <input type="hidden" name="_method" value="GET"/>
