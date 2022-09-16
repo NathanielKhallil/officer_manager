@@ -123,13 +123,12 @@ ul {
 .grid-container-matters {
     display: grid;
     grid-template-areas:
-    "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9" 
-    "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9" 
-    "memo text text text text text text text text"; 
-    grid-template-columns: .8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr ;
+    "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9 btn-matters" 
+    "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9 btn-matters" 
+    "memo text text text text text text text text btn-matters"; 
+    grid-template-columns: .8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
     grid-template-rows: 3rem 2rem 4rem;
 }
-
 
 .hd-1 {
     grid-area: hd-1;
@@ -196,6 +195,22 @@ ul {
     grid-area: text;
 }
 
+.section-responsive {
+    margin: 0 auto;
+    min-width: 40%;
+    max-width: 80%;
+}
+
+.btn-matters {
+    grid-area: btn-matters;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-half-height {
+    height: 50%;
+}
+
 @media only screen and (max-width: 770px) {
     .grid-container-matters {
         display: grid;
@@ -210,9 +225,32 @@ ul {
         "hd-8 val-8"
         "hd-9 val-9"
         "memo memo"
-        "text text" ; 
-        grid-template-columns: .5fr 1.5fr;
-        grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem;
+        "text text" 
+        "btn-matters btn-matters"; 
+        grid-template-columns: .5fr 1fr;
+        grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem 3rem;
+    }
+
+    .section-responsive {
+        width: 25rem;
+    }
+
+    .form-width-matters {
+        min-width: 0;
+    }
+
+    .drop-dwn-pos {
+        text-align: center;
+    }
+
+    .btn-matters {
+        display: flex;
+        flex-direction: row;
+       
+    }
+    .btn-half-height {
+        height: 100%;
+        width: 50%;
     }
 }
 
@@ -293,7 +331,6 @@ ul {
     min-height: 100%;
     min-width: 100%;
 }
-
 
 
 @media only screen and (max-width: 1130px) {

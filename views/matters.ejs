@@ -23,9 +23,9 @@
         </ul>
       </nav>
     </header>
-        <section>
+        <section class="section-responsive">
             <form
-            class="form-outline rounded p-5"
+            class="form-outline rounded p-5 form-width-matters"
             style="margin: 2rem auto 2rem auto;"
             action="/matters"
             method="POST"
@@ -61,9 +61,9 @@
         </button>  
         </form>     
     </section>
-    <section style="margin: 0 auto; min-width: 40%;max-width:80%;">
+    <section class="section-responsive">
          <% for(var i=0; i<matters.length; i++) { %>
-            <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
+            <form method="POST"  class="d-flex justify-content-center form-width-matters" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
                 <div class="grid-container-matters mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                    
                         <div class="hd-1 bg-dark text-light" > <p style="margin: 5px 0 0 5px">Matter No. </p></div>
@@ -81,49 +81,49 @@
                           <p class="center-grid-cell" style="margin-left: 0";> <%=matters[i].matter_number %>  </p>
                         </div>
                         <div class="val-2">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="cfa_signed" name="cfa_signed">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="cfa_signed" name="cfa_signed">
                                 <option value="<%= matters[i].cfa_signed %>"><%= matters[i].cfa_signed %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-3">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="statement_of_claim_filed" name="statement_of_claim_filed">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="statement_of_claim_filed" name="statement_of_claim_filed">
                                 <option value="<%= matters[i].statement_of_claim_filed %>"><%= matters[i].statement_of_claim_filed %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-4">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_c_served" name="s_of_c_served">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_c_served" name="s_of_c_served">
                                 <option value="<%= matters[i].s_of_c_served %>"><%= matters[i].s_of_c_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-5">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_d_served" name="s_of_d_served" >
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="s_of_d_served" name="s_of_d_served" >
                                 <option value="<%= matters[i].s_of_d_served %>"><%= matters[i].s_of_d_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-6">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="aff_of_recs_served" name="aff_of_recs_served">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="aff_of_recs_served" name="aff_of_recs_served">
                                 <option value="<%= matters[i].aff_of_recs_served %>"><%= matters[i].aff_of_recs_served %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-7">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="producibles_sent" name="producibles_sent">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="producibles_sent" name="producibles_sent">
                                 <option value="<%= matters[i].producibles_sent %>"><%= matters[i].producibles_sent %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
                         </div>
                         <div class="val-8">
-                            <select class="bg-dark text-light" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="questioning_done" name="questioning_done">
+                            <select class="bg-dark text-light drop-dwn-pos" style="min-width: 100%; min-height: 100%; outline: solid 1px;" id="questioning_done" name="questioning_done">
                                 <option value="<%= matters[i].questioning_done %>"><%= matters[i].questioning_done %></option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
@@ -138,13 +138,14 @@
                       
                         <textarea class="notes text" id="notes" name="notes" style="outline: solid 1px; width: 100%; font-family: Helvetica; resize: none;"> <%= matters[i].notes %> </textarea> 
                               
-                </div>
-                    <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                
+                    <div class="btn-matters" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                       <input type="hidden" name="_method" value="PUT"/>
-                      <button formaction="/matters/update/<%= matters[i].id %>" class="btn-details" style="height:50%;"> Update </button>
-                      <button formaction="/matters/delete/<%= matters[i].id %>" class="btn-details" style="height:50%;"> Delete </button>
+                      <button formaction="/matters/update/<%= matters[i].id %>" class="btn-details btn-half-height"> Update </button>
+                      <button formaction="/matters/delete/<%= matters[i].id %>" class="btn-details btn-half-height"> Delete </button>
                     </div>
                 </form>
+              </div>
                 <% } %>
         </section>
     <div class="wrapper">
