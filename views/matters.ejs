@@ -63,7 +63,7 @@
     </section>
     <section class="section-responsive">
          <% for(var i=0; i<matters.length; i++) { %>
-            <form method="POST"  class="d-flex justify-content-center form-width-matters" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
+            <form method="POST"  class="d-flex justify-content-center form-width" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
                 <div class="grid-container-matters mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                    
                         <div class="hd-1 bg-dark text-light" > <p style="margin: 5px 0 0 5px">Matter No. </p></div>
@@ -139,7 +139,7 @@
                         <textarea class="notes text" id="notes" name="notes" style="outline: solid 1px; width: 100%; font-family: Helvetica; resize: none;"> <%= matters[i].notes %> </textarea> 
                               
                 
-                    <div class="btn-matters" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                    <div class="btn-matters btn-swap" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                       <input type="hidden" name="_method" value="PUT"/>
                       <button formaction="/matters/update/<%= matters[i].id %>" class="btn-details btn-half-height"> Update </button>
                       <button formaction="/matters/delete/<%= matters[i].id %>" class="btn-details btn-half-height"> Delete </button>
@@ -161,7 +161,7 @@
         <div class="row">
           <div class="col">
             <a class="nav-link active" href="https://qb-filing.alberta.ca/">
-              Alberta Court of Queen's Bench Digital Filing
+              Alberta Court of Kings's Bench Digital Filing
             </a>
           </div>
           <div class="col">
@@ -171,7 +171,7 @@
           </div>
           <div class="col">
             <a class="nav-link active" href="https://surrogate.alberta.ca/">
-            Alberta Queen's Bench (Surrogate) Digital Filing 
+            Alberta Kings's Bench (Surrogate) Digital Filing 
           </a>
           </div>
         </div>

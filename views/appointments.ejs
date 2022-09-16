@@ -114,22 +114,22 @@
             </button>  
         </form>     
     </section>
-    <section style="margin: 0 auto; min-width: 40%;max-width:80%; font-weight: bold;">
+    <section class="section-responsive">
     <% for(var i=0; i<appointments.length; i++) { %>
-      <form method="POST"  class="d-flex justify-content-center" style="margin: 0 auto; max-width: 100%; font-size:small">
-          <div class="grid-container-appointments mb-2" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+      <form method="POST"  class="d-flex justify-content-center mb-4 form-width-matters" style="margin: 0 auto; max-width: 100%; font-size:small">
+        <div class="grid-container-appointments" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                                                      
                   <div class="top-1  d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
                     <span class="form-typography">&nbsp RE: <%=appointments[i].title %> </span>
                   </div>
 
                   <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" style="outline: solid 1px;">
-                      <label class="form-typography" style="width: 4rem; "> &nbsp Phone: &nbsp</label>
-                      <input class="form-typography rounded" style="outline: solid 1px; width: 9rem;" type="tel" class="d-flex flex-row bg-light align-items-center" id="updatedPhone" name="updatedPhone" value="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
+                      <label class="form-typography"><label> &nbsp Phone: &nbsp</label>
+                      <input class="form-typography phone-width rounded" style="outline: solid 1px;" type="tel" class="d-flex flex-row bg-light align-items-center" id="updatedPhone" name="updatedPhone" value="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                   </div>
 
                   <div class="top-3 d-flex flex-row bg-dark text-light align-items-center" style="outline: solid 1px;">
-                    <label class="form-typography" style="margin-left: .5rem; min-width: 15%">New Client:</label>
+                    <label class="form-typography" style="margin-left: .5rem; min-width: 15%">New Client: &nbsp</label>
                     <select class="d-flex flex-row bg-light align-items-center form-typography rounded" style="width: 5rem;" id="updatedNewClient" name="updatedNewClient">
                         <option><%= appointments[i].new_client %> </option>
                         <option>true</option>
@@ -144,12 +144,12 @@
                     <input
                       style="width: 8rem;"
                       type="date"
-                      class="form-control mb-2 form-typography"
+                      class="form-control form-typography"
                       value="<%= appointments[i].date %>"
                       name="updatedDate" 
                       id="updatedDate"
                       required
-                />
+                    />
                   </div>
 
                   <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
@@ -158,12 +158,11 @@
                       > &nbsp Time: &nbsp </label
                       >
                       <input
-                      style="width: 10rem;"
-                      type="time"
-                      class="form-control mb-2 form-typography"
-                      value="<%= appointments[i].time %>"
-                      name="updatedTime" 
-                      id="updatedTime"
+                        type="time"
+                        class="form-control form-typography time-width"
+                        value="<%= appointments[i].time %>"
+                        name="updatedTime" 
+                        id="updatedTime"
                       />
                   </div>
 
@@ -173,12 +172,13 @@
               
                     <textarea class="bot-2 d-flex flex-row align-items-center notes" id="updatedNotes" name="updatedNotes" style="width: 100%; height: 99%; outline: solid 1px; font-family: Helvetica; resize: none; font-weight: bold;"> <%= appointments[i].notes %> </textarea> 
                                                   
-          </div>
-              <div class="d-flex flex-column mb-2" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+          
+              <div class="btn-appt btn-swap" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                 <input type="hidden" name="_method" value="PUT"/>
-                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-details" style="height:50%;"> Update </button>
-                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-details" style="height:50%;"> Delete </button>
+                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-details btn-half-height" > Update </button>
+                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-details btn-half-height" > Delete </button>
               </div>
+          </div>
         </form>
           <% } %>
       </section>
@@ -197,7 +197,7 @@
         <div class="row">
           <div class="col">
             <a class="nav-link active" href="https://qb-filing.alberta.ca/">
-              Alberta Court of Queen's Bench Digital Filing
+              Alberta Court of Kings's Bench Digital Filing
             </a>
           </div>
           <div class="col">
@@ -207,7 +207,7 @@
           </div>
           <div class="col">
             <a class="nav-link active" href="https://surrogate.alberta.ca/">
-            Alberta Queen's Bench (Surrogate) Digital Filing 
+            Alberta King's Bench (Surrogate) Digital Filing 
           </a>
           </div>
         </div>
