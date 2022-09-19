@@ -14,18 +14,18 @@
           </a>
         </li>
         <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
-            Home
+          <a
+            class="nav-link active ps-3 pe-2"
+            id="userPortal"
+            name="userPortal"
+            href="/userPortal"
+          >
+            Dashboard
           </a>
         </li>
-        <li class="nav-item ps-3 pe-2">
-          <a
-            class="nav-link active"
-            id="userProfile"
-            name="userProfile"
-            href="/userProfile"
-          >
-            Profile
+        <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
+            Home
           </a>
         </li>
         <li class="nav-item ps-3 pe-2">
@@ -41,53 +41,64 @@
       class="container bg-secondary text-light rounded mt-5 p-2"
       style="font-size: x-large"
     >
-      <p>Welcome to the Dashboard <%= name %> !</p>
-    </section>
-    <section
-      class="container bg-info text-light rounded mt-3 p-2"
-      style="font-size: large"
-    >
+      <p>Welcome <%= profile.username %> !</p>
+
       <p>
-        Your account has been created, but will not be able to access any of the
-        application features until the account has been activated by the
-        Administrator. Please contact the Administrator for access to be
-        approved.
+        If you would like to change your password or you were provided a
+        temporary password recently, please use the form below.
       </p>
     </section>
     <section>
-      <div class="d-grid gap-2 col-10 mx-auto mt-3">
-        <!-- <ul class="ms-auto" style="flex-direction: row"> -->
+      <form
+        class="d-flex flex-column justify-content-center fixed-width rounded"
+        style="margin: 0.5rem auto 0 auto"
+        method="POST"
+      >
+        <div class="form-floating mb-2">
+          <label class="form-label text-left" for="newPassword">
+            Enter your new password
+          </label>
+          <input
+            class="form-control"
+            type="password"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$"
+            id="newPassword"
+            name="newPassword"
+            onkeyup="check();"
+            required
+          />
+        </div>
+        <span>
+          Passwords must contain at least one number, a lower case letter, an
+          uppercase letter and one symbol !@#$%^&*+-</span
+        >
+        <div class="form-floating mb-2 mt-2">
+          <label class="form-label text-left" for="verifyPassword">
+            Verify your new password
+          </label>
+          <input
+            class="form-control"
+            type="password"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$"
+            id="verifyPassword"
+            name="verifyPassword"
+            onkeyup="check();"
+            required
+          />
+        </div>
 
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/todos" class="nav-link active text-decoration-none"
-            >Task List</a
-          >
+        <button
+          class="btn bg-dark text-light p-4"
+          style="font-size: xx-large"
+          formaction="/userProfile/update/<%= profile.id %>"
+        >
+          Change Password
         </button>
-        <!-- </li> -->
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/matters" class="nav-link active text-decoration-none">
-            Matters List
-          </a>
-        </button>
-        <!-- </li> -->
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/files" class="nav-link active text-decoration-none">
-            Digital File Management
-          </a>
-        </button>
-        <!-- </li> -->
-        <!-- </ul> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/appointments" class="nav-link active text-decoration-none">
-            Appointments & Deadlines
-          </a>
-        </button>
-      </div>
+      </form>
+      <span class="d-flex justify-content-center" id="message"> </span>
     </section>
   </main>
+
   <div class="wrapper"></div>
   <footer class="footer">
     <div class="footer-header">Quicklinks for Filing Documents</div>

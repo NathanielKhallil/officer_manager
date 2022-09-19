@@ -22,6 +22,7 @@ const todos = require("./routes/todos");
 const matters = require("./routes/matters");
 const files = require("./routes/files");
 const appointments = require("./routes/appointments");
+const userProfile = require("./routes/userProfile");
 
 // Models
 const models = require("./app/models");
@@ -97,6 +98,10 @@ app.use("/files", files);
 // Appointments route
 
 app.use("/appointments", appointments);
+
+// User Profile route
+
+app.use("/userProfile", userProfile);
 
 //Sync Database
 models.sequelize

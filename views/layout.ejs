@@ -17,6 +17,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script type="text/javascript">
+      var check = function () {
+        if (
+          document.getElementById("newPassword").value ==
+          document.getElementById("verifyPassword").value
+        ) {
+          document.getElementById("message").style.color = "green";
+          document.getElementById("message").innerHTML = "Passwords Match";
+        } else {
+          document.getElementById("message").style.color = "red";
+          document.getElementById("message").innerHTML =
+            "Passwords Do Not Match";
+        }
+      };
+    </script>
   </head>
   <body>
     <%- body %>
