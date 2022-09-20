@@ -1,0 +1,179 @@
+<body>
+    <header>
+      <nav class="nav bg-dark navbar-expand-lg">
+        <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
+          Office Resources and Management Assistant
+        </a>
+        <ul
+          class="navbar-nav text-light bg-dark ms-auto"
+          style="flex-direction: row"
+        >
+          <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="info" name="info">
+              General Info
+            </a>
+          </li>
+          <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
+              Home
+            </a>
+          </li>
+
+          <% if (admin) { %>
+            <li class="nav-item ps-3 pe-2">
+                <a class="nav-link active" id="adminPortal" name="adminPortal" href="/adminPortal"> Admin </a>
+              </li>
+            <%} else { %>
+                <li class="nav-item ps-3 pe-2">
+                    <a
+                      class="nav-link active"
+                      id="userProfile"
+                      name="userProfile"
+                      href="/userProfile"
+                    >
+                      Profile
+                    </a>
+                  </li>
+                <% } %>
+            
+          <li class="nav-item ps-3 pe-2">
+            <a class="nav-link active" id="logout" name="logout" href="/logout">
+              Logout
+            </a>
+          </li>
+        </ul>
+    </nav>
+</header>
+
+    <div>
+        <p> Admin Dashboard </p>
+    </div>
+
+    <section class="section-responsive">
+        <% for(var i=0; i<data.length; i++) { %>
+           <form method="POST"  class="d-flex justify-content-center form-width" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
+               <div class="grid-container-admin mb-2 justify-content-center narrow-grid" style="width: 30%; font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
+                  
+                       <div class="hd-1 bg-dark text-light d-flex justify-content-center align-items-center" > <span>Username: </span></div>
+                       <div class="hd-2 bg-dark text-light d-flex justify-content-center align-items-center" > <span>Email: </span></div>
+                       <div class="hd-3 bg-dark text-light d-flex justify-content-center align-items-center" > <span>Access: </span></div>
+                                          
+                            
+                       <div class="grid-username bg-dark text-light" style="outline: solid 1px;">
+                         <p class="d-flex justify-content-center align-items-center mb-0" style="margin-left: 5px; height: 100%;";> <%= data[i].username %>  </p>
+                       </div>
+                       
+                       <div class="grid-email form-floating bg-dark text-light" style="outline: solid 1px;">
+                    
+                            <label class="form-label text-center" for="newEmail"> </label>
+                            <input
+                            
+                              type="email"
+                              id="newEmail"
+                              name="newEmail"
+                              value="<%= data[i].email %>"
+                              style="min-width: 100%; min-height: 98%; text-align: center;"
+                              required
+                            />
+                       </div>
+
+                       <div class="grid-access">
+                           <select class="bg-dark text-light" style="width: 100%; height: 100%; outline: solid 1px; text-align: center;" id="accessStatus" name="accessStatus">
+                               <option value="<%= data[i].access_granted %>"><%= data[i].access_granted %></option>
+                               <option value="true">true</option>
+                               <option value="false">false</option>
+                           </select>
+                       </div>
+                       
+                                       
+               
+                   <div class="grid-btn-admin d-flex justify-content-center btn-matters" style="width:100%;box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                     <input type="hidden" name="_method" value="PUT"/>
+                     <button formaction="/adminPortal/update/<%= data[i].id %>" class="btn-details" style="width:50%"> Update </button>
+                     <button formaction="/adminPortal/delete/<%= data[i].id %>" class="btn-details" style="width:50%"> Delete </button>
+                   </div>
+
+                    <div class="grid-btn-password mt-3 form-floating" style="height:50% ;"> 
+                        <div class="form-floating mb-2">
+                            <input
+                            class="form-control"
+                            style="height: 50%;"
+                            type="password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$"
+                            id="newPassword"
+                            name="newPassword"
+                            placeholder="Enter new Password"
+                            onkeyup="check();"
+                            required
+                            />
+                            <label for="newPassword">
+                                Enter new Password
+                            </label>
+                        </div>
+                             
+                        <div class="form-floating mb-2 mt-2">
+                            <input
+                            class="form-control"
+                            style="height: 50%;"
+                            type="password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$"
+                            id="verifyPassword"
+                            name="verifyPassword"
+                            placeholder="Verify new password"
+                            onkeyup="check();"
+                            required
+                            />
+                            <label class="form-label text-left" for="verifyPassword">
+                            Verify new password
+                            </label>
+                        </div>    
+                        <div>    
+                            <button formaction="/adminPortal/reset/<%= data[i].id %>" class="btn-details btn-half-height" style="width: 100% ;"> 
+                                Change Password 
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-message-text d-flex justify-content-center mt-8"> 
+                            <span id="message"> </span> 
+                    </div>
+                </div>
+            </form>
+            
+
+        <% } %>
+       </section>
+    <div class="wrapper"></div>
+    <footer class="footer">
+      <div class="footer-header">Quicklinks for Filing Documents</div>
+      <div class="push"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <a class="nav-link active" href="https://qb-filing.alberta.ca/">
+              Alberta Court of King's Bench Digital Filing
+            </a>
+          </div>
+          <div class="col">
+            <a
+              class="nav-link active"
+              href="https://cams.albertacourts.ca/public-portal/?q=node/403"
+            >
+              Alberta Court of Appeal Cams Digital Filing
+            </a>
+          </div>
+          <div class="col">
+            <a class="nav-link active" href="https://surrogate.alberta.ca/">
+              Alberta King's Bench (Surrogate) Digital Filing
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  

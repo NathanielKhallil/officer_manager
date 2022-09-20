@@ -18,6 +18,18 @@
             Home
           </a>
         </li>
+        <% if (admin) { %>
+        <li class="nav-item ps-3 pe-2">
+          <a
+            class="nav-link active"
+            id="adminPortal"
+            name="adminPortal"
+            href="/adminPortal"
+          >
+            Admin
+          </a>
+        </li>
+        <%} else { %>
         <li class="nav-item ps-3 pe-2">
           <a
             class="nav-link active"
@@ -28,6 +40,7 @@
             Profile
           </a>
         </li>
+        <% } %>
         <li class="nav-item ps-3 pe-2">
           <a class="nav-link active" id="logout" name="logout" href="/logout">
             Logout

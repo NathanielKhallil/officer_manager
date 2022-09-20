@@ -35,7 +35,9 @@ router.post("/update/:id", async (req, res) => {
       console.log(e);
     }
   } else {
-    res.send("passwords do not match!");
+    res.send(
+      "passwords do not match! Use the back button in your browser to try again."
+    );
   }
 });
 

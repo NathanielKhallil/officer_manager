@@ -54,7 +54,7 @@ router.post("/update/:id", async (req, res) => {
     let updatedDate = await req.body.updatedDate;
     let updatedTime = await req.body.updatedTime;
     let updatedNotes = await req.body.updatedNotes;
-    console.log(updatedNotes);
+
     await models.Appointments.update(
       {
         id: req.params.id,

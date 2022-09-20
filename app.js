@@ -12,7 +12,6 @@ const session = require("express-session");
 const passport = require("passport");
 require("./passport-config")(passport);
 
-// const FileStore = require("session-file-store")(session);
 const home = require("./routes/index");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
@@ -23,6 +22,7 @@ const matters = require("./routes/matters");
 const files = require("./routes/files");
 const appointments = require("./routes/appointments");
 const userProfile = require("./routes/userProfile");
+const adminPortal = require("./routes/adminPortal");
 
 // Models
 const models = require("./app/models");
@@ -99,9 +99,13 @@ app.use("/files", files);
 
 app.use("/appointments", appointments);
 
-// User Profile route
+// User profile route
 
 app.use("/userProfile", userProfile);
+
+// Admin portal route
+
+app.use("/adminPortal", adminPortal);
 
 //Sync Database
 models.sequelize

@@ -540,3 +540,43 @@ a:hover {
     }
 
 }
+
+/* Admin Portal */
+
+.grid-container-admin {
+    display: grid;
+    grid-template-areas:
+    "hd-1 grid-username"
+    "hd-2 grid-email"
+    "hd-3 grid-access"
+    "grid-btn-admin grid-btn-admin" 
+    "grid-btn-password grid-btn-password"
+    "grid-message-text grid-message-text";
+    
+    grid-template-columns: .5fr 1.5fr;
+    grid-template-rows: 3rem 3rem 3rem 3rem 10rem 2rem;
+}
+
+.grid-username {
+    grid-area: grid-username;
+}
+
+.grid-email {
+    grid-area: grid-email;
+}
+
+.grid-access {
+    grid-area: grid-access;
+}
+
+.grid-btn-admin {
+    grid-area: grid-btn-admin;
+}
+
+.grid-btn-password {
+    grid-area: grid-btn-password;
+}
+
+.grid-message-text {
+    grid-area: grid-message-text;
+}
