@@ -51,16 +51,10 @@
     </nav>
   </header>
   <main>
-    <section
-      class="container bg-secondary text-light rounded mt-5 p-2"
-      style="font-size: x-large"
-    >
+    <section class="container bg-secondary text-light rounded mt-5 p-2">
       <p>Welcome to the Dashboard <%= name %> !</p>
     </section>
-    <section
-      class="container bg-info text-light rounded mt-3 p-2"
-      style="font-size: large"
-    >
+    <section class="container bg-info text-light rounded mt-3 p-2">
       <p>
         Your account has been created, but will not be able to access any of the
         application features until the account has been activated by the
@@ -68,58 +62,38 @@
         approved.
       </p>
     </section>
-    <section>
-      <div class="grid-dashboard">
+    <section class="responsive-section">
+      <div
+        class="grid-dashboard fixed-dash-width"
+        style="margin: 2rem auto 0 auto"
+      >
         <div class="grid-dash-tasks">
-          <button
-            class="btn bg-dark text-light p-4"
-            style="font-size: xx-large"
-          >
-            <a href="/todos" class="nav-link active text-decoration-none"
-              >Task List</a
-            >
-          </button>
+          <a href="/todos" class="nav-link active text-decoration-none">
+            <button class="dash-grid-box">Task List</button>
+          </a>
         </div>
 
         <div class="grid-dash-matters">
-          <button
-            class="btn bg-dark text-light p-4"
-            style="font-size: xx-large"
-          >
-            <a href="/matters" class="nav-link active text-decoration-none">
-              Matters List
-            </a>
-          </button>
+          <a href="/matters" class="nav-link active text-decoration-none">
+            <button class="dash-grid-box">Matters List</button>
+          </a>
         </div>
 
         <div class="grid-dash-files">
-          <button
-            class="btn bg-dark text-light p-4"
-            style="font-size: xx-large"
-          >
-            <a href="/files" class="nav-link active text-decoration-none">
-              Digital File Management
-            </a>
-          </button>
+          <a href="/files" class="nav-link active text-decoration-none">
+            <button class="dash-grid-box">Digital File Management</button>
+          </a>
         </div>
 
         <div class="grid-dash-appt">
-          <button
-            class="btn bg-dark text-light p-4"
-            style="font-size: xx-large"
-          >
-            <a
-              href="/appointments"
-              class="nav-link active text-decoration-none"
-            >
-              Appointments & Deadlines
-            </a>
-          </button>
+          <a href="/appointments" class="nav-link active text-decoration-none">
+            <button class="dash-grid-box">Appointments & Deadlines</button>
+          </a>
         </div>
       </div>
     </section>
   </main>
-  <div class="wrapper"></div>
+  <div class="wrapper" style="min-height: calc(100vh - 45rem)"></div>
   <footer class="footer">
     <div class="footer-header">Quicklinks for Filing Documents</div>
     <div class="push"></div>

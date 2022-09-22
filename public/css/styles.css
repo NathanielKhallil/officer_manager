@@ -151,29 +151,124 @@ textarea {
     flex-direction: column;
 }
 
-/* Todos styles */
+/* dashboard */
+
 
 .grid-dashboard {
     display: grid;
     grid-template-areas:
     "grid-dash-tasks grid-dash-matters" 
     "grid-dash-files grid-dash-appt"; 
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2rem 2rem;
+    grid-template-columns: 25rem 25rem;
+    grid-template-rows: 15rem 15rem;
+    justify-content: center;
 }
+
+.container {
+    font-size: 150%;
+}
+
+@media only screen and (max-width: 990px) {
+    .grid-dashboard {
+        display: grid;
+        grid-template-areas:
+        "grid-dash-tasks grid-dash-matters" 
+        "grid-dash-files grid-dash-appt"; 
+        grid-template-columns: 22rem 22rem;
+        grid-template-rows: 13rem 13rem;
+        justify-content: center;
+    }
+    
+}
+
+@media only screen and (max-width: 776px) {
+    .grid-dashboard {
+        display: grid;
+        grid-template-areas:
+        "grid-dash-tasks grid-dash-matters" 
+        "grid-dash-files grid-dash-appt"; 
+        grid-template-columns: 18rem 18rem;
+        grid-template-rows: 11rem 11rem;
+        justify-content: center;
+    }
+    .container {
+        font-size: 150%;
+        max-width: 36rem;
+    }
+    
+}
+
+@media only screen and (max-width: 586px) {
+    .grid-dashboard {
+        display: grid;
+        grid-template-areas:
+        "grid-dash-tasks grid-dash-matters" 
+        "grid-dash-files grid-dash-appt"; 
+        grid-template-columns: 14rem 14rem;
+        grid-template-rows: 8rem 8rem;
+        justify-content: center;
+    }
+    .container {
+        font-size: 100%;
+        max-width: 28rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .grid-dashboard {
+        display: grid;
+        grid-template-areas:
+        "grid-dash-tasks grid-dash-matters" 
+        "grid-dash-files grid-dash-appt"; 
+        grid-template-columns: 10rem 10rem;
+        grid-template-rows: 7rem 7rem;
+        justify-content: center;
+    }
+    .container {
+        max-width: 20rem;
+    }
+}
+
 
 .grid-dash-tasks {
     grid-area: grid-dash-tasks;
 }
+
 .grid-dash-matters {
     grid-area: grid-dash-matters;
 }
+
 .grid-dash-files {
     grid-area: grid-dash-files;
 }
+
 .grid-dash-appt {
     grid-area: grid-dash-appt;
 }
+
+.dash-grid-box {
+    width: 100%;
+    height: 100%;
+    font-size: 150%;
+    outline: 1px white solid;
+    color: white;
+    background-color: black;
+}
+
+.dash-grid-box:hover {
+    background-color: #33ccff;
+    transition: .3s ease-in-out;
+}
+
+@media only screen and (max-width: 450px) {
+    .dash-grid-box {
+    font-size: 80%;
+
+    }
+}
+
+
+/* Todos styles */
 
 .todo-container {
     outline: 2px solid rgb(0, 0, 0);
@@ -184,6 +279,15 @@ textarea {
     margin: 0 auto;
     max-width: 45rem;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+@media only screen and (max-width: 400px) {
+    ul {
+        font-size: 80%;
+    }
+    textarea {
+        font-size: 80%;
+    }
 }
 
 .todo-button { 
