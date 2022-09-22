@@ -54,19 +54,24 @@
       </form>
     </div>
   </section>
-  <section class="d-flex flex-column">
-    <div class="grid-container-header text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem;">
-      <div class="header-direction fixed-width file-header bg-dark text-light " style="font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
+  <section class="d-flex flex-column responsive-pos">
+    
+    <div class="grid-container-header text-light mb-2" style="width: 50%; min-height: 5rem; margin: 0 auto;">
+      <div class="header-direction file-header bg-dark text-light " style="font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
           <span class="align-items-center ms-3" style="min-width: 50%; font-weight: bold;"  id="fileHeader" name="fileHeader"> 
             File Server 
           </span>
         </div>
 
       </div>
- 
+    </section>
     <% for(var i=0; i<listContents.length; i++) {%>
-      <div class="grid-container-files text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem;">       
-        <div class="file-data file-data-dir fixed-width bg-info text-light d-flex align-items-center">  
+
+     <section class="responsive-pos"> 
+     <div class="grid-container-files text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem; overflow-wrap: break-word;">       
+        
+      <div class="file-data file-data-dir bg-info text-light d-flex align-items-center">
+
           <span class="d-flex align-items-center ms-3" id="<%= listContents[i].Key %>" name="<%= listContents[i].Key %>"> 
             <i class="fa-regular fa-file-lines"></i>
                   : &nbsp  <%= listContents[i].Key %> &nbsp 
@@ -75,20 +80,22 @@
               <i class="fa-regular fa-floppy-disk"></i>
                   : <%= (listContents[i].Size/1024).toFixed(1) %>kb  
           </span>
-        </div>
+          
+      </div>
 
         <div class="file-req-form file-form-dir">    
           <form method="GET"  class="file-req-form form-btn" style="font-size:small;">
             <input type="hidden" name="_method" value="GET"/>
-            <button class="btn-typography btn-details-secondary" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
+            <button class="btn-typography primary-color btn-details-secondary" style="height:50%;" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
             <input type="hidden" name="_method" value="GET"/>
-            <button class="btn-typography btn-details-secondary" formaction="/files/delete/<%= listContents[i].Key %>"> Delete </button>
+            <button class="btn-typography primary-color btn-details-secondary" style="height:50%;" formaction="/files/delete/<%= listContents[i].Key %>"> Delete </button>
           </form>
         </div>
 
       </div>
-      <% } %>
     </section>
+      <% } %>
+
 
   <div class="wrapper"></div>
 

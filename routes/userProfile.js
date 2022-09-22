@@ -29,7 +29,7 @@ router.post("/update/:id", async (req, res) => {
         }
       ).then(function () {
         console.log(hashedPassword);
-        res.redirect("/userPortal");
+        return res.redirect("/userPortal");
       });
     } catch (e) {
       console.log(e);

@@ -66,13 +66,19 @@
           type="password"
           id="password"
           name="password"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$"
           required
         />
       </div>
-      <button class="btn-reg-primary rounded mt-2" type="submit">
+      <button
+        class="btn-reg-primary btn-primary-color font-primary rounded mt-2"
+        type="submit"
+      >
         Create Account
       </button>
-      <button class="btn-reg-secondary rounded mt-2">
+      <button
+        class="btn-reg-secondary btn-secondary-color font-primary rounded mt-2"
+      >
         <a class="nav-link" href="/login"> Back to Login</a>
       </button>
     </form>

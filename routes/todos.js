@@ -70,7 +70,7 @@ router.post("/update/:id", async (req, res) => {
 
 // delete todos
 
-router.post("/:id", async (req, res) => {
+router.post("/delete/:id", async (req, res) => {
   try {
     await models.Todos.destroy({ where: { id: req.params.id } }).then(
       function () {

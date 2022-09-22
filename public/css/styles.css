@@ -40,8 +40,18 @@ form {
     height: 2rem;
     
 }
+
 ul {
     list-style-type: none;
+}
+
+@media only screen and (max-width: 400px) {
+    ul {
+        font-size: 80%;
+    }
+    textarea {
+        font-size: 80%;
+    }
 }
 
 .footer {
@@ -60,12 +70,32 @@ ul {
 }
 
 a:hover {
-    font-weight: bold;
     text-decoration: underline;
     transition: .1s ease-in;
 }
 
-/* Typography */
+textarea { 
+    resize: none; 
+}
+
+
+/* colors */
+
+.primary-color {
+    color: white;
+    background-color: rgb(29, 2, 2);
+}
+.secondary-color {
+    color: black;
+    background-color: white;
+}
+
+/* typography */
+
+.font-primary {
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 .notes {
     font-weight: bold;
@@ -78,11 +108,26 @@ a:hover {
     transform: scale(1.2);
 }
 
+/* form/section sizing*/
+
+.section-responsive {
+    width: 25rem;
+}
+
+.form-width {
+    min-width: 0;
+}
+
+/* drop down menu */
+
+.drop-dwn-pos {
+    text-align: center;
+}
+
 /* custom button details */
 
 .btn-details {
-    font-weight: bold;
-    background-color: white;
+    height: 100%;
 }
 
 .btn-details:hover {
@@ -92,9 +137,7 @@ a:hover {
 }
 
 .btn-details-secondary {
-    font-weight: bold;
-    color: white;
-    background-color: black;
+    height: 100%;
 }
 
 .btn-details-secondary:hover {
@@ -110,14 +153,35 @@ a:hover {
 
 /* Todos styles */
 
+.grid-dashboard {
+    display: grid;
+    grid-template-areas:
+    "grid-dash-tasks grid-dash-matters" 
+    "grid-dash-files grid-dash-appt"; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2rem 2rem;
+}
+
+.grid-dash-tasks {
+    grid-area: grid-dash-tasks;
+}
+.grid-dash-matters {
+    grid-area: grid-dash-matters;
+}
+.grid-dash-files {
+    grid-area: grid-dash-files;
+}
+.grid-dash-appt {
+    grid-area: grid-dash-appt;
+}
+
 .todo-container {
-    outline: 2px solid black;
-    background: rgb(57, 177, 233);
+    outline: 2px solid rgb(0, 0, 0);
+    background: rgb(240, 246, 247);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
     margin: 0 auto;
-    min-width: 20rem;
     max-width: 45rem;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
@@ -240,18 +304,6 @@ a:hover {
         grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem 3rem;
     }
 
-    .section-responsive {
-        width: 25rem;
-    }
-
-    .form-width-matters {
-        min-width: 0;
-    }
-
-    .drop-dwn-pos {
-        text-align: center;
-    }
-
     .btn-matters {
         display: flex;
         flex-direction: row;
@@ -283,7 +335,7 @@ a:hover {
     grid-template-areas:
     "file-data file-req-form";
     grid-template-columns: 1.5fr .5fr;
-    grid-template-rows: 5rem;
+    grid-template-rows: repeat(auto-fill);
 }
 
 .header-direction {
@@ -351,7 +403,7 @@ a:hover {
         "file-data" 
         "file-req-form";
         grid-template-columns: 1fr;
-        grid-template-rows: 4rem;
+        grid-template-rows: repeat(auto-fill);
     }
 
 
@@ -460,7 +512,7 @@ a:hover {
     width: 10rem;
 }
 
-@media only screen and (max-width: 815px) {
+@media only screen and (max-width: 1420px) {
     
     .grid-container-appointments {
         display: grid;
@@ -504,18 +556,10 @@ a:hover {
 
 .btn-reg-primary {
     min-height: 3rem;
-    font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-    background-color: rgb(29, 2, 2);
 }
 
 .btn-reg-secondary {
     min-height: 3rem;
-    font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-    background-color: rgb(0,0,0);
 }
 
 .btn-reg-primary:hover {
@@ -549,13 +593,20 @@ a:hover {
     "hd-1 grid-username"
     "hd-2 grid-email"
     "hd-3 grid-access"
-    "grid-btn-admin grid-btn-admin" 
-    "grid-btn-password grid-btn-password"
-    "grid-message-text grid-message-text";
-    
+    "grid-btn-admin grid-btn-admin";
     grid-template-columns: .5fr 1.5fr;
-    grid-template-rows: 3rem 3rem 3rem 3rem 10rem 2rem;
+    grid-template-rows: 2rem 2rem 2rem 1.5rem;
 }
+
+.grid-container-passchange {
+    display: grid;
+    grid-template-areas:
+    "grid-btn-change grid-btn-password "
+    "grid-message-text grid-message-text";
+    grid-template-columns: .5fr 1.5fr;
+    grid-template-rows: 6rem 2rem;
+}
+
 
 .grid-username {
     grid-area: grid-username;
@@ -575,6 +626,9 @@ a:hover {
 
 .grid-btn-password {
     grid-area: grid-btn-password;
+}
+.grid-btn-change {
+    grid-area: grid-btn-change;
 }
 
 .grid-message-text {

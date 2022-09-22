@@ -9,13 +9,14 @@
         style="flex-direction: row"
       >
         <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="info" name="info">
-            General Info
-          </a>
-        </li>
-        <li class="nav-item ps-0">
           <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
             Home
+          </a>
+        </li>
+
+        <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="info" name="info">
+            General Info
           </a>
         </li>
         <% if (admin) { %>
@@ -68,36 +69,53 @@
       </p>
     </section>
     <section>
-      <div class="d-grid gap-2 col-10 mx-auto mt-3">
-        <!-- <ul class="ms-auto" style="flex-direction: row"> -->
-
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/todos" class="nav-link active text-decoration-none"
-            >Task List</a
+      <div class="grid-dashboard">
+        <div class="grid-dash-tasks">
+          <button
+            class="btn bg-dark text-light p-4"
+            style="font-size: xx-large"
           >
-        </button>
-        <!-- </li> -->
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/matters" class="nav-link active text-decoration-none">
-            Matters List
-          </a>
-        </button>
-        <!-- </li> -->
-        <!-- <li class="d-flex justify-content-center"> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/files" class="nav-link active text-decoration-none">
-            Digital File Management
-          </a>
-        </button>
-        <!-- </li> -->
-        <!-- </ul> -->
-        <button class="btn bg-dark text-light p-4" style="font-size: xx-large">
-          <a href="/appointments" class="nav-link active text-decoration-none">
-            Appointments & Deadlines
-          </a>
-        </button>
+            <a href="/todos" class="nav-link active text-decoration-none"
+              >Task List</a
+            >
+          </button>
+        </div>
+
+        <div class="grid-dash-matters">
+          <button
+            class="btn bg-dark text-light p-4"
+            style="font-size: xx-large"
+          >
+            <a href="/matters" class="nav-link active text-decoration-none">
+              Matters List
+            </a>
+          </button>
+        </div>
+
+        <div class="grid-dash-files">
+          <button
+            class="btn bg-dark text-light p-4"
+            style="font-size: xx-large"
+          >
+            <a href="/files" class="nav-link active text-decoration-none">
+              Digital File Management
+            </a>
+          </button>
+        </div>
+
+        <div class="grid-dash-appt">
+          <button
+            class="btn bg-dark text-light p-4"
+            style="font-size: xx-large"
+          >
+            <a
+              href="/appointments"
+              class="nav-link active text-decoration-none"
+            >
+              Appointments & Deadlines
+            </a>
+          </button>
+        </div>
       </div>
     </section>
   </main>

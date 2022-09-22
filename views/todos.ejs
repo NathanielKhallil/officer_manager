@@ -26,9 +26,9 @@
         </ul>
       </nav>
     </header>
-        <section>
+        <section class="section-responsive">
             <form
-            class="form-outline rounded p-5"
+            class="form-outline form-width rounded p-3"
             style="margin: 2rem auto 2rem auto;"
             action="/todos"
             method="POST"
@@ -41,8 +41,8 @@
                 class="form-control mb-4"
                 placeholder="Title"
                 name="title" 
-                
               />
+
               <label for="title"  class="text-left"> Title</label>
             </div>
             <div class="form-floating">
@@ -65,37 +65,42 @@
         </form>     
     </section>
 
-    <section>
+    <section class="section-responsive">
         <% for(var i=0; i<tasks.length; i++) {%>
-        <div class="todo-container text-light rounded mt-4" style="width: 100%;">   
-                <ul class="pt-2">
-                    <li> Task:      <%= tasks[i].title %></li>
-                </ul>
-                    
-                <div class="d-flex" style="flex-direction: column; width: 100%;"> 
-                    <form method="POST" action="/todos/update/<%= tasks[i].id %>" id="content" class="d-flex justify-content-start" style="margin: 0;height: 100%; min-width: 100%;">
-                        <ul style="width: 80%; max-height: 100%;">
-                            <li style="width: 100%; height: 100%;"> 
-                                <textarea contenteditable="true" style="width:100%; height: 100%; margin-left: .1rem;" class="d-flex" name="content" id="content"> <%= tasks[i].content %> 
-                                </textarea>
-                            </li>
-                        </ul>
-                        <input type="hidden" name="_method" value="PUT"/>
-                        <button class="btn btn-sm bg-info text-light mb-1 todo-button" type="submit" style="display: inline; height: 2rem;"> Update </button>    
-                    </form>
-
-                    <form method="POST" action="/todos/<%= tasks[i].id %>" class="d-flex justify-content-start mb-4" style="margin: 0;height: 100%; min-width: 100%;">
-                        <ul style="width: 80%; max-height: 100%;">  
-                            <li style="width: 100%; height: 100%;"> 
-                                <div style="width:100%; height: 100%; margin-left: .1rem;"> </div>
-                            </li>  
-                        </ul>
-                                <input type="hidden" name="_method" value="PUT"/>
-                                <button class="btn btn-sm bg-info text-light mb-1 todo-button" type="submit" style="display: inline;"> Remove </button>  
-                    </form>
-                </div>
+        <div class="todo-container text-light rounded mt-4" style="width: 100%; height: 12rem;">   
+         
+          <div class="bg-dark pt-2 pb-2"> 
+          <span class="d-flex fixed-width" style="margin: 0 auto;">
+            &nbsp Task: <%= tasks[i].title %>
+          </span>
         </div>
-            <% } %>
+             
+          <form method="POST" id="content" class="d-flex flex-column justify-content-start form-width" style="margin: 0 auto;height: 7rem;">
+                      
+              <div class="d-flex justify-content-center" style="margin: 0 auto; width: 100%"> 
+                <textarea contenteditable="true" class="mt-1 mb-2" style="width:100%; margin-left: .1rem;" name="content" id="content" rows="3" cols="1"><%= tasks[i].content %> 
+                </textarea>
+              </div>
+                
+              <div class="d-flex justify-content-center" style="width: 100%;"> 
+                <div class="d-flex justify-content-center" style="width:100%"> 
+                  <input type="hidden" name="_method" value="PUT"/>
+                  <button formaction="/todos/update/<%= tasks[i].id %>" class="btn btn-sm bg-dark text-light mb-1" type="submit" style="height: 100%;width: 95%;"> 
+                    Update 
+                  </button>
+                </div>
+                  
+                <div class="d-flex justify-content-center" style="width:100%"> 
+                <input type="hidden" name="_method" value="PUT"/>
+                <button formaction="/todos/delete/<%= tasks[i].id %>" class="btn btn-sm bg-dark text-light mb-1" type="submit" style="height: 100%; width: 95%;"> 
+                  Remove 
+                </button>  
+                </div>
+
+              </div>
+            </form>
+        </div>
+       <% } %>
         
     </section>
     <div class="wrapper">

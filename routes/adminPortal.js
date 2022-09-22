@@ -33,19 +33,20 @@ router.post("/update/:id", async (req, res) => {
           where: { id: req.params.id },
         }
       ).then(function () {
-        res.redirect("/adminPortal");
+        return res.redirect("/adminPortal");
       });
     } catch (e) {
       console.log(e);
-      res.send(e);
     }
+  } else {
+    res.send("Bad request");
   }
-  return res.send("Bad request");
 });
 
 // password change
 
 router.post("/reset/:id", async (req, res) => {
+  console.log(req.user);
   if (req.user.is_admin) {
     try {
       const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
@@ -59,14 +60,14 @@ router.post("/reset/:id", async (req, res) => {
           where: { id: req.params.id },
         }
       ).then(function () {
-        res.redirect("/adminPortal");
+        return res.redirect("/adminPortal");
       });
     } catch (e) {
       console.log(e);
-      res.send(e);
     }
+  } else {
+    res.send("Bad request");
   }
-  return res.send("Bad request");
 });
 
 module.exports = router;
