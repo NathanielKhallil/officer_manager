@@ -1,10 +1,5 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const cors = require("cors");
 const app = express();
 const flash = require("express-flash");
 const session = require("express-session");
@@ -23,9 +18,6 @@ const files = require("./routes/files");
 const appointments = require("./routes/appointments");
 const userProfile = require("./routes/userProfile");
 const adminPortal = require("./routes/adminPortal");
-
-// Models
-const models = require("./app/models");
 
 // Templating Engine
 app.use(expressLayouts);
@@ -49,12 +41,6 @@ app.use(flash());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Port
-const PORT = process.env.SECRET_PORT;
-
-// Cors
-app.use(cors({ origin: `http://localhost:${PORT}` }));
 
 // static directories
 app.use(express.static("public"));
@@ -107,14 +93,16 @@ app.use("/userProfile", userProfile);
 
 app.use("/adminPortal", adminPortal);
 
-//Sync Database
-models.sequelize
-  .sync()
-  .then(function () {
-    console.log("sync successful");
-  })
-  .catch(function (err) {
-    console.log(err, "Something went wrong!");
-  });
-console.log(PORT);
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+// error handling
+app.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.statusCode = 404;
+  next(error);
+});
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const name = err.name || "Error";
+  res.status(statusCode).json({ name, message: err.message });
+});
+
+module.exports = app;

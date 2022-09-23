@@ -10,23 +10,19 @@ module.exports = {
     database: "office_manager_development",
     host: DEV_DATABASE_HOST,
     dialect: "postgres",
-    dialectOptions: {
-      // Your pg options here
-    },
-
-    test: {
-      username: "root",
-      password: null,
-      database: "office_manager_test",
-      host: "127.0.0.1",
-      dialect: "postgres",
-    },
-    production: {
-      username: "root",
-      password: null,
-      database: "office_manager_production",
-      host: "127.0.0.1",
-      dialect: "postgres",
-    },
+  },
+  test: {
+    username: DEV_DATABASE_USERNAME,
+    password: DEV_DATABASE_PASSWORD,
+    database: "office_manager_test",
+    host: DEV_DATABASE_HOST,
+    dialect: "postgres",
+  },
+  production: {
+    username: "root",
+    password: null,
+    database: "office_manager_production",
+    host: "127.0.0.1",
+    dialect: "postgres",
   },
 };
