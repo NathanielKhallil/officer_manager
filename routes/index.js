@@ -15,7 +15,10 @@ router.get("/", (req, res) => {
     loggedIn = true;
     return res.render("index", { loggedIn: loggedIn });
   }
-  res.render("index", { title: "Office Manager - Home", loggedIn: loggedIn });
+  return res.render("index", {
+    title: "Office Manager - Home",
+    loggedIn: loggedIn,
+  });
 });
 
 module.exports = router;

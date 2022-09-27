@@ -25,7 +25,7 @@
     "set-node-env": "set NODE_ENV=test",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
-    "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",     
+    "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
     "db:create": "sequelize-cli db:create",
     "db:migrate": "sequelize-cli db:migrate",
     "db:g:migration": "sequelize-cli migration:generate --name",
@@ -33,7 +33,6 @@
     "db:g:seed": "sequelize-cli seed:generate --name",
     "db:seeds": "sequelize-cli db:seed:all",
     "db:reseed": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all"
-    
   },
   "name": "officer_manager",
   "version": "1.0.0",
@@ -51,6 +50,8 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "jest": "^29.0.3",
-    "supertest": "^6.2.4"
+    "superagent": "^8.0.0",
+    "supertest": "^6.2.4",
+    "supertest-session": "^4.1.0"
   }
 }
