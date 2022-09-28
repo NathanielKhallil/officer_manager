@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
     return res.render("todos", { tasks: tasks });
   }
 
-  res.send(
+  return res.send(
     "You do not have permission to view this page. Please contact the Administrator."
   );
 });
