@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 require("./passport-config")(passport);
 
+const bodyParser = require("body-parser");
 const home = require("./routes/index");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
@@ -35,6 +36,7 @@ app.use(
     },
   })
 );
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

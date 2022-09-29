@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     return res.render("userPortal", { name: req.user.username });
   }
 
-  res.render("login", { title: "Office Manager - login" });
+  return res.render("login", { title: "Office Manager - login" });
 });
 
 router.post(
