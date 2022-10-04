@@ -52,7 +52,7 @@ router.get("/download/:filename", async (req, res) => {
       .promise();
     res.send(fileObject.Body);
   } else {
-    res.send("You are not authorized to perform this action.");
+    return res.send("You are not authorized to perform this action.");
   }
 });
 
@@ -62,7 +62,7 @@ router.get("/delete/:filename", async (req, res) => {
   const filename = req.params.filename;
   await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
 
-  res.redirect("/files");
+  return res.redirect("/files");
 });
 
 module.exports = router;

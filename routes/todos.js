@@ -4,7 +4,7 @@ const router = express.Router();
 const models = require("../app/models");
 
 router.get("/", async (req, res, next) => {
-  if (req.user.access_granted === true) {
+  if (req.user && req.user.access_granted === true) {
     const tasks = await models.Todos.findAll({
       where: {
         userId: req.user.id,
@@ -15,11 +15,11 @@ router.get("/", async (req, res, next) => {
       },
     });
     return res.render("todos", { tasks: tasks });
+  } else {
+    return res.send(
+      "You do not have permission to view this page. Contact the Administrator."
+    );
   }
-
-  return res.send(
-    "You do not have permission to view this page. Please contact the Administrator."
-  );
 });
 
 //create new todos

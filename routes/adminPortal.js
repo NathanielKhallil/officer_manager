@@ -8,10 +8,9 @@ router.get("/", async (req, res, next) => {
     const data = await models.User.findAll({
       order: [["username"]],
     });
-    console.log(data);
     return res.render("adminPortal", { data: data, admin: req.user.is_admin });
   }
-  res.send("You do not have permission to view this page.");
+  return res.send("You do not have permission to view this page.");
 });
 
 // update user details
@@ -39,7 +38,7 @@ router.post("/update/:id", async (req, res) => {
       console.log(e);
     }
   } else {
-    res.send("Bad request");
+    return res.send("Bad request");
   }
 });
 
@@ -66,7 +65,7 @@ router.post("/reset/:id", async (req, res) => {
       console.log(e);
     }
   } else {
-    res.send("Bad request");
+    return res.send("Bad request");
   }
 });
 

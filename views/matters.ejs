@@ -45,6 +45,7 @@
               />
               <label for="matterNum"  class="text-left"> Matter No.:</label>
             </div>
+
             <div class="form-floating">
               <input
                 type="text"
@@ -62,12 +63,16 @@
         <button class="btn bg-info text-light justify-content-center" style="display: flex; margin: 1rem auto 0rem auto;" type="submit">
             Save Matter
         </button>  
-        </form>     
-    </section>
-    <section class="section-responsive">
+
+        </form> 
+
+      </section>
+
+      <section class="section-responsive">
+
          <% for(var i=0; i<matters.length; i++) { %>
             <form method="POST"  class="d-flex justify-content-center form-width" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
-                <div class="grid-container-matters mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+                <div class="grid-container-matters mb-2 justify-content-center narrow-grid" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
                    
                         <div class="hd-1 bg-dark text-light" > <p style="margin: 5px 0 0 5px">Matter No. </p></div>
                         <div class="hd-2 bg-dark text-light" > <p style="margin: 5px 0 0 5px">CFA Signed: </p></div>
@@ -147,12 +152,13 @@
                       <button formaction="/matters/update/<%= matters[i].id %>" class="btn-details secondary-color  btn-half-height"> Update </button>
                       <button formaction="/matters/delete/<%= matters[i].id %>" class="btn-details secondary-color  btn-half-height"> Delete </button>
                     </div>
-                </form>
-              </div>
-                <% } %>
-        </section>
-    <div class="wrapper">
+                </div>
+            </form>
+          <% } %>
 
+      </section>
+    
+    <div class="wrapper">
     </div>
      
     <footer class="footer">

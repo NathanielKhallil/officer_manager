@@ -10,7 +10,9 @@ router.get("/", async (req, res, next) => {
     });
     return res.render("matters", { matters: matters });
   } else {
-    return res.redirect("/");
+    return res.send(
+      "You do not have permission to view this page. Contact the Administrator."
+    );
   }
 });
 
