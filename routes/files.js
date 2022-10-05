@@ -32,7 +32,9 @@ router.get("/", async (req, res, next) => {
     let listContents = read.Contents.map((item) => item);
     return res.render("files", { listContents });
   } else {
-    return res.redirect("/");
+    return res.send(
+      "You do not have permission to view this page. Contact the Administrator."
+    );
   }
 });
 

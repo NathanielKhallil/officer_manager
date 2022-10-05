@@ -20,16 +20,25 @@ beforeAll(async () => {
     createdAt: new Date(),
     updatedAt: new Date(),
   };
-  await models.User.create(newReg);
-});
-
-afterEach(async () => {
-  await server.get("/logout");
+  const res = await models.User.create(newReg);
+  console.log(res);
 });
 
 //clean up the model when finished test block
 afterAll(async () => {
-  await models.User.destroy({ where: { username: "TestDude" } });
+  try {
+    const result = await models.User.destroy({
+      where: { username: "TestDude" },
+    });
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+//Logout of the signed in user sessopn before each test
+afterEach(async () => {
+  await server.get("/logout");
 });
 
 //Login State and Session Test //
@@ -107,7 +116,7 @@ describe("Matters route", () => {
     // console.log(JSON.parse(JSON.stringify(result)));
     expect(result.text).toBe(
       "You do not have permission to view this page. Contact the Administrator."
-    ); //check response text for when user.req is undefined
+    );
   });
 
   it("successfully reaches the matters page when logged in", async () => {
@@ -129,9 +138,47 @@ describe("Matters route", () => {
 
 // UserProfile route
 
+describe("User Profile route", () => {
+  it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
+    const result = await server.get("/userProfile");
+    expect(result.statusCode).toBe(200);
+
+    // console.log(JSON.parse(JSON.stringify(result)));
+    expect(result.text).toBe(
+      "You do not have permission to view this page. Please contact the Administrator."
+    );
+  });
+
+  it("successfully reaches the user's profile page when logged in", async () => {
+    const response = await server
+      .post("/login")
+      .set({ "content-Type": "application/json" })
+      .send({ username: "TestDude", password: "1234!abCD" });
+
+    session = response.headers["set-cookie"][0]
+      .split(/,(?=\S)/)
+      .map((item) => item.split(";")[0])
+      .join(";");
+
+    expect(response.status).toEqual(302);
+
+    await server.get("/userProfile").expect(200);
+  });
+});
+
 // Appointments route
 
 describe("Appointments route", () => {
+  it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
+    const result = await server.get("/appointments");
+    expect(result.statusCode).toBe(200);
+
+    // console.log(JSON.parse(JSON.stringify(result)));
+    expect(result.text).toBe(
+      "You do not have permission to view this page. Contact the Administrator."
+    );
+  });
+
   it("successfully reaches the appointments page", async () => {
     const response = await server
       .post("/login")
@@ -148,7 +195,38 @@ describe("Appointments route", () => {
 
 // FILES route
 
+describe("Files route", () => {
+  it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
+    const result = await server.get("/files");
+    expect(result.statusCode).toBe(200);
+
+    // console.log(JSON.parse(JSON.stringify(result)));
+    expect(result.text).toBe(
+      "You do not have permission to view this page. Contact the Administrator."
+    );
+  });
+
+  it("successfully reaches the files page", async () => {
+    const response = await server
+      .post("/login")
+      .set({ "content-Type": "application/json" })
+      .send({ username: "TestDude", password: "1234!abCD" });
+
+    session = response.headers["set-cookie"][0]
+      .split(/,(?=\S)/)
+      .map((item) => item.split(";")[0])
+      .join(";");
+    await server.get("/files").expect(200);
+  });
+});
+
 // REGISTER route
+
+describe("Register route", () => {
+  it("successfully reaches the registration page", async () => {
+    await server.get("/appointments").expect(200);
+  });
+});
 
 // Admin route
 

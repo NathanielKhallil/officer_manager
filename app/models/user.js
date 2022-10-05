@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Todos, {
         foreignKey: "userId",
         as: "users",
+        onDelete: "CASCADE",
       });
     }
   }

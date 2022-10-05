@@ -29,10 +29,6 @@ router.post("/", async (req, res) => {
     const content = await req.body.content;
     const userId = await req.user.id;
 
-    console.log(title);
-    console.log(content);
-    console.log(userId);
-
     let newToDo = {
       title: title,
       content: content,
