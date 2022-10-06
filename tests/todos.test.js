@@ -1,5 +1,5 @@
 const request = require("supertest");
-let app = require("../app.js");
+const app = require("../app.js");
 const server = request.agent(app);
 const bcrypt = require("bcrypt");
 const models = require("../app/models");
