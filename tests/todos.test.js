@@ -1,10 +1,11 @@
 const request = require("supertest");
-const app = require("../app.js");
+let app = require("../app.js");
 const server = request.agent(app);
 const bcrypt = require("bcrypt");
 const models = require("../app/models");
 
 let session = null;
+let serverListen;
 
 //Create new test user on test database
 beforeAll(async () => {
@@ -44,18 +45,15 @@ beforeAll(async () => {
   expect(loggedIn.statusCode).toBe(302);
 });
 
-//clean up the model when finished test block
-afterAll(async () => {
-  try {
-    await models.User.destroy({
-      where: { username: "TestDudeTodos" },
-    });
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 describe("Todo/task functions add, update, and remove todos", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = app.listen("5002"); //specify different port to avoid port already in use
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It adds a new todo", async () => {
     const user = await models.User.findOne({
       where: { username: "TestDudeTodos" },
@@ -73,13 +71,36 @@ describe("Todo/task functions add, update, and remove todos", () => {
     console.log(JSON.parse(JSON.stringify(result.text)));
   });
 
-  it("deletes the todo associated with the user Id", async () => {
+  it("updates the content field of the todo associated with the user Id", async () => {
     const user = await models.User.findOne({
       where: { username: "TestDudeTodos" },
     });
 
     const userId = await user.id;
 
-    await server.post(`/todos/delete/${userId}`).expect(302);
+    await server
+      .post(`/todos/update/${userId}`)
+      .send({ content: "Updated content" })
+      .expect(302);
+
+    const foreignKey = await models.Todos.findOne({
+      where: { userId: userId },
+    });
+    console.log(foreignKey);
+  });
+
+  // Application iterates over the table of todos associated with the session user and identifies the appropriate todo id
+  // to delete at the time it is rendered from the .ejs file. the actual id in the database will not be sequential per user
+  // therefore, this test is limited in scope by assuming the only todo created is a matching todo id for the user's selection
+  it("deletes the todo associated with the user Id", async () => {
+    const user = await models.User.findOne({
+      where: { username: "TestDudeTodos" },
+    });
+    const todo = await models.Todos.findOne({
+      where: { userId: user.id },
+    });
+
+    const todoId = await todo.id;
+    await server.post(`/todos/delete/${todoId}`).expect(302);
   });
 });

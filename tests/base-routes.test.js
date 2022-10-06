@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const models = require("../app/models");
 
 let session = null;
-
+let serverListen;
 //Create new test user on test database
 beforeAll(async () => {
   const hashedPassword = await bcrypt.hash("1234!abCD", 10);
@@ -24,18 +24,6 @@ beforeAll(async () => {
   console.log(res);
 });
 
-//clean up the model when finished test block
-afterAll(async () => {
-  try {
-    const result = await models.User.destroy({
-      where: { username: "TestDude" },
-    });
-    console.log(result);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 //Logout of the signed in user sessopn before each test
 afterEach(async () => {
   await server.get("/logout");
@@ -43,6 +31,14 @@ afterEach(async () => {
 
 //Login State and Session Test //
 describe("Confirms session is functioning and recognizing login state", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("url that requires user to be logged in", async () => {
     const response = await server
       .post("/login")
@@ -61,6 +57,14 @@ describe("Confirms session is functioning and recognizing login state", () => {
 
 //INDEX route //
 describe("should return successful response", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js"); //relies on default port exported from server.js
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("should return a successful response", async () => {
     const response = await server.get("/");
 
@@ -71,6 +75,14 @@ describe("should return successful response", () => {
 // USERPORTAL route
 
 describe("User Portal route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("redirects user to login page if not logged in", async () => {
     await server.get("/userPortal").expect(302);
   });
@@ -79,6 +91,14 @@ describe("User Portal route", () => {
 // TODOS route
 
 describe("Todos route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
     const result = await server.get("/todos");
     expect(result.statusCode).toBe(200);
@@ -109,6 +129,14 @@ describe("Todos route", () => {
 // MATTERS route
 
 describe("Matters route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
     const result = await server.get("/matters");
     expect(result.statusCode).toBe(200);
@@ -139,6 +167,14 @@ describe("Matters route", () => {
 // UserProfile route
 
 describe("User Profile route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
     const result = await server.get("/userProfile");
     expect(result.statusCode).toBe(200);
@@ -169,6 +205,14 @@ describe("User Profile route", () => {
 // Appointments route
 
 describe("Appointments route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
     const result = await server.get("/appointments");
     expect(result.statusCode).toBe(200);
@@ -196,6 +240,14 @@ describe("Appointments route", () => {
 // FILES route
 
 describe("Files route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("It responds with a message indicating no permission to access the page if not logged in or access_granted is false", async () => {
     const result = await server.get("/files");
     expect(result.statusCode).toBe(200);
@@ -223,6 +275,14 @@ describe("Files route", () => {
 // REGISTER route
 
 describe("Register route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("successfully reaches the registration page", async () => {
     await server.get("/appointments").expect(200);
   });
@@ -231,6 +291,14 @@ describe("Register route", () => {
 // Admin route
 
 describe("Admin route", () => {
+  // teardown
+  beforeEach(() => {
+    serverListen = require("../server.js");
+  });
+  afterEach(() => {
+    serverListen.close();
+  });
+
   it("fails to reach the adminPortal page when not logged in with valid credentials", async () => {
     await server
       .get("/adminPortal")

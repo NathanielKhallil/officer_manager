@@ -27,9 +27,6 @@ router.post("/", async (req, res) => {
     return res.send("Matter number already exists.");
   } else {
     try {
-      console.log(matterNum);
-      console.log(notes);
-
       let newMatter = {
         matter_number: matterNum,
         notes: notes,
