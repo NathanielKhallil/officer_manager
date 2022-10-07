@@ -63,7 +63,7 @@ describe("Matters functions add, update, and remove matters", () => {
       matterNum: matterNum,
       notes: notes,
     });
-    console.log(JSON.parse(JSON.stringify(result.text)));
+    // console.log(JSON.parse(JSON.stringify(result.text)));
   });
 
   // The application iterates over the table of matters associated with the session user and identifies the appropriate matters id
@@ -101,6 +101,5 @@ describe("Matters functions add, update, and remove matters", () => {
     const matterId = await matter.id;
     const result = await server.post(`/matters/delete/${matterId}`).expect(200);
     expect(result.text).toBe("You must be an Administrator to delete matters.");
-    console.log(JSON.parse(JSON.stringify(result.text)));
   });
 });

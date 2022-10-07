@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
   const time = await req.body.time;
   const notes = await req.body.notes;
   const newClient = await req.body.new_client;
-  console.log(date);
+
   try {
     let newAppointment = {
       title: title,
@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
       return res.redirect("/appointments");
     });
   } catch {
-    console.log(date);
     res.redirect("/appointments");
   }
 });
@@ -82,7 +81,7 @@ router.post("/update/:id", async (req, res) => {
 // APPOINTMENTS - Delete
 
 router.post("/delete/:id", async (req, res) => {
-  if (req.user && req.user.is_admin === true) {
+  if (req.user && req.user.access_granted === true) {
     try {
       await models.Appointments.destroy({ where: { id: req.params.id } }).then(
         function () {
@@ -93,7 +92,7 @@ router.post("/delete/:id", async (req, res) => {
       res.send("Failed to delete matter.");
     }
   } else {
-    res.send("You must be an Administrator to delete matters.");
+    res.send("Bad request. Please contact the administrator.");
   }
 });
 

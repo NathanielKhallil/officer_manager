@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 // update user details
 
 router.post("/update/:id", async (req, res) => {
-  if (req.user.is_admin) {
+  if (req.user && req.user.is_admin) {
     try {
       let updatedAccess = await req.body.accessStatus;
       let updatedEmail = await req.body.newEmail;
@@ -45,8 +45,16 @@ router.post("/update/:id", async (req, res) => {
 // password change
 
 router.post("/reset/:id", async (req, res) => {
-  console.log(req.user);
-  if (req.user.is_admin) {
+  if (req.user && req.user.is_admin == false) {
+    return res.send("Bad request");
+  }
+
+  if (
+    req.user &&
+    req.user.is_admin &&
+    req.body.newPassword === req.body.verifyPassword
+  ) {
+    console.log(req.body.newPassword, req.body.verifyPassword);
     try {
       const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
 
@@ -65,7 +73,8 @@ router.post("/reset/:id", async (req, res) => {
       console.log(e);
     }
   } else {
-    return res.send("Bad request");
+    console.log(req.body.newPassword, req.body.verifyPassword);
+    return res.send("passwords do not match");
   }
 });
 
