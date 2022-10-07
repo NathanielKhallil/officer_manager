@@ -38,7 +38,6 @@ form {
 
 .push {
     height: 2rem;
-    
 }
 
 ul {
@@ -63,16 +62,21 @@ ul {
 }
 
 .footer-header {
-    color: ffffff;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
     
 }
 
-a:hover {
-    text-decoration: underline;
-    transition: .1s ease-in;
+.link-effect {
+    transform: scale(1);
 }
+
+.link-effect:hover {
+    transition: .1s ease-in;
+    transform: (1.01);
+}
+
 
 textarea { 
     resize: none; 
