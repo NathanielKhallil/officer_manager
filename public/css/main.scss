@@ -1,3 +1,6 @@
+@import 'breakpoint-config';
+@import 'responsive';
+
 $primary-colour: black;
 $secondary-colour: white;
 $tertiary-colour: hsl(195, 100%, 60%);
@@ -121,10 +124,6 @@ textarea {
     width: 25rem;
 }
 
-.form-width {
-    min-width: 0;
-}
-
 /* drop down menu */
 
 .drop-dwn-pos {
@@ -159,7 +158,6 @@ textarea {
 }
 
 /* dashboard */
-
 
 .grid-dashboard {
     display: grid;
@@ -391,9 +389,6 @@ textarea {
     grid-area: btn-matters;
 }
 
-.btn-half-height {
-    height: 50%;
-}
 
 @media only screen and (max-width: 770px) {
     .grid-container-matters {
@@ -420,10 +415,6 @@ textarea {
         flex-direction: row;
     }
 
-    .btn-half-height {
-        height: 100%;
-        width: 50%;
-    }
 }
 
 
@@ -459,7 +450,6 @@ textarea {
 .file-data-dir {
     display: inline;
     align-items: center;
-
 }
 
 .fixed-width {
@@ -565,16 +555,6 @@ textarea {
 
 /* APPOINTMENTS and DEADLINES */
 
-.grid-container-appointments {
-    display: grid;
-    grid-template-areas:
-    "top-1 top-2 top-3 btn-appt"
-    "mid-1 mid-2 mid-2 btn-appt"
-    "bot-1 bot-2 bot-2 btn-appt"; 
-    grid-template-columns: .5fr 1.5fr 1.3fr .2fr;
-    grid-template-rows: 3rem 3rem 3rem;
-}
-
 .top-1 {
     grid-area: top-1;
 }
@@ -607,6 +587,7 @@ textarea {
     grid-area: btn-appt;
 }
 
+
 .center-grid-cell {
     display:flex; 
     margin-bottom: 0; 
@@ -619,51 +600,40 @@ textarea {
     width: 7rem;
 }
 
-.time-width {
-    width: 10rem;
-}
 
-@media only screen and (max-width: 770px) {
 
-    .btn-swap {
-        display: flex;
-        flex-direction: row; 
-    }
-}
 
-@media only screen and (max-width: 1420px) {
+// @media only screen and (max-width: 1443px) {
     
-    .grid-container-appointments {
-        display: grid;
-        grid-template-areas:
-        "top-1 top-1"
-        "top-2 top-3"
-        "mid-1 mid-2"
-        "bot-1 bot-1" 
-        "bot-2 bot-2"
-        "btn-appt btn-appt"; 
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
-    }
+//     .grid-container-appointments {
+//         display: grid;
+//         grid-template-areas: "top-1 top-1" "top-2 top-3" "mid-1 mid-2" "bot-1 bot-1" "bot-2 bot-2" "btn-appt btn-appt";
+//         grid-template-columns: 1fr 1fr;
+//         grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
+//     }
 
-    
-    .fixed-width {
-        min-width: 20rem;
-    }
+//     .fixed-width {
+//         min-width: 20rem;
+//     }
 
-    .time-width {
-        width: 6rem;
-    }
+//     .time-width {
+//         width: 6rem;
+//     }
 
-    .btn-appt {
-        grid-area: btn-appt;
-    }
+//     .btn-appt {
+//         grid-area: btn-appt;
+//     }
 
-    .btn-half-height {
-        min-height: 50%;
-        min-width: 50%;
-    }
-}
+//     .btn-half-height {
+//         min-height: 100%;
+//         min-width: 50%;
+//     }
+
+//     .btn-swap {
+//         display: flex;
+//         flex-direction: row; 
+//     }
+// }
 
 
 /* REGISTRATION */
@@ -691,6 +661,7 @@ textarea {
     transform: scale(.99);
     transition: 1s ease-in-out;
 } */
+
 @media only screen and (max-width: 380px) {
     
     .fixed-width {

@@ -119,7 +119,7 @@
     </section>
     <section class="section-responsive">
     <% for(var i=0; i<appointments.length; i++) { %>
-      <form method="POST"  class="d-flex justify-content-center mb-4 form-width-matters" style="margin: 0 auto; max-width: 100%; font-size:small">
+      <form method="POST"  class="d-flex justify-content-center mb-4 form-width" style="margin: 0 auto; max-width: 100%; font-size:small">
         <div class="grid-container-appointments" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                                                      
                   <div class="top-1  d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
@@ -141,7 +141,7 @@
                 </div>
 
                   <div class="mid-1 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; ">
-                    <label class="form-label text-left form-typography" style="min-width: 15%" for="updatedDate"
+                    <label class="text-left form-typography" style="min-width: 15%" for="updatedDate"
                     > &nbsp Date: &nbsp </label
                     >
                     <input
@@ -155,14 +155,14 @@
                     />
                   </div>
 
-                  <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px">
+                  <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; font-weight: bold; margin: 0;">
                                     
-                      <label class="form-label text-left" for="updatedTime"
+                      <label class="text-left" for="updatedTime"
                       > &nbsp Time: &nbsp </label
                       >
                       <input
                         type="time"
-                        class="form-control form-typography time-width"
+                        class="form-typography form-control time-width"
                         value="<%= appointments[i].time %>"
                         name="updatedTime" 
                         id="updatedTime"
