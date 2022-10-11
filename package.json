@@ -22,7 +22,7 @@
     "sequelize": "^6.21.3"
   },
   "scripts": {
-    "dev": "set NODE_ENV=development nodemon -r dotenv/config server.js",
+    "dev": "nodemon -r dotenv/config server.js",
     "set-node-env": "set NODE_ENV=test",
     "test": "cross-env NODE_ENV=test jest --testTimeout=15000 --detectOpenHandles --forceExit",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",

@@ -1,5 +1,7 @@
 @import 'breakpoint-config';
-@import 'responsive';
+@import 'matters';
+@import 'appointments';
+@import 'footer';
 
 $primary-colour: black;
 $secondary-colour: white;
@@ -37,7 +39,7 @@ form {
 }
 
 .wrapper {
-    min-height: calc(100vh - 35rem);
+    min-height: calc(100vh - 40rem);
     background-color: $secondary-colour;
 }
 
@@ -60,7 +62,6 @@ ul {
 }
 
 .footer {
-    height: 13rem;
     color: $secondary-colour;
     text-align: center;
     padding: 2rem 0rem 2rem 0rem;
@@ -71,7 +72,9 @@ ul {
     color: $secondary-colour;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
-    
+    border-bottom: solid 1px $secondary-colour; 
+    border-top: solid 1px $secondary-colour;
+    background-color: $tertiary-colour;
 }
 
 .link-effect {
@@ -304,15 +307,6 @@ textarea {
 
 /* Matters */
 
-.grid-container-matters {
-    display: grid;
-    grid-template-areas:
-    "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9 btn-matters" 
-    "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9 btn-matters" 
-    "memo text text text text text text text text btn-matters"; 
-    grid-template-columns: .8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
-    grid-template-rows: 3rem 2rem 4rem;
-}
 
 .hd-1 {
     grid-area: hd-1;
@@ -390,32 +384,6 @@ textarea {
 }
 
 
-@media only screen and (max-width: 770px) {
-    .grid-container-matters {
-        display: grid;
-        grid-template-areas:
-        "hd-1 val-1" 
-        "hd-2 val-2"
-        "hd-3 val-3"
-        "hd-4 val-4"
-        "hd-5 val-5"
-        "hd-6 val-6"
-        "hd-7 val-7"
-        "hd-8 val-8"
-        "hd-9 val-9"
-        "memo memo"
-        "text text" 
-        "btn-matters btn-matters"; 
-        grid-template-columns: .5fr 1fr;
-        grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem 3rem;
-    }
-
-    .btn-matters {
-        display: flex;
-        flex-direction: row;
-    }
-
-}
 
 
 /* FILE MANAGEMENT*/
@@ -587,7 +555,6 @@ textarea {
     grid-area: btn-appt;
 }
 
-
 .center-grid-cell {
     display:flex; 
     margin-bottom: 0; 
@@ -624,10 +591,6 @@ textarea {
 //         grid-area: btn-appt;
 //     }
 
-//     .btn-half-height {
-//         min-height: 100%;
-//         min-width: 50%;
-//     }
 
 //     .btn-swap {
 //         display: flex;

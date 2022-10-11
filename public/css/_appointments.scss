@@ -1,0 +1,82 @@
+@include media-xs {
+    .grid-container-appointments {
+        display: grid;
+        grid-template-areas: 
+        "top-1 top-1" 
+        "top-2 top-3" 
+        "mid-1 mid-2" 
+        "bot-1 bot-1" 
+        "bot-2 bot-2" 
+        "btn-appt btn-appt" 
+        "btn-appt btn-appt";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
+    }
+
+    .form-size-appt {
+        min-width: 18rem;
+  
+    }
+
+    .btn-size-appt {
+        min-height: 50%;
+        min-width: 100%;
+    }
+
+    .time-width {
+        width: 6rem;
+    }
+
+    .section-responsive-appt {
+        width: 25rem;
+        margin: 0 auto;
+    }
+}
+
+@include media-sm {
+    .grid-container-appointments {
+        display: grid;
+        grid-template-areas:
+        "top-1 top-2 top-3 btn-appt"
+        "mid-1 mid-2 mid-2 btn-appt"
+        "bot-1 bot-2 bot-2 btn-appt"; 
+        grid-template-columns: .5fr 1.5fr 1.3fr .2fr;
+        grid-template-rows: 3rem 3rem 3rem;
+    }
+    .form-size-appt {
+        min-width: 25rem;
+   
+    }
+
+    .section-responsive-appt {
+        width: 40rem;
+    
+    }
+
+    .time-width {
+        width: 6rem;
+    }
+
+    .btn-size-appt {
+        min-height: 50%;
+        min-width: 50%;
+    }
+
+    .btn-swap {
+        display: flex;
+        flex-direction: row; 
+    }
+}
+
+@include media-md {
+
+    .btn-half-height {
+        min-height: 50%;
+        min-width: 50%;
+    }
+
+    .time-width {
+        width: 10rem;
+    }
+
+}

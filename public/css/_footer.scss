@@ -1,0 +1,63 @@
+@include media-xs {
+    .grid-container-footer {
+        display: grid;
+        grid-template-areas: 
+        "foot-1"
+        "foot-2" 
+        "foot-3"; 
+        grid-template-columns: 1fr;
+        grid-template-rows: 3rem 3rem 3rem;
+        font-size: 100%;
+
+        .foot-1 {
+            grid-area: foot-1;
+            font-weight: bold;
+            margin: 0 auto;
+
+        }
+        .foot-2 {
+            grid-area: foot-2;
+            font-weight: bold;
+            margin: 0 auto;
+
+        }
+        .foot-3 {
+            grid-area: foot-3;
+            font-weight: bold;
+            margin: 0 auto;
+ 
+        }
+
+    }
+}
+
+@include media-sm {
+    .grid-container-footer {
+        grid-template-areas: 
+        "foot-1 foot-2 foot-3"; 
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 110%;
+    }
+
+    .foot-1 {
+        min-width: 12rem;
+        max-width: 20rem;
+    }
+    .foot-2 {
+        min-width: 12rem;
+        max-width: 20rem;
+    }
+    .foot-3 {
+        min-width: 12rem;
+        max-width: 20rem;
+    }
+
+}
+
+@include media-md {
+    .grid-container-footer {
+        font-size: 120%;
+    }
+}

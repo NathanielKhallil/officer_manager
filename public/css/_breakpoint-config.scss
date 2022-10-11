@@ -1,5 +1,12 @@
+@mixin media-xs {
+    @media screen and (min-width: 1px) {
+        @content;
+    }
+}
+
+
 @mixin media-sm {
-    @media screen and (max-width: 1443px) {
+    @media screen and (min-width: 650px) {
         @content;
     }
 }

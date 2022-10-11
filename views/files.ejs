@@ -86,9 +86,9 @@
         <div class="file-req-form file-form-dir">    
           <form method="GET"  class="file-req-form form-btn" style="font-size:small;">
             <input type="hidden" name="_method" value="GET"/>
-            <button class="btn-typography primary-color btn-details-secondary" style="height:50%;" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
+            <button class="btn-typography primary-colour-scheme btn-details-secondary" style="height:50%;" formaction="/files/download/<%= listContents[i].Key %>"> Download </button>
             <input type="hidden" name="_method" value="GET"/>
-            <button class="btn-typography primary-color btn-details-secondary" style="height:50%;" formaction="/files/delete/<%= listContents[i].Key %>"> Delete </button>
+            <button class="btn-typography primary-colour-scheme btn-details-secondary" style="height:50%;" formaction="/files/delete/<%= listContents[i].Key %>"> Delete </button>
           </form>
         </div>
 
@@ -100,29 +100,30 @@
   <div class="wrapper"></div>
 
   <footer class="footer">
-    <div class="footer-header">Quicklinks for Filing Documents</div>
+    <div class="footer-header">
+      Quicklinks for Filing Documents
+    </div>
     <div class="push"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <a class="nav-link active" href="https://qb-filing.alberta.ca/">
-            Alberta Court of King's Bench Digital Filing
-          </a>
-        </div>
-        <div class="col">
-          <a
-            class="nav-link active"
-            href="https://cams.albertacourts.ca/public-portal/?q=node/403"
-          >
-            Alberta Court of Appeal Cams Digital Filing
-          </a>
-        </div>
-        <div class="col">
-          <a class="nav-link active" href="https://surrogate.alberta.ca/">
-            Alberta King's Bench (Surrogate) Digital Filing
-          </a>
-        </div>
+    <div class="grid-container-footer">
+  
+      <div class="foot-1"> 
+        <a class="nav-link active" href="https://qb-filing.alberta.ca/">
+            Alberta Court of Kings's Bench Digital Filing
+        </a>
       </div>
+  
+      <div class="foot-2"> 
+        <a class="nav-link active foot-2" href="https://cams.albertacourts.ca/public-portal/?q=node/403">
+          Alberta Court of Appeal Cams Digital Filing
+        </a>
+      </div>
+  
+      <div class="foot-3"> 
+        <a class="nav-link active foot-3" href="https://surrogate.alberta.ca/">
+          Alberta King's Bench (Surrogate) Digital Filing 
+        </a>
+      </div>
+    
     </div>
   </footer>
   <script

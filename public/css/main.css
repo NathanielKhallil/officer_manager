@@ -1,25 +1,87 @@
-@media screen and (max-width: 1443px) {
+@media screen and (min-width: 1px) {
+  .grid-container-matters {
+    display: grid;
+    grid-template-areas: "hd-1 val-1" "hd-2 val-2" "hd-3 val-3" "hd-4 val-4" "hd-5 val-5" "hd-6 val-6" "hd-7 val-7" "hd-8 val-8" "hd-9 val-9" "memo memo" "text text" "btn-matters btn-matters";
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem 3rem;
+  }
+  .btn-matters {
+    display: flex;
+    flex-direction: row;
+  }
+  .btn-size-matters {
+    min-height: 50%;
+    min-width: 50%;
+  }
+  .form-size-matters {
+    min-width: 15rem;
+  }
+  .form-create-appt {
+    min-width: 15rem;
+  }
+}
+@media screen and (min-width: 650px) {
+  .grid-container-matters {
+    display: grid;
+    grid-template-areas: "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9 btn-matters" "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9 btn-matters" "memo text text text text text text text text btn-matters";
+    grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
+    grid-template-rows: 3rem 2rem 4rem;
+  }
+  .form-size-matters {
+    min-width: 20rem;
+  }
+  .form-create-appt {
+    min-width: 20rem;
+  }
+}
+@media screen and (min-width: 1443px) {
+  .form-size-matters {
+    min-width: 30rem;
+  }
+  .form-create-appt {
+    min-width: 25rem;
+  }
+}
+@media screen and (min-width: 1px) {
   .grid-container-appointments {
     display: grid;
-    grid-template-areas: "top-1 top-1" "top-2 top-3" "mid-1 mid-2" "bot-1 bot-1" "bot-2 bot-2" "btn-appt btn-appt";
+    grid-template-areas: "top-1 top-1" "top-2 top-3" "mid-1 mid-2" "bot-1 bot-1" "bot-2 bot-2" "btn-appt btn-appt" "btn-appt btn-appt";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
   }
-  .form-width {
-    min-width: 25rem;
-    height: 15rem;
+  .form-size-appt {
+    min-width: 18rem;
   }
-  .fixed-width {
-    min-width: 20rem;
+  .btn-size-appt {
+    min-height: 50%;
+    min-width: 100%;
   }
   .time-width {
     width: 6rem;
   }
-  .btn-appt {
-    grid-area: btn-appt;
+  .section-responsive-appt {
+    width: 25rem;
+    margin: 0 auto;
   }
-  .btn-half-height {
-    min-height: 100%;
+}
+@media screen and (min-width: 650px) {
+  .grid-container-appointments {
+    display: grid;
+    grid-template-areas: "top-1 top-2 top-3 btn-appt" "mid-1 mid-2 mid-2 btn-appt" "bot-1 bot-2 bot-2 btn-appt";
+    grid-template-columns: 0.5fr 1.5fr 1.3fr 0.2fr;
+    grid-template-rows: 3rem 3rem 3rem;
+  }
+  .form-size-appt {
+    min-width: 25rem;
+  }
+  .section-responsive-appt {
+    width: 40rem;
+  }
+  .time-width {
+    width: 6rem;
+  }
+  .btn-size-appt {
+    min-height: 50%;
     min-width: 50%;
   }
   .btn-swap {
@@ -28,18 +90,62 @@
   }
 }
 @media screen and (min-width: 1443px) {
-  .grid-container-appointments {
-    display: grid;
-    grid-template-areas: "top-1 top-2 top-3 btn-appt" "mid-1 mid-2 mid-2 btn-appt" "bot-1 bot-2 bot-2 btn-appt";
-    grid-template-columns: 0.5fr 1.5fr 1.3fr 0.2fr;
-    grid-template-rows: 3rem 3rem 3rem;
-  }
   .btn-half-height {
     min-height: 50%;
     min-width: 50%;
   }
   .time-width {
     width: 10rem;
+  }
+}
+@media screen and (min-width: 1px) {
+  .grid-container-footer {
+    display: grid;
+    grid-template-areas: "foot-1" "foot-2" "foot-3";
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem 3rem 3rem;
+    font-size: 100%;
+  }
+  .grid-container-footer .foot-1 {
+    grid-area: foot-1;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  .grid-container-footer .foot-2 {
+    grid-area: foot-2;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  .grid-container-footer .foot-3 {
+    grid-area: foot-3;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 650px) {
+  .grid-container-footer {
+    grid-template-areas: "foot-1 foot-2 foot-3";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 110%;
+  }
+  .foot-1 {
+    min-width: 12rem;
+    max-width: 20rem;
+  }
+  .foot-2 {
+    min-width: 12rem;
+    max-width: 20rem;
+  }
+  .foot-3 {
+    min-width: 12rem;
+    max-width: 20rem;
+  }
+}
+@media screen and (min-width: 1443px) {
+  .grid-container-footer {
+    font-size: 120%;
   }
 }
 html {
@@ -73,7 +179,7 @@ form {
 }
 
 .wrapper {
-  min-height: calc(100vh - 35rem);
+  min-height: calc(100vh - 40rem);
   background-color: white;
 }
 
@@ -94,7 +200,6 @@ ul {
   }
 }
 .footer {
-  height: 13rem;
   color: white;
   text-align: center;
   padding: 2rem 0rem 2rem 0rem;
@@ -105,6 +210,9 @@ ul {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 800;
+  border-bottom: solid 1px white;
+  border-top: solid 1px white;
+  background-color: hsl(195deg, 100%, 60%);
 }
 
 .link-effect {
@@ -306,13 +414,6 @@ textarea {
 }
 
 /* Matters */
-.grid-container-matters {
-  display: grid;
-  grid-template-areas: "hd-1 hd-2 hd-3 hd-4 hd-5 hd-6 hd-7 hd-8 hd-9 btn-matters" "val-1 val-2 val-3 val-4 val-5 val-6 val-7 val-8 val-9 btn-matters" "memo text text text text text text text text btn-matters";
-  grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
-  grid-template-rows: 3rem 2rem 4rem;
-}
-
 .hd-1 {
   grid-area: hd-1;
 }
@@ -403,18 +504,6 @@ textarea {
   grid-area: btn-matters;
 }
 
-@media only screen and (max-width: 770px) {
-  .grid-container-matters {
-    display: grid;
-    grid-template-areas: "hd-1 val-1" "hd-2 val-2" "hd-3 val-3" "hd-4 val-4" "hd-5 val-5" "hd-6 val-6" "hd-7 val-7" "hd-8 val-8" "hd-9 val-9" "memo memo" "text text" "btn-matters btn-matters";
-    grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 6rem 3rem;
-  }
-  .btn-matters {
-    display: flex;
-    flex-direction: row;
-  }
-}
 /* FILE MANAGEMENT*/
 .responsive-pos {
   margin: 0 auto;

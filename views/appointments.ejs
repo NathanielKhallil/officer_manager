@@ -26,9 +26,9 @@
         </ul>
     </nav>
 </header>
-        <section>
+        <section class="section-responsive-appt">
             <form
-            class="form-outline rounded p-5"
+            class="form-outline form-size-appt rounded p-5"
             style="margin: 2rem auto 2rem auto;"
             action="/appointments"
             method="POST"
@@ -117,16 +117,16 @@
             </button>  
         </form>     
     </section>
-    <section class="section-responsive">
+    <section class="section-responsive-appt">
     <% for(var i=0; i<appointments.length; i++) { %>
-      <form method="POST"  class="d-flex justify-content-center mb-4 form-width" style="margin: 0 auto; max-width: 100%; font-size:small">
-        <div class="grid-container-appointments" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+      <form method="POST"  class="d-flex justify-content-center mb-4 form-size-appt" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
+        <div class="grid-container-appointments" style="width: 100%; margin-bottom: 2rem; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                                                      
-                  <div class="top-1  d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
+                  <div class="top-1  d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
                     <span class="form-typography">&nbsp RE: <%=appointments[i].title %> </span>
                   </div>
 
-                  <div class="top-2 d-flex flex-row d-flex flex-row bg-dark text-light align-items-center align-items-center" style="outline: solid 1px;">
+                  <div class="top-2 d-flex flex-row bg-dark text-light align-items-center align-items-center" style="outline: solid 1px;">
                       <label class="form-typography"><label> &nbsp Phone: &nbsp</label>
                       <input class="form-typography phone-width rounded" style="outline: solid 1px;" type="tel" class="d-flex flex-row bg-light align-items-center" id="updatedPhone" name="updatedPhone" value="<%= appointments[i].phone_num %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                   </div>
@@ -178,8 +178,8 @@
           
               <div class="btn-appt btn-swap" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                 <input type="hidden" name="_method" value="PUT"/>
-                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-details secondary-color btn-half-height" > Update </button>
-                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-details secondary-color btn-half-height" > Delete </button>
+                <button formaction="/appointments/update/<%= appointments[i].id %>" class="btn-details secondary-color btn-size-appt" > Update </button>
+                <button formaction="/appointments/delete/<%= appointments[i].id %>" class="btn-details secondary-color btn-size-appt" > Delete </button>
               </div>
           </div>
         </form>
@@ -192,28 +192,31 @@
     </div>
      
     <footer class="footer">
-      <div class="footer-header">
-        Quicklinks for Filing Documents
-      </div>
+      <footer class="footer">
+        <div class="footer-header">
+          Quicklinks for Filing Documents
+        </div>
       <div class="push"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <a class="nav-link active" href="https://qb-filing.alberta.ca/">
+      <div class="grid-container-footer">
+   
+        <div class="foot-1"> 
+          <a class="nav-link active" href="https://qb-filing.alberta.ca/">
               Alberta Court of Kings's Bench Digital Filing
-            </a>
-          </div>
-          <div class="col">
-            <a class="nav-link active" href="https://cams.albertacourts.ca/public-portal/?q=node/403">
+          </a>
+        </div>
+
+        <div class="foot-2"> 
+          <a class="nav-link active foot-2" href="https://cams.albertacourts.ca/public-portal/?q=node/403">
             Alberta Court of Appeal Cams Digital Filing
           </a>
-          </div>
-          <div class="col">
-            <a class="nav-link active" href="https://surrogate.alberta.ca/">
+        </div>
+
+        <div class="foot-3"> 
+          <a class="nav-link active foot-3" href="https://surrogate.alberta.ca/">
             Alberta King's Bench (Surrogate) Digital Filing 
           </a>
-          </div>
         </div>
+     
       </div>
     </footer>
     <script
