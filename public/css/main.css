@@ -49,8 +49,19 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
   }
+  .form-input {
+    min-width: 20rem;
+  }
   .form-size-appt {
     min-width: 18rem;
+  }
+  .section-responsive-input {
+    width: 20rem;
+    margin: 0 auto;
+  }
+  .section-responsive-appt {
+    width: 25rem;
+    margin: 0 auto;
   }
   .btn-size-appt {
     min-height: 50%;
@@ -58,10 +69,6 @@
   }
   .time-width {
     width: 6rem;
-  }
-  .section-responsive-appt {
-    width: 25rem;
-    margin: 0 auto;
   }
 }
 @media screen and (min-width: 650px) {
@@ -71,8 +78,15 @@
     grid-template-columns: 0.5fr 1.5fr 1.3fr 0.2fr;
     grid-template-rows: 3rem 3rem 3rem;
   }
+  .form-input {
+    width: 25rem;
+  }
   .form-size-appt {
     min-width: 25rem;
+  }
+  .section-responsive-input {
+    width: 25rem;
+    margin: 0 auto;
   }
   .section-responsive-appt {
     width: 40rem;
@@ -95,7 +109,13 @@
     min-width: 50%;
   }
   .time-width {
-    width: 10rem;
+    width: 12rem;
+  }
+  .section-responsive-appt {
+    width: 45rem;
+  }
+  .form-size-appt {
+    min-width: 45rem;
   }
 }
 @media screen and (min-width: 1px) {
