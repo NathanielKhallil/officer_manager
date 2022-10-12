@@ -1,0 +1,167 @@
+@include media-xs {
+    .grid-container-files {
+        display: grid;
+        grid-template-areas:
+        "file-data"
+        "file-req-form";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        
+    }
+    .grid-container-fileInfo {
+        display: grid;
+        grid-template-areas:
+        "file-info-1 file-info-1"
+        "file-info-2 file-info-3";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 50% 50%;
+        font-size: 80%;
+        height: 100%;
+    }
+
+    .file-info-1 {
+        grid-area: file-info-1;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+    
+    .file-info-2 {
+        grid-area: file-info-2;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .file-info-3 {
+        grid-area: file-info-3;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .section-responsive-files {
+        margin: 0 auto;
+        justify-content: center;
+        width: 17rem;
+    }
+
+    .form-1 {
+        margin: 2rem auto 2rem auto;
+        justify-content: center;
+    }
+}
+
+
+@include media-sm {
+    .grid-container-files {
+        display: grid;
+        grid-template-areas:
+        "file-data file-req-form";
+        grid-template-columns: 1.5fr .5fr;
+        grid-template-rows: 1fr;
+    }
+
+    .grid-container-fileInfo {
+        display: grid;
+        grid-template-areas:
+        "file-info-1 file-info-1"
+        "file-info-2 file-info-3";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100%;
+        font-size: 80%;
+    }
+
+    .file-info-1 {
+        grid-area: file-info-1;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .file-info-2 {
+        grid-area: file-info-2;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .file-info-3 {
+        grid-area: file-info-3;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+
+    .section-responsive-files {
+        width: 25rem;
+    }
+    
+    
+}
+
+@include media-md {
+    .grid-container-files {
+        display: grid;
+        grid-template-areas:
+        "file-data file-req-form";
+        grid-template-columns: 1.5fr .5fr;
+        grid-template-rows: 1fr;
+    }
+
+    .grid-container-fileInfo {
+        display: grid;
+        grid-template-areas:
+        "file-info-1 file-info-1"
+        "file-info-2 file-info-3";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100%;
+        font-size: 80%;
+    }
+
+    .file-info-1 {
+        grid-area: file-info-1;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .file-info-2 {
+        grid-area: file-info-2;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .file-info-3 {
+        grid-area: file-info-3;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .form-btn {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+        min-width: 100%;
+    }
+
+    .btn-typography {
+        display: inline;
+        margin: 0 auto;
+        padding: 0;
+        width: 50%;
+        min-height: 100%;   
+    }
+
+    .section-responsive-files {
+        width: 30rem;
+    }
+    
+    
+}

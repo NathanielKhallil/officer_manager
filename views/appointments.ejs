@@ -7,19 +7,39 @@
         <ul
           class="navbar-nav text-light bg-dark ms-auto"
           style="flex-direction: row"
-        >
-        <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
-        </li>
-        <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
-        </li>
-        <li class="nav-item ps-0">
-            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
+          >
+          <li class="nav-item ps-0">
+              <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
+            </li>
+          <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
           </li>
-          <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="userProfile" name="userProfile" href="/userProfile"> Profile </a>
+          <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
           </li>
+          <% if (admin) { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="adminPortal"
+                name="adminPortal"
+                href="/adminPortal"
+              >
+                Admin
+              </a>
+            </li>
+            <%} else { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="userProfile"
+                name="userProfile"
+                href="/userProfile"
+              >
+                Profile
+              </a>
+            </li>
+            <% } %>
           <li class="nav-item ps-3 pe-2">
             <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
           </li>
@@ -119,8 +139,8 @@
     </section>
     <section class="section-responsive-appt">
     <% for(var i=0; i<appointments.length; i++) { %>
-      <form method="POST"  class="d-flex justify-content-center mb-4 form-size-appt" style="margin: 0 auto 1rem auto; max-width: 100%; font-size:small">
-        <div class="grid-container-appointments" style="width: 100%; margin-bottom: 2rem; font-family: Arial, Helvetica, sans-serif; font-size: 100%; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
+      <form method="POST"  class="d-flex justify-content-center mb-4 form-size-appt" style="margin: 0 auto 1rem auto; max-width: 100%;">
+        <div class="grid-container-appointments" style="width: 100%; margin-bottom: 2rem; font-family: Arial, Helvetica, sans-serif; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
                                                      
                   <div class="top-1  d-flex flex-row bg-dark text-light align-items-center align-items-center" >    
                     <span class="form-typography">&nbsp RE: <%=appointments[i].title %> </span>
@@ -141,13 +161,13 @@
                 </div>
 
                   <div class="mid-1 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; ">
-                    <label class="text-left form-typography" style="min-width: 15%" for="updatedDate"
+                    <label class="text-left form-typography date-label-width" for="updatedDate"
                     > &nbsp Date: &nbsp </label
                     >
                     <input
-                      style="width: 8rem;"
+                      style="margin-right: 1rem;"
                       type="date"
-                      class="form-control form-typography"
+                      class="form-control form-typography date-input-width"
                       value="<%= appointments[i].date %>"
                       name="updatedDate" 
                       id="updatedDate"
@@ -155,9 +175,9 @@
                     />
                   </div>
 
-                  <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; font-weight: bold; margin: 0;">
+                  <div class="mid-2 d-flex flex-row bg-dark text-light align-items-center" style="outline:solid 1px; margin: 0;">
                                     
-                      <label class="text-left" for="updatedTime"
+                      <label class="text-left form-typography" for="updatedTime"
                       > &nbsp Time: &nbsp </label
                       >
                       <input

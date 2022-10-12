@@ -4,26 +4,47 @@
         <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
           Office Resources and Management Assistant
         </a>
-        <ul
-          class="navbar-nav text-light bg-dark ms-auto"
-          style="flex-direction: row"
-        >
-        <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
-        </li>
-        <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
-        </li>
-        <li class="nav-item ps-0">
-            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
-          </li>
-          <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="userProfile" name="userProfile" href="/userProfile"> Profile </a>
-          </li>
-          <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
-          </li>
-        </ul>
+          <ul
+            class="navbar-nav text-light bg-dark ms-auto"
+            style="flex-direction: row"
+          >
+            <li class="nav-item ps-0">
+                <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
+              </li>
+            <li class="nav-item ps-0">
+              <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
+            </li>
+
+            <li class="nav-item ps-0">
+              <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
+            </li>
+            <% if (admin) { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="adminPortal"
+                name="adminPortal"
+                href="/adminPortal"
+              >
+                Admin
+              </a>
+            </li>
+            <%} else { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="userProfile"
+                name="userProfile"
+                href="/userProfile"
+              >
+                Profile
+              </a>
+            </li>
+            <% } %>
+            <li class="nav-item ps-3 pe-2">
+              <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
+            </li>
+          </ul>
       </nav>
     </header>
         <section class="section-responsive">

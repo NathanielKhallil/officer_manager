@@ -9,6 +9,11 @@
         style="flex-direction: row"
       >
         <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
+            Home
+          </a>
+        </li>
+        <li class="nav-item ps-0">
           <a class="nav-link active ps-3 pe-2" id="info" name="info">
             General Info
           </a>
@@ -23,14 +28,29 @@
             Dashboard
           </a>
         </li>
-        <li class="nav-item ps-0">
-          <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
-            Home
-          </a>
-        </li>
-        <li class="nav-item ps-3 pe-2">
-          <a class="nav-link active" id="userProfile" name="userProfile" href="/userProfile"> Profile </a>
-        </li>
+        <% if (admin) { %>
+          <li class="nav-item ps-3 pe-2">
+            <a
+              class="nav-link active"
+              id="adminPortal"
+              name="adminPortal"
+              href="/adminPortal"
+            >
+              Admin
+            </a>
+          </li>
+          <%} else { %>
+          <li class="nav-item ps-3 pe-2">
+            <a
+              class="nav-link active"
+              id="userProfile"
+              name="userProfile"
+              href="/userProfile"
+            >
+              Profile
+            </a>
+          </li>
+          <% } %>
         <li class="nav-item ps-3 pe-2">
           <a class="nav-link active" id="logout" name="logout" href="/logout">
             Logout
@@ -54,9 +74,9 @@
       </form>
     </div>
   </section>
-  <section class="d-flex flex-column responsive-pos">
+  <section class="d-flex flex-column section-responsive-files">
     
-    <div class="grid-container-header text-light mb-2" style="width: 50%; min-height: 5rem; margin: 0 auto;">
+    <div class="grid-container-header text-light mb-2">
       <div class="header-direction file-header bg-dark text-light " style="font-family: Arial, Helvetica, sans-serif; font-size: 100%;" >
           <span class="align-items-center ms-3" style="min-width: 50%; font-weight: bold;"  id="fileHeader" name="fileHeader"> 
             File Server 
@@ -67,20 +87,29 @@
     </section>
     <% for(var i=0; i<listContents.length; i++) {%>
 
-     <section class="responsive-pos"> 
-     <div class="grid-container-files text-light mb-2 responsive-pos" style="width: 50%; min-height: 5rem; overflow-wrap: break-word;">       
+     <section class="section-responsive-files"> 
+     <div class="grid-container-files text-light mb-2 section-responsive-files">       
         
-      <div class="file-data file-data-dir bg-info text-light d-flex align-items-center">
+      <div class="file-data file-data-dir bg-info text-light align-items-center">
 
-          <span class="d-flex align-items-center ms-3" id="<%= listContents[i].Key %>" name="<%= listContents[i].Key %>"> 
-            <i class="fa-regular fa-file-lines"></i>
-                  : &nbsp  <%= listContents[i].Key %> &nbsp 
-              <i class="fa-regular fa-calendar"></i>
-                  : <%= listContents[i].LastModified.toLocaleDateString() %> &nbsp 
-              <i class="fa-regular fa-floppy-disk"></i>
-                  : <%= (listContents[i].Size/1024).toFixed(1) %>kb  
-          </span>
+          <div class="grid-container-fileInfo ms-3" id="<%= listContents[i].Key %>" name="<%= listContents[i].Key %>"> 
           
+              <div class="file-info-1"> 
+              <i class="fa-regular fa-file-lines"></i>
+                    : <%= listContents[i].Key %> &nbsp 
+              </div>
+
+              <div class="file-info-2"> 
+                <i class="fa-regular fa-calendar"></i>
+                    : <%= listContents[i].LastModified.toLocaleDateString() %> &nbsp 
+              </div>
+
+              <div class="file-info-3">
+                <i class="fa-regular fa-floppy-disk"></i>
+                    : <%= (listContents[i].Size/1024).toFixed(1) %>kb    
+            </div>    
+
+          </div>
       </div>
 
         <div class="file-req-form file-form-dir">    

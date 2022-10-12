@@ -11,6 +11,64 @@
         "btn-appt btn-appt";
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
+        font-size: smaller;
+    }
+
+    .form-input {
+        min-width: 16rem;
+    }
+
+    .form-size-appt {
+        min-width: 16rem;
+    }
+
+    .form-typography {
+        display: flex;
+        align-items: center;
+        font-size: .5rem;
+        font-weight: bold;
+        height:1.3rem;
+    }
+    
+    .section-responsive-input {
+        width: 16rem;
+        margin: 0 auto;
+    }
+    
+    .section-responsive-appt {
+        width: 20rem;
+        margin: 0 auto;
+    }
+
+    .btn-size-appt {
+        min-height: 50%;
+        min-width: 100%;
+    }
+
+    .time-width {
+        width: 6rem;
+    }
+    .date-label-width {
+        width: 2.3rem;
+    }
+    .date-input-width {
+        width: 6rem;
+    }
+
+}
+@include media-sm {
+    .grid-container-appointments {
+        display: grid;
+        grid-template-areas: 
+        "top-1 top-1" 
+        "top-2 top-3" 
+        "mid-1 mid-2" 
+        "bot-1 bot-1" 
+        "bot-2 bot-2" 
+        "btn-appt btn-appt" 
+        "btn-appt btn-appt";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2rem 2rem 2rem 2rem 3rem 2rem;
     }
 
     .form-input {
@@ -19,6 +77,10 @@
 
     .form-size-appt {
         min-width: 18rem;
+    }
+
+    .form-typography {
+        font-size: .7rem;
     }
     
     .section-responsive-input {
@@ -37,11 +99,17 @@
     }
 
     .time-width {
-        width: 6rem;
+        width: 7rem;
+    }
+    .date-label-width {
+        width: 3rem;
+    }
+    .date-input-width {
+        width: 7rem;
     }
 }
 
-@include media-sm {
+@include media-lg {
     .grid-container-appointments {
         display: grid;
         grid-template-areas:
@@ -53,24 +121,34 @@
     }
 
     .form-input {
-        width: 25rem;
+        width: 28rem;
     }
     .form-size-appt {
-        min-width: 25rem;
+        min-width: 28rem;
+    }
+
+    .form-typography {
+        font-size: .9rem;
     }
 
     .section-responsive-input {
-        width: 25rem;
+        width: 28rem;
         margin: 0 auto;
     }
 
     .section-responsive-appt {
-        width: 40rem;
-    
+        width: 45rem;
     }
 
     .time-width {
-        width: 6rem;
+        width: 9rem;
+    }
+
+    .date-label-width {
+        width: 3.5rem;
+    }
+    .date-input-width {
+        width: 8rem;
     }
 
     .btn-size-appt {
@@ -84,15 +162,11 @@
     }
 }
 
-@include media-md {
+@include media-xl {
 
     .btn-half-height {
         min-height: 50%;
         min-width: 50%;
-    }
-
-    .time-width {
-        width: 12rem;
     }
 
     .section-responsive-appt {

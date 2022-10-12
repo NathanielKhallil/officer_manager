@@ -1,3 +1,5 @@
+@import 'variables';
+
 @include media-xs {
     .grid-container-matters {
         display: grid;
@@ -36,9 +38,26 @@
         min-width: 15rem;
     }
 
+    .section-responsive {
+        margin: 0 auto;
+        width: 20rem;
+    }
+
+    .notes {
+        font-weight: bold;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: $secondary-colour;
+        background-color: $tertiary-colour;
+        font-size: 1rem;
+    }
+    
+    .notes:focus {
+        transform: scale(1.2);
+    }
+    
 
 }
-@include media-sm {
+@include media-md {
     .grid-container-matters {
         display: grid;
         grid-template-areas:
@@ -49,16 +68,24 @@
         grid-template-rows: 3rem 2rem 4rem;
     }
     .form-size-matters {
-        min-width: 20rem;
+        min-width: 28rem;
     }
 
     .form-create-appt {
         min-width: 20rem;
     }
+
+    .section-responsive {
+        width: 28rem;
+    }
 }
 
 
-@include media-md {
+@include media-lg {
+
+    .section-responsive {
+        width: 30rem;
+    }
 
     .form-size-matters {
         min-width: 30rem;

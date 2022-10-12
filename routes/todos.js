@@ -5,6 +5,7 @@ const models = require("../app/models");
 
 router.get("/", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
+    const admin = req.user.is_admin;
     const tasks = await models.Todos.findAll({
       where: {
         userId: req.user.id,
@@ -14,7 +15,7 @@ router.get("/", async (req, res, next) => {
         exclude: ["createdAt", "updatedAt"],
       },
     });
-    return res.render("todos", { tasks: tasks });
+    return res.render("todos", { tasks: tasks, admin: admin });
   } else {
     return res.send(
       "You do not have permission to view this page. Contact the Administrator."

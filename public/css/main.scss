@@ -2,10 +2,10 @@
 @import 'matters';
 @import 'appointments';
 @import 'footer';
+@import 'files';
+@import 'variables';
 
-$primary-colour: black;
-$secondary-colour: white;
-$tertiary-colour: hsl(195, 100%, 60%);
+
 
 
 html{
@@ -32,11 +32,6 @@ form {
     margin: 7rem auto calc(100vh - 39.7rem) auto;
 }
 
-.form-typography {
-    font-size: .9rem;
-    font-weight: bold;
-    height:1.3rem;
-}
 
 .wrapper {
     min-height: calc(100vh - 40rem);
@@ -52,14 +47,6 @@ ul {
     list-style-type: none;
 }
 
-@media only screen and (max-width: 400px) {
-    ul {
-        font-size: 80%;
-    }
-    textarea {
-        font-size: 80%;
-    }
-}
 
 .footer {
     color: $secondary-colour;
@@ -110,22 +97,7 @@ textarea {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.notes {
-    font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: $secondary-colour;
-    background-color: $tertiary-colour;
-}
 
-.notes:focus {
-    transform: scale(1.2);
-}
-
-/* form/section sizing*/
-
-.section-responsive {
-    width: 25rem;
-}
 
 /* drop down menu */
 
@@ -289,14 +261,6 @@ textarea {
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
-@media only screen and (max-width: 400px) {
-    ul {
-        font-size: 80%;
-    }
-    textarea {
-        font-size: 80%;
-    }
-}
 
 .todo-button { 
     min-width: 5rem;
@@ -373,11 +337,6 @@ textarea {
     grid-area: text;
 }
 
-.section-responsive {
-    margin: 0 auto;
-    min-width: 40%;
-    max-width: 80%;
-}
 
 .btn-matters {
     grid-area: btn-matters;
@@ -385,12 +344,8 @@ textarea {
 
 
 
-
 /* FILE MANAGEMENT*/
 
-.responsive-pos {
-    margin: 0 auto;
-}
 
 .grid-container-header {
     display: grid;
@@ -400,13 +355,7 @@ textarea {
     grid-template-rows: 5rem;
 }
 
-.grid-container-files {
-    display: grid;
-    grid-template-areas:
-    "file-data file-req-form";
-    grid-template-columns: 1.5fr .5fr;
-    grid-template-rows: repeat(auto-fill);
-}
+
 
 .header-direction {
     display: flex;
@@ -463,62 +412,6 @@ textarea {
     min-width: 100%;
 }
 
-
-@media only screen and (max-width: 1130px) {
-
-    .grid-container-files {
-        display: grid;
-        grid-template-areas:
-        "file-data" 
-        "file-req-form";
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(auto-fill);
-    }
-
-
-    .form-btn {
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-        text-align: center;
-        min-width: 100%;
-        
-    }
-
-    .btn-typography {
-        display: inline;
-        margin: 0 auto;
-        padding: 0;
-        width: 50%;
-        min-height: 100%;   
-    }
-    
-}
-
-@media only screen and (max-width: 690px) {
-
-    .responsive-pos {
-        margin: 0 auto;
-        justify-content: center;
-    }
-
-    .form-1 {
-        margin: 2rem auto 2rem auto;
-        justify-content: center;
-    }
-    
-}
-
-@media only screen and (max-width: 420px) {
-    
-    .fixed-width {
-        min-width: 20rem;
-    }
-
-    .file-data { 
-        font-size: 80%;
-    }
-}
 
 
 /* APPOINTMENTS and DEADLINES */

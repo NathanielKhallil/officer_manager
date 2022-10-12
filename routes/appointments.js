@@ -5,10 +5,14 @@ const models = require("../app/models");
 
 router.get("/", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
+    const admin = req.user.is_admin;
     const appointments = await models.Appointments.findAll({
       order: [["date"]],
     });
-    return res.render("appointments", { appointments: appointments });
+    return res.render("appointments", {
+      appointments: appointments,
+      admin: admin,
+    });
   } else {
     return res.send(
       "You do not have permission to view this page. Contact the Administrator."

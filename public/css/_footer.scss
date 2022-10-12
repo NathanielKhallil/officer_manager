@@ -31,7 +31,7 @@
     }
 }
 
-@include media-sm {
+@include media-md {
     .grid-container-footer {
         grid-template-areas: 
         "foot-1 foot-2 foot-3"; 
@@ -56,7 +56,7 @@
 
 }
 
-@include media-md {
+@include media-lg {
     .grid-container-footer {
         font-size: 120%;
     }

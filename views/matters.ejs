@@ -9,17 +9,37 @@
           style="flex-direction: row"
         >
         <li class="nav-item ps-0">
+            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
+          </li>
+        <li class="nav-item ps-0">
           <a class="nav-link active ps-3 pe-2" id="info" name="info"> General Info </a>
         </li>
         <li class="nav-item ps-0">
           <a class="nav-link active ps-3 pe-2" id="userPortal" name="userPortal" href="/userPortal"> Dashboard </a>
         </li>
-        <li class="nav-item ps-0">
-            <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/"> Home </a>
-          </li>
-          <li class="nav-item ps-3 pe-2">
-            <a class="nav-link active" id="userProfile" name="userProfile" href="/userProfile"> Profile </a>
-          </li>
+          <% if (admin) { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="adminPortal"
+                name="adminPortal"
+                href="/adminPortal"
+              >
+                Admin
+              </a>
+            </li>
+            <%} else { %>
+            <li class="nav-item ps-3 pe-2">
+              <a
+                class="nav-link active"
+                id="userProfile"
+                name="userProfile"
+                href="/userProfile"
+              >
+                Profile
+              </a>
+            </li>
+            <% } %>
           <li class="nav-item ps-3 pe-2">
             <a class="nav-link active" id="logout" name="logout" href="/logout"> Logout </a>
           </li>
@@ -144,7 +164,7 @@
                           
                         <div class="bg-dark text-light memo" style="outline: solid 1px;"><p class="center-grid-cell"> MEMO: </p> </div> 
                       
-                        <textarea class="notes text" id="notes" name="notes" style="outline: solid 1px; width: 100%; font-family: Helvetica; resize: none;"> <%= matters[i].notes %> </textarea> 
+                        <textarea class="notes text" id="notes" name="notes" style="outline: solid 1px; width: 100%;"> <%= matters[i].notes %> </textarea> 
                               
                 
                     <div class="btn-matters btn-swap" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">

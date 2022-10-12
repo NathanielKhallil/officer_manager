@@ -28,9 +28,10 @@ const upload = multer({
 
 router.get("/", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
+    const admin = req.user.is_admin;
     let read = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
     let listContents = read.Contents.map((item) => item);
-    return res.render("files", { listContents });
+    return res.render("files", { listContents, admin: admin });
   } else {
     return res.send(
       "You do not have permission to view this page. Contact the Administrator."
