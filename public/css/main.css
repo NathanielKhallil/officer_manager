@@ -25,10 +25,10 @@
   }
   .notes {
     font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     color: white;
     background-color: hsl(195deg, 100%, 60%);
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .notes:focus {
     transform: scale(1.2);
@@ -53,10 +53,10 @@
 }
 @media screen and (min-width: 850px) {
   .section-responsive {
-    width: 30rem;
+    width: 50rem;
   }
   .form-size-matters {
-    min-width: 30rem;
+    min-width: 50rem;
   }
   .form-create-appt {
     min-width: 25rem;
@@ -441,6 +441,10 @@ ul {
 
 textarea {
   resize: none;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 /* colors schemes*/

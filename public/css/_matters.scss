@@ -45,10 +45,10 @@
 
     .notes {
         font-weight: bold;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: $secondary-colour;
         background-color: $tertiary-colour;
-        font-size: 1rem;
+        font-size: .8rem;
     }
     
     .notes:focus {
@@ -84,11 +84,11 @@
 @include media-lg {
 
     .section-responsive {
-        width: 30rem;
+        width: 50rem;
     }
 
     .form-size-matters {
-        min-width: 30rem;
+        min-width: 50rem;
     }
     .form-create-appt {
         min-width: 25rem;
