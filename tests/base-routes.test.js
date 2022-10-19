@@ -24,7 +24,7 @@ beforeAll(async () => {
   console.log(res);
 });
 
-//Logout of the signed in user sessopn before each test
+//Logout of the signed in user session before each test
 afterEach(async () => {
   await server.get("/logout");
 });

@@ -1,7 +1,6 @@
 const request = require("supertest");
 const app = require("../app.js");
 const server = request.agent(app);
-const bcrypt = require("bcrypt");
 
 let serverListen;
 

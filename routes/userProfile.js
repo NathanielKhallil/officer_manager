@@ -16,6 +16,15 @@ router.get("/", async (req, res, next) => {
 // update
 
 router.post("/update/:id", async (req, res) => {
+  if (
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+      req.body.newPassword
+    ) === false
+  ) {
+    return res.send(
+      "Passwords must be alphanumeric and contain at least one lowercase and uppercase alphabetical letter and one symbol."
+    );
+  }
   if (req.body.newPassword === req.body.verifyPassword) {
     try {
       const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
