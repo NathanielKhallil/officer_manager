@@ -19,6 +19,11 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+          is: [
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$",
+          ],
+        },
       },
 
       createdAt: {

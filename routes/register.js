@@ -9,13 +9,20 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    if (
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+        req.body.password
+      ) === false
+    ) {
+      return res.send(
+        "Passwords must be alphanumeric and contain at least one lowercase and uppercase alphabetical letter and one symbol."
+      );
+    }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const username = await req.body.username;
-    const email = await req.body.email;
 
     let newReg = {
-      username: username,
-      email: email,
+      username: req.body.username,
+      email: req.body.email,
       password: hashedPassword,
       createdAt: new Date(),
       updatedAt: new Date(),
