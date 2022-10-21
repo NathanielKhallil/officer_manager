@@ -288,6 +288,10 @@
     margin: 2rem auto 2rem auto;
     justify-content: center;
   }
+  .wrapper-files {
+    min-height: calc(100vh - 30rem);
+    background-color: white;
+  }
 }
 @media screen and (min-width: 450px) {
   .grid-container-files {

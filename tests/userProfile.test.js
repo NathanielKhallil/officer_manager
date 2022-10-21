@@ -4,52 +4,104 @@ const server = request.agent(app);
 const bcrypt = require("bcrypt");
 const models = require("../app/models");
 
-// Unit
+const SequelizeMock = require("sequelize-mock-v5");
+// initialize mock Database
+const DBConnectionMock = new SequelizeMock();
+
+let UserMock;
+
+beforeAll(async () => {
+  UserMock = await DBConnectionMock.define(
+    "user",
+    {
+      id: 1,
+      username: "Todd",
+      email: "todd@gmail.com",
+      password: "12345!Ab",
+    },
+    {
+      instanceMethods: {
+        myTestFunc: function () {
+          return "Test User";
+        },
+      },
+    }
+  );
+});
+
+// Mock Sequelize test
+describe("Tests mock sequelize findOne", () => {
+  it("Successfully finds the mocked user by the username", async () => {
+    const resultMock = await UserMock.findOne({
+      where: {
+        username: "Todd",
+      },
+    });
+    expect(resultMock.username).toBe("Todd"); // nested check for username
+    expect(resultMock).toEqual(
+      expect.objectContaining({ email: "todd@gmail.com" }) // object checked for email k,v pair
+    );
+  });
+});
+
+// Unit tests
 
 // considering mocking database for better coverage despite integration tests accessing an actual test database *WIP*
 describe("Tests users table related features", () => {
-  it("finds the specific user requested", () => {
-    const users = [
-      { id: 1, username: "Jake", password: "12345Ab!" },
-      { id: 2, username: "Tom", password: "12345Ac!" },
-    ];
-    const foundUser = users[0].id;
-    expect(foundUser).toBe(1);
+  it("finds the specific user requested by Id", async () => {
+    const user = await UserMock.findOne({
+      where: {
+        id: 1,
+      },
+    });
+
+    expect(user.id).toBe(1);
   });
 
   describe("Tests password change related features", () => {
-    it("changes a specific user's password by Id if the new password matches the verified password and the required pattern is satisfied", () => {
-      const users = [
-        { id: 1, username: "Jake", password: "12345Ab!" },
-        { id: 2, username: "Tom", password: "12345Ac!" },
-      ];
+    it("changes a specific user's password by Id if the new password matches the verified password and the required pattern is satisfied", async () => {
       const newPassword = "1245AbC!";
       const verifiedPassword = "1245AbC!";
+
       if (
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
           newPassword
         ) &&
         newPassword === verifiedPassword
       ) {
-        users[0].password = newPassword;
-        expect(users[0].password).toBe("1245AbC!");
+        const result = await UserMock.update(
+          { password: newPassword },
+          {
+            where: { id: 1 },
+          }
+        );
+
+        expect(result).toStrictEqual([1]);
       }
     });
 
-    it("fails to change the specific user's password if the new password does not match the verified password", () => {
-      const users = [
-        { id: 1, username: "Jake", password: "12345Ab!" },
-        { id: 2, username: "Tom", password: "12345Ac!" },
-      ];
+    it("fails to change the specific user's password if the new password does not match the verified password", async () => {
       const newPassword = "1245AbD!";
       const verifiedPassword = "1245AbE!";
+
       if (
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
           newPassword
         ) &&
-        newPassword !== verifiedPassword
+        newPassword === verifiedPassword
       ) {
-        expect(users[0].password).toBe("12345Ab!");
+        result = await UserMock.update(
+          { password: newPassword },
+          {
+            where: { id: 1 },
+          }
+        );
+      } else {
+        const result =
+          "passwords do not match! Use the back button in your browser to try again.";
+        expect(result).toBe(
+          "passwords do not match! Use the back button in your browser to try again."
+        );
       }
     });
   });
