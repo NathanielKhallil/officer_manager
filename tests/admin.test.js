@@ -69,6 +69,8 @@ describe("Test update functions", () => {
       .map((item) => item.split(";")[0])
       .join(";");
 
+    console.log(session);
+
     expect(loggedInAdmin.statusCode).toBe(302);
     // select user by username (in practice, the user is identified by their Id via mapped array's index)
     // I considered a test that relies on an object with fake usertable data, but iterating over an object and returning

@@ -23,7 +23,7 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config server.js",
     "set-node-env": "set NODE_ENV=test",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=15000 --detectOpenHandles --forceExit",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=15000 --detectOpenHandles --verbose",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
     "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
     "db:create": "sequelize-cli db:create",

@@ -4,6 +4,100 @@ const server = request.agent(app);
 const bcrypt = require("bcrypt");
 const models = require("../app/models");
 
+// Unit
+
+// considering mocking database for better coverage despite integration tests accessing an actual test database *WIP*
+describe("Tests users table related features", () => {
+  it("finds the specific user requested", () => {
+    const users = [
+      { id: 1, username: "Jake", password: "12345Ab!" },
+      { id: 2, username: "Tom", password: "12345Ac!" },
+    ];
+    const foundUser = users[0].id;
+    expect(foundUser).toBe(1);
+  });
+
+  describe("Tests password change related features", () => {
+    it("changes a specific user's password by Id if the new password matches the verified password and the required pattern is satisfied", () => {
+      const users = [
+        { id: 1, username: "Jake", password: "12345Ab!" },
+        { id: 2, username: "Tom", password: "12345Ac!" },
+      ];
+      const newPassword = "1245AbC!";
+      const verifiedPassword = "1245AbC!";
+      if (
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+          newPassword
+        ) &&
+        newPassword === verifiedPassword
+      ) {
+        users[0].password = newPassword;
+        expect(users[0].password).toBe("1245AbC!");
+      }
+    });
+
+    it("fails to change the specific user's password if the new password does not match the verified password", () => {
+      const users = [
+        { id: 1, username: "Jake", password: "12345Ab!" },
+        { id: 2, username: "Tom", password: "12345Ac!" },
+      ];
+      const newPassword = "1245AbD!";
+      const verifiedPassword = "1245AbE!";
+      if (
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+          newPassword
+        ) &&
+        newPassword !== verifiedPassword
+      ) {
+        expect(users[0].password).toBe("12345Ab!");
+      }
+    });
+  });
+
+  describe("Tests REGEX pattern requirements", () => {
+    it("checks the REGEX pattern for potential edge cases by iterating over a list of passwords that should fail", () => {
+      const passwordList = [
+        "1245abd!", // no uppercase letter
+        "1245AbD1", // no symbol
+        "1245ADC$", // no lowercase letter
+        "!!!^1234", // no lowercase or uppercase letter
+        "AbCdEfGh", // no symbol or number
+        "abcDe!h", // under 8 chars
+        "1245678", // only numbers
+        "%^$#$%^!", // only symbols
+        "1245abd!", // only lower case
+        "1245ABD!", // only uppercase
+      ];
+
+      passwordList.forEach(checkPattern);
+
+      function checkPattern(item) {
+        expect(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+            item
+          )
+        ).toBeFalsy();
+      }
+    });
+
+    it("checks the REGEX pattern for successful pattrn cases by iterating over a list of passwords that should succeed", () => {
+      const passwordList = ["1245Abd!", "aBcD123$", "&^%$#aB1", "ABCd^123"];
+
+      passwordList.forEach(checkPattern);
+
+      function checkPattern(item) {
+        expect(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,32}$/.test(
+            item
+          )
+        ).toBeTruthy();
+      }
+    });
+  });
+});
+
+// Integeration
+
 let session = null;
 let serverListen;
 
