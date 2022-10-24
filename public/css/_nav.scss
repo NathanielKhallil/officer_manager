@@ -1,0 +1,13 @@
+
+@include media-xs {
+    .nav-responsive-font {
+        font-size: 80%;
+    }
+}
+
+@include media-sm {
+    .nav-responsive-font {
+        font-size: 100%;
+    }
+}
+

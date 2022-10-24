@@ -1,7 +1,7 @@
 <body >
     <header>
-      <nav class="nav bg-dark navbar-expand-lg">
-        <a class="navbar-brand text-light text-decoration-none pt-2 ps-4">
+      <nav class="nav bg-dark navbar-expand-lg nav-responsive-font">
+        <a class="navbar-brand text-light text-decoration-none pt-2 ps-2">
           Office Resources and Management Assistant
         </a>
           <ul
@@ -49,7 +49,7 @@
     </header>
         <section class="section-responsive">
             <form
-            class="form-outline form-width rounded p-3"
+            class="form-outline form-width-todos-1 rounded p-3"
             style="margin: 2rem auto 2rem auto;"
             action="/todos"
             method="POST"
@@ -91,12 +91,12 @@
         <div class="todo-container text-light rounded mt-4" style="width: 100%; height: 12rem;">   
          
           <div class="bg-dark pt-2 pb-2"> 
-          <span class="d-flex fixed-width" style="margin: 0 auto;">
+          <span class="d-flex" style="margin: 0 auto;">
             &nbsp Task: <%= tasks[i].title %>
           </span>
         </div>
              
-          <form method="POST" id="content" class="d-flex flex-column justify-content-start form-width" style="margin: 0 auto;height: 7rem;">
+          <form method="POST" id="content" class="d-flex flex-column justify-content-start form-width-todos-2" style="margin: 0 auto;height: 7rem;">
                       
               <div class="d-flex justify-content-center" style="margin: 0 auto; width: 100%"> 
                 <textarea contenteditable="true" class="mt-1 mb-2" style="width:100%; margin-left: .1rem;" name="content" id="content" rows="3" cols="1"><%= tasks[i].content %> 
@@ -124,7 +124,7 @@
        <% } %>
         
     </section>
-    <div class="wrapper">
+    <div class="wrapper-todos">
 
     </div>
      

@@ -1,0 +1,31 @@
+@import 'variables';
+
+@include media-xs {
+    .wrapper-todos {
+        min-height: calc(100vh - 28rem);
+        background-color: $secondary-colour;
+    }
+
+    .form-width-todos-1 {
+        min-width: 20rem;
+    }
+
+    .form-width-todos-2 {
+        min-width: 20rem;
+    }
+
+}
+
+@include media-md {
+    .form-width-todos-2 {
+        min-width: 25rem;
+    }
+
+}
+
+@include media-lg {
+    .form-width-todos-2 {
+        min-width: 38rem;
+    }
+
+}

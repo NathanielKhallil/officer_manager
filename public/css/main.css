@@ -381,6 +381,38 @@
     width: 30rem;
   }
 }
+@media screen and (min-width: 1px) {
+  .wrapper-todos {
+    min-height: calc(100vh - 28rem);
+    background-color: white;
+  }
+  .form-width-todos-1 {
+    min-width: 20rem;
+  }
+  .form-width-todos-2 {
+    min-width: 20rem;
+  }
+}
+@media screen and (min-width: 650px) {
+  .form-width-todos-2 {
+    min-width: 25rem;
+  }
+}
+@media screen and (min-width: 850px) {
+  .form-width-todos-2 {
+    min-width: 38rem;
+  }
+}
+@media screen and (min-width: 1px) {
+  .nav-responsive-font {
+    font-size: 80%;
+  }
+}
+@media screen and (min-width: 450px) {
+  .nav-responsive-font {
+    font-size: 100%;
+  }
+}
 html {
   height: 100%;
   margin: 0;
