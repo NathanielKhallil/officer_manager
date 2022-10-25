@@ -2,7 +2,7 @@
 
 @include media-xs {
     .wrapper-todos {
-        min-height: calc(100vh - 28rem);
+        min-height: calc(100vh - 51rem);
         background-color: $secondary-colour;
     }
 
@@ -12,20 +12,59 @@
 
     .form-width-todos-2 {
         min-width: 20rem;
+        margin: 0;
     }
 
+    .todo-container {
+        outline: 2px solid rgb(0, 0, 0);
+        background: $primary-colour;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin: 0 auto;
+    }
+    
+    
+    .todo-button { 
+        font-weight:bold;
+        min-width: 5rem;
+        max-width: 5rem;  
+        margin-left: 2rem;
+    }
+
+    .btn-todos-container {
+        display: flex;
+        justify-content: center;
+        width: 100%
+    }
+
+    .btn-size-todos {
+        min-width:50%;
+    }
+
+}
+
+@include media-sm {
+    .form-width-todos-2 {
+        min-width: 20rem;
+    }
 }
 
 @include media-md {
     .form-width-todos-2 {
-        min-width: 25rem;
+        min-width: 28rem;
+    }
+    .btn-todos-container {
+        justify-content: end;
     }
 
+    .btn-size-todos {
+        min-width:25%;
+    }
 }
 
 @include media-lg {
     .form-width-todos-2 {
-        min-width: 38rem;
+        min-width: 50rem;
     }
-
 }

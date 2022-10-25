@@ -383,7 +383,7 @@
 }
 @media screen and (min-width: 1px) {
   .wrapper-todos {
-    min-height: calc(100vh - 28rem);
+    min-height: calc(100vh - 51rem);
     background-color: white;
   }
   .form-width-todos-1 {
@@ -391,16 +391,50 @@
   }
   .form-width-todos-2 {
     min-width: 20rem;
+    margin: 0;
+  }
+  .todo-container {
+    outline: 2px solid rgb(0, 0, 0);
+    background: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0 auto;
+  }
+  .todo-button {
+    font-weight: bold;
+    min-width: 5rem;
+    max-width: 5rem;
+    margin-left: 2rem;
+  }
+  .btn-todos-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .btn-size-todos {
+    min-width: 50%;
+  }
+}
+@media screen and (min-width: 450px) {
+  .form-width-todos-2 {
+    min-width: 20rem;
   }
 }
 @media screen and (min-width: 650px) {
   .form-width-todos-2 {
-    min-width: 25rem;
+    min-width: 28rem;
+  }
+  .btn-todos-container {
+    justify-content: end;
+  }
+  .btn-size-todos {
+    min-width: 25%;
   }
 }
 @media screen and (min-width: 850px) {
   .form-width-todos-2 {
-    min-width: 38rem;
+    min-width: 50rem;
   }
 }
 @media screen and (min-width: 1px) {
@@ -492,6 +526,11 @@ a:hover {
 .secondary-colour-scheme {
   color: black;
   background-color: white;
+}
+
+.tertiary-colour-scheme {
+  color: white;
+  background-color: hsl(195deg, 100%, 60%);
 }
 
 /* typography */
@@ -627,23 +666,6 @@ a:hover {
   }
 }
 /* Todos styles */
-.todo-container {
-  outline: 2px solid rgb(0, 0, 0);
-  background: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin: 0 auto;
-  max-width: 45rem;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-}
-
-.todo-button {
-  min-width: 5rem;
-  max-width: 5rem;
-  margin-left: 2rem;
-}
-
 /* Matters */
 .hd-1 {
   grid-area: hd-1;
