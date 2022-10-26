@@ -157,7 +157,7 @@ router.get("/generate", async (req, res, next) => {
         }
 
         if (
-          cell.value > 1 &&
+          cell.value > 0 &&
           cell.value < 9 &&
           rowNumber > 1 &&
           colNumber === 8
