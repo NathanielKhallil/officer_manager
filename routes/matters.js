@@ -3,6 +3,7 @@ const router = express.Router();
 const models = require("../app/models");
 
 const Excel = require("exceljs");
+require("dotenv").config();
 
 // // excel options
 // const options = {
@@ -13,6 +14,15 @@ const Excel = require("exceljs");
 
 const workbook = new Excel.Workbook();
 const worksheet = workbook.addWorksheet("Matters List");
+
+// clears the worksheet of duplicate rows by splicing away rows prior to new workbook writing
+function deleteRows(rows) {
+  let i = rows.length;
+  while (i >= 1) {
+    worksheet.spliceRows(i, 1);
+    i--;
+  }
+}
 
 router.get("/", async (req, res, next) => {
   if (req.user && req.user.access_granted === true) {
@@ -35,26 +45,32 @@ router.get("/generate", async (req, res, next) => {
       order: [["matter_number"]],
     });
 
+    // clear previous row data in the worksheet
+    if (worksheet) {
+      deleteRows(matters);
+    }
+
+    // set column info
     worksheet.columns = [
-      { header: "matter_num", key: "matter_num", width: 10 },
+      { header: "matter_num", key: "matter_num", width: 15 },
       { header: "cfa_signed", key: "cfa_signed", width: 10 },
       {
         header: "statement_of_claim_filed",
         key: "statement_of_claim_filed",
-        width: 20,
+        width: 30,
       },
-      { header: "s_of_c_served", key: "s_of_c_served", width: 10 },
-      { header: "s_of_d_served", key: "s_of_d_served", width: 10 },
-      { header: "aff_of_recs_served", key: "aff_of_recs_served", width: 15 },
-      { header: "producibles_sent", key: "producibles_sent", width: 10 },
+      { header: "s_of_c_served", key: "s_of_c_served", width: 15 },
+      { header: "s_of_d_served", key: "s_of_d_served", width: 15 },
+      { header: "aff_of_recs_served", key: "aff_of_recs_served", width: 18 },
+      { header: "producibles_sent", key: "producibles_sent", width: 18 },
       {
         header: "undertakings_remaining",
         key: "undertakings_remaining",
-        width: 15,
+        width: 25,
       },
-      { header: "notes", key: "notes", width: 10 },
-      { header: "createdAt", key: "createdAt", width: 10 },
-      { header: "updatedAt", key: "updatedAt", width: 10 },
+      { header: "notes", key: "notes", width: 40 },
+      { header: "createdAt", key: "createdAt", width: 15 },
+      { header: "updatedAt", key: "updatedAt", width: 15 },
     ];
 
     // Add row using key mapping to columns
@@ -73,15 +89,19 @@ router.get("/generate", async (req, res, next) => {
         updatedAt: matters[i].updatedAt,
       });
     }
-    await workbook.xlsx
-      .writeFile("sample.xlsx")
-      .then(() => {
-        console.log("saved");
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-    return res.redirect("/matters");
+
+    // user can download the workfile and rename as desired.
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=" + "matterlist.xlsx"
+    );
+    await workbook.xlsx.write(res).then(() => {
+      res.end();
+    });
   } else {
     return res.send(
       "You do not have permission to view this page. Contact the Administrator."
