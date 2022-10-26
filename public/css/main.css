@@ -383,7 +383,7 @@
 }
 @media screen and (min-width: 1px) {
   .wrapper-todos {
-    min-height: calc(100vh - 51rem);
+    min-height: calc(100vh - 45rem);
     background-color: white;
   }
   .form-width-todos-1 {

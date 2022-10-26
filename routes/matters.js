@@ -45,35 +45,36 @@ router.get("/generate", async (req, res, next) => {
       order: [["matter_number"]],
     });
 
-    // clear previous row data in the worksheet
+    // Clear previous row data in the worksheet
     if (worksheet) {
       deleteRows(matters);
     }
 
-    // set column info
+    // Set column info
     worksheet.columns = [
-      { header: "matter_num", key: "matter_num", width: 15 },
-      { header: "cfa_signed", key: "cfa_signed", width: 10 },
+      { header: "Matter Num:", key: "matter_num", width: 20 },
+      { header: "CFA signed:", key: "cfa_signed", width: 18 },
       {
-        header: "statement_of_claim_filed",
+        header: "Statement of Claim Filed:",
         key: "statement_of_claim_filed",
-        width: 30,
+        width: 31,
       },
-      { header: "s_of_c_served", key: "s_of_c_served", width: 15 },
-      { header: "s_of_d_served", key: "s_of_d_served", width: 15 },
-      { header: "aff_of_recs_served", key: "aff_of_recs_served", width: 18 },
-      { header: "producibles_sent", key: "producibles_sent", width: 18 },
+      { header: "S of C served:", key: "s_of_c_served", width: 21 },
+      { header: "S of D served:", key: "s_of_d_served", width: 21 },
+      { header: "Aff of Recs Served", key: "aff_of_recs_served", width: 25 },
+      { header: "Producibles Sent", key: "producibles_sent", width: 25 },
       {
-        header: "undertakings_remaining",
+        header: "Undertakings Left",
         key: "undertakings_remaining",
-        width: 25,
+        width: 28,
       },
-      { header: "notes", key: "notes", width: 40 },
-      { header: "createdAt", key: "createdAt", width: 15 },
-      { header: "updatedAt", key: "updatedAt", width: 15 },
+      { header: "Notes", key: "notes", width: 41 },
+      { header: "createdAt", key: "createdAt", width: 17 },
+      { header: "updatedAt", key: "updatedAt", width: 17 },
     ];
 
     // Add row using key mapping to columns
+
     for (let i = 0; i < matters.length; i++) {
       worksheet.addRow({
         matter_num: matters[i].matter_number,
@@ -90,7 +91,51 @@ router.get("/generate", async (req, res, next) => {
       });
     }
 
-    // user can download the workfile and rename as desired.
+    worksheet.autoFilter = "A1:K1";
+
+    worksheet.eachRow({ includeEmpty: false }, function (row, rowNumber) {
+      row.eachCell(function (cell, colNumber) {
+        if (rowNumber === 1) {
+          cell.fill = {
+            type: "pattern",
+            pattern: "solid",
+            fgColor: { argb: "33ccff" },
+          };
+          cell.border = {
+            top: { style: "thin" },
+            left: { style: "thin" },
+            bottom: { style: "thin" },
+            right: { style: "thin" },
+          };
+
+          cell.border = {
+            top: { style: "thin" },
+            left: { style: "thin" },
+            bottom: { style: "thin" },
+            right: { style: "thin" },
+          };
+          cell.alignment = {
+            vertical: "middle",
+            horizontal: "center",
+          };
+          cell.font = {
+            name: "Arial",
+            family: 2,
+            bold: true,
+            size: 12,
+          };
+        }
+        if (rowNumber > 1) {
+          cell.alignment = {
+            vertical: "middle",
+            horizontal: "left",
+          };
+        }
+      });
+    });
+
+    // User can download the workfile and rename as desired.
+
     res.setHeader(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
