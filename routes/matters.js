@@ -131,6 +131,79 @@ router.get("/generate", async (req, res, next) => {
             horizontal: "left",
           };
         }
+        if (cell.value === false && rowNumber > 1) {
+          cell.fill = {
+            type: "gradient",
+            gradient: "angle",
+            degree: 0,
+            stops: [
+              { position: 0, color: { argb: "ffffff" } },
+              { position: 0.5, color: { argb: "4d4d4d" } },
+              { position: 1, color: { argb: "000000" } },
+            ],
+          };
+        }
+        if (cell.value < 1 && rowNumber > 1 && colNumber === 8) {
+          cell.fill = {
+            type: "gradient",
+            gradient: "angle",
+            degree: 0,
+            stops: [
+              { position: 0, color: { argb: "ffffff" } },
+              { position: 0.5, color: { argb: "99ff99" } },
+              { position: 1, color: { argb: "4dff4d" } },
+            ],
+          };
+        }
+
+        if (
+          cell.value > 1 &&
+          cell.value < 9 &&
+          rowNumber > 1 &&
+          colNumber === 8
+        ) {
+          cell.fill = {
+            type: "gradient",
+            gradient: "angle",
+            degree: 0,
+            stops: [
+              { position: 0, color: { argb: "ffffff" } },
+              { position: 0.5, color: { argb: "ffdb4d" } },
+              { position: 1, color: { argb: "ffcc00" } },
+            ],
+          };
+        }
+
+        if (
+          cell.value > 8 &&
+          cell.value <= 13 &&
+          rowNumber > 1 &&
+          colNumber === 8
+        ) {
+          cell.fill = {
+            type: "gradient",
+            gradient: "angle",
+            degree: 0,
+            stops: [
+              { position: 0, color: { argb: "ffffff" } },
+              { position: 0.5, color: { argb: "ffa366" } },
+              { position: 1, color: { argb: "ff6600" } },
+            ],
+          };
+        }
+
+        if (cell.value >= 14 && rowNumber > 1 && colNumber === 8) {
+          cell.fill = {
+            type: "gradient",
+            gradient: "angle",
+            degree: 0,
+            stops: [
+              { position: 0, color: { argb: "ffffff" } },
+              { position: 0.5, color: { argb: "ff6666" } },
+              { position: 1, color: { argb: "ff0000" } },
+            ],
+          };
+        }
       });
     });
 
