@@ -3,7 +3,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const https = require("https");
+fs = require("fs");
 
+const path = require("path");
 const app = require("./app");
 const cors = require("cors");
 
@@ -14,31 +16,31 @@ const PORT = process.env.SECRET_PORT;
 // Cors
 app.use(cors({ origin: `http://localhost:${PORT}` }));
 
+// SSL Options
+const options = {
+  key: fs.readFileSync(path.join(__dirname, "./cert/key.pem")),
+  cert: fs.readFileSync(path.join(__dirname, "./cert/cert.pem")),
+};
 // Models
 const models = require("./app/models");
 
 //Sync Database
 models.sequelize.sync();
 
-const sslServer = https.createServer(
-  {
-    key: "",
-    cert: "",
-  },
-  app
-);
-
 if (process.env.NODE_ENV !== "production") {
-  const server = app.listen(PORT, () =>
-    console.log(`Listening on port: ${PORT}`)
-  );
+  const server = https.createServer(options, app);
+  server.listen(PORT, () => {
+    console.log(`Running securely...`);
+  });
   module.exports = server;
 }
 
 // SSL should be implemented with openSSL (requires local download)
 if (process.env.NODE_ENV === "production") {
-  const server = sslServer.listen(PORT, () =>
-    console.log("Secure server connected!")
-  );
-  module.exports = server;
+  https
+    .createServer(options, app)
+    .listen(PORT)
+    .then(() => {
+      console.log(`Running securely...`);
+    });
 }
