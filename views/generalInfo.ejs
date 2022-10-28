@@ -9,6 +9,11 @@
         style="flex-direction: row"
       >
         <li class="nav-item ps-0">
+          <a class="nav-link active ps-3 pe-2" id="index" name="index" href="/">
+            Home
+          </a>
+        </li>
+        <li class="nav-item ps-0">
           <a
             class="nav-link active ps-3 pe-2"
             id="info"
@@ -18,58 +23,50 @@
             General Info
           </a>
         </li>
+        <li class="nav-item ps-0">
+          <a
+            class="nav-link active ps-3 pe-2"
+            id="userPortal"
+            name="userPortal"
+            href="/userPortal"
+          >
+            Dashboard
+          </a>
+        </li>
+        <% if (admin) { %>
         <li class="nav-item ps-3 pe-2">
-          <a class="nav-link active" href="/"> Home </a>
+          <a
+            class="nav-link active"
+            id="adminPortal"
+            name="adminPortal"
+            href="/adminPortal"
+          >
+            Admin
+          </a>
+        </li>
+        <%} else { %>
+        <li class="nav-item ps-3 pe-2">
+          <a
+            class="nav-link active"
+            id="userProfile"
+            name="userProfile"
+            href="/userProfile"
+          >
+            Profile
+          </a>
+        </li>
+        <% } %>
+        <li class="nav-item ps-3 pe-2">
+          <a class="nav-link active" id="logout" name="logout" href="/logout">
+            Logout
+          </a>
         </li>
       </ul>
     </nav>
   </header>
-  <main>
-    <% if (messages.error) { %> <%- messages.error %> <% } %>
-    <form
-      class="form-outline rounded p-5 form-margin"
-      action="/login"
-      method="POST"
-    >
-      <h1 style="font-size: 130%">Sign in to continue</h1>
-      <div class="form-floating">
-        <input
-          type="text"
-          id="username"
-          class="form-control mb-4"
-          placeholder="username"
-          name="username"
-          id="username"
-        />
-        <label for="username" class="text-left"> Username </label>
-      </div>
-      <div class="form-floating">
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          placeholder="password"
-          name="password"
-          id="password"
-        />
-        <label class="form-label text-left" for="form2Example2">Password</label>
-      </div>
-      <div class="mt-4 align-content-center">
-        <button
-          type="submit"
-          class="btn me-4 ps-4 pe-4 rounded bg-dark text-light"
-        >
-          Sign in
-        </button>
-        <button class="btn bg-danger text-light rounded">
-          <a class="nav-link" href="/register"> New Account </a>
-        </button>
-      </div>
+  <section>Placeholder</section>
 
-      <a class="d-flex mt-3" onClick="sendEmail()"> Forgot password?</a>
-    </form>
-  </main>
-
+  <div class="wrapper-info"></div>
   <footer class="footer">
     <div class="footer-header">Quicklinks for Filing Documents</div>
     <div class="push"></div>

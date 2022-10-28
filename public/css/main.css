@@ -447,6 +447,12 @@
     font-size: 100%;
   }
 }
+@media screen and (min-width: 1px) {
+  .wrapper-info {
+    min-height: calc(100vh - 45rem);
+    background-color: white;
+  }
+}
 html {
   height: 100%;
   margin: 0;

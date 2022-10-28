@@ -19,6 +19,7 @@ const files = require("./routes/files");
 const appointments = require("./routes/appointments");
 const userProfile = require("./routes/userProfile");
 const adminPortal = require("./routes/adminPortal");
+const generalInfo = require("./routes/generalInfo");
 
 // Templating Engine
 app.use(expressLayouts);
@@ -70,6 +71,8 @@ app.use("/logout", logout);
 app.use("/userPortal", userPortal);
 
 // Info route
+
+app.use("/generalInfo", generalInfo);
 
 // Todos route
 

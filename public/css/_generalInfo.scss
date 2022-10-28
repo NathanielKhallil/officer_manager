@@ -1,0 +1,6 @@
+@include media-xs {
+    .wrapper-info {
+        min-height: calc(100vh - 45rem);
+        background-color: $secondary-colour;
+    }
+}
